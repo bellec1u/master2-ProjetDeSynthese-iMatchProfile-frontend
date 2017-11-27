@@ -1,0 +1,11 @@
+.divider-vertical {
+  height: 50px;
+  margin: 0 9px;
+  border-radius: 25px;
+  border-left: 1px solid #F2F2F2;
+  border-right: 1px solid #FFF;
+}
+
+.selected-item {
+  border-radius: 5px;
+}
