@@ -1,0 +1,28 @@
+
+<h2>Liste de mes postes publier</h2>
+<br>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Réference</th>
+    <th scope="col">Intitulé</th>
+    <th scope="col">Type</th>
+    <th scope="col">Lieu</th>
+    <th scope="col">Date de Creation</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let post of listPost">
+    <td>{{ post.id }}</td>
+    <td>{{ post.postName }}</td>
+    <td>{{ post.typeCommitment }}</td>
+    <td>{{ post.postLocality }}</td>
+    <td>{{ post.created }}</td>
+    <td><button (click)="showPost()" type="button" class="btn btn-primary btn-sm">Afficher</button>
+      <button (click)="updatePost()" type="button" class="btn btn-warning btn-sm">Modifier</button>
+      <button (click)="deletePost()" type="button" class="btn btn-danger btn-sm">Supprimer</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
