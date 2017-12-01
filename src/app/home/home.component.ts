@@ -10,12 +10,12 @@ export class HomeComponent implements OnInit {
 
   private _posts: any[];
 
-  constructor(private _postService: PostService) { }
+  constructor(/*private _postService: PostService*/) { }
 
   ngOnInit() {
-    this._postService
+    /*this._postService
       .fetchPostMin()
-      .subscribe((posts: any[]) => this._posts = posts);
+      .subscribe((posts: any[]) => this._posts = posts);*/
   }
 
 }
