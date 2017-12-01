@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ListPostComponent } from './list-post/list-post.component';
 import { ListPostService } from './list-post/list-post.service';
+import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
 import {PostComponent} from './post/post.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import {PostComponent} from './post/post.component';
     FooterComponent,
     ListPostComponent,
     PostComponent,
+    CandidateProfileComponent,
     HomeComponent
   ],
   imports: [
