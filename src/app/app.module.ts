@@ -6,13 +6,15 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListPostComponent } from './list-post/list-post.component';
 import { ListPostService } from './list-post/list-post.service';
+import {PostComponent} from './post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ListPostComponent
+    ListPostComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule
