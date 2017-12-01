@@ -1,0 +1,23 @@
+body {
+  padding-top: 20px;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .masthead,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
