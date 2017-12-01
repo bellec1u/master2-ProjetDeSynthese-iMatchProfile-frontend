@@ -8,6 +8,7 @@ import { ListPostComponent } from './list-post/list-post.component';
 import { ListPostService } from './list-post/list-post.service';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
 import {PostComponent} from './post/post.component';
+import {APP_ROUTES} from './app.route';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {PostComponent} from './post/post.component';
     HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    APP_ROUTES
   ],
   providers: [ListPostService],
   bootstrap: [AppComponent]
