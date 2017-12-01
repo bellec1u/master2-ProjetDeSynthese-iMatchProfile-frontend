@@ -22,7 +22,7 @@ export class ListPostService {
       typeCommitment: 'CDI',
       postLocality: 'Paris',
       created: '12/12/2016'
-    }]
+    }];
   }
 }
 
