@@ -29,7 +29,7 @@ export class PostService {
    *
    * @returns {Observable<any[]>}
    */
-  fetchPostMin(): Observable<any[]> {
+  fetchPostMin(): Observable<any[] | ArrayBuffer> {
     return this._http.get(this._backendURL.allPostMin, this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
