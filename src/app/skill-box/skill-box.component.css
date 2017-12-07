@@ -1,0 +1,15 @@
+.rectangle-box {
+  padding: 5px 5px 5px 10px;;
+  display: inline-block;
+  color: white;
+  outline-style: solid;
+}
+
+.skill-text {
+  padding-left: 5px;
+}
+
+.skill-x {
+  background: #408CCA;
+  outline-color: #216096;
+}
