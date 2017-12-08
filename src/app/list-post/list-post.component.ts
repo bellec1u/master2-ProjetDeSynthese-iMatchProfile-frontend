@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from './post';
-import {ListPostService} from './list-post.service';
+import {PostService} from '../shared/services/post.service';
 
 @Component({
   selector: 'app-list-post',
@@ -11,15 +11,11 @@ export class ListPostComponent implements OnInit {
   listPost: Post[];
 
 
-  constructor(private _listPostService: ListPostService) { }
+  constructor(private _listPostService: PostService) { }
 
   ngOnInit() {
-    this.getPosts();
   }
 
-  getPosts() {
-    this.listPost = this._listPostService.getPostsFromService();
-  }
 
   showPost() {}
   updatePost() {}

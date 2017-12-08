@@ -5,11 +5,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ListPostComponent } from './list-post/list-post.component';
-import { ListPostService } from './list-post/list-post.service';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
-import {PostComponent} from './post/post.component';
-import {PostService} from './shared/services/post.service';
-import {APP_ROUTES} from './app.route';
+import { PostComponent } from './post/post.component';
+import { PostService } from './shared/services/post.service';
+import { APP_ROUTES } from './app.route';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { CandidateFormComponent } from './candidate-form/candidate-form.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,18 @@ import {APP_ROUTES} from './app.route';
     ListPostComponent,
     PostComponent,
     CandidateProfileComponent,
-    HomeComponent
+    HomeComponent,
+    NotfoundComponent,
+    CandidateFormComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     APP_ROUTES
   ],
   providers: [
-    ListPostService,
     PostService
   ],
   bootstrap: [AppComponent]
