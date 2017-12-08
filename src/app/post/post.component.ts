@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CandidateService} from '../shared/services/candidate-service/candidate.service';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  // Property to store the value of the candidates matching for this post
+  private _matchingCandidates: any[];
+
+  constructor(private _candidateService: CandidateService) { }
 
   ngOnInit() {
+    this._candidateService.fetch()
+      .subscribe((candidates: any) => {
+        console.log(candidates);
+        this._matchingCandidates = candidates;
+    }
+      );
+  }
+
+  get matchingCandidates(): any[] {
+    return this._matchingCandidates;
   }
 
   Postuler() {}

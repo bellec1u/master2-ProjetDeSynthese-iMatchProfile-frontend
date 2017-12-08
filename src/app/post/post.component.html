@@ -1,6 +1,6 @@
-  <button (click)="Postuler()" type="button" class="btn btn-success">Postuler</button>
-  <button (click)="Contacter()" type="button" class="btn btn-info">Contacter</button>
-  <button (click)="Signaler()" type="button" class="btn btn-danger">Signaler</button>
+<button (click)="Postuler()" type="button" class="btn btn-success">Postuler</button>
+<button (click)="Contacter()" type="button" class="btn btn-info">Contacter</button>
+<button (click)="Signaler()" type="button" class="btn btn-danger">Signaler</button>
 <p></p>
 
 <p class="alert alert-success">Caractéristiques</p>
@@ -87,8 +87,8 @@
   <tbody>
   <tr>
     <th scope="row">Thématique</th>
-    <th scope="row">Capacité / Compétence </th>
-    <th scope="row">Obligatoire / Plus </th>
+    <th scope="row">Capacité / Compétence</th>
+    <th scope="row">Obligatoire / Plus</th>
   </tr>
   <tr>
     <th scope="row">Savoir spécifique</th>
@@ -102,8 +102,10 @@
   <tr>aaa</tr>
   </td>
 
-  <td><tr>Obligatoire</tr>
-    <tr>Obligatoire</tr></td>
+  <td>
+    <tr>Obligatoire</tr>
+    <tr>Obligatoire</tr>
+  </td>
   <tr>
     <th scope="row">Savoir-être</th>
     <td>
@@ -121,8 +123,8 @@
   <tbody>
   <tr>
     <th scope="row">Thématique</th>
-    <th scope="row">Connaissance / Compétence </th>
-    <th scope="row">Obligatoire / Plus </th>
+    <th scope="row">Connaissance / Compétence</th>
+    <th scope="row">Obligatoire / Plus</th>
   </tr>
   <tr>
     <th scope="row">Métier</th>
@@ -137,3 +139,6 @@
   </tr>
   </tbody>
 </table>
+
+<p class="alert alert-danger">Candidats potentiels</p>
+<app-candidate-card [candidate]="candidate" *ngFor="let candidate of matchingCandidates"></app-candidate-card>

@@ -12,16 +12,19 @@
       <div class="text-center">
         <button class="row btn btn-success btn-block" (click)="proposePost()" type="button">Proposer un poste</button>
         <button class="row btn btn-primary btn-block" (click)="contact()" type="button" >Contacter</button>
-        <button class="row btn btn-danger btn-block" (click)="signal()" type="button" >Signaler le poste</button>
+        <button class="row btn btn-danger btn-block" (click)="signal()" type="button" >Signaler le profil</button>
       </div>
     </div>
   </div>
 
   <p class="alert alert-success">Formation</p>
+  <p></p>
 
   <p class="alert alert-success">Compétences</p>
+  <div class="container-fluid pb-3">
+    <app-skill-box [skill]="skill" *ngFor="let skill of candidate.skills"></app-skill-box>
+  </div>
 
   <p class="alert alert-success">Commentaires</p>
 
-  <app-skill-box></app-skill-box>
 </div>

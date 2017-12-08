@@ -22,6 +22,17 @@ export class CandidateService {
   }
 
   /**
+   * Function to return list of candidates
+   *
+   * @returns {Observable<any[]>}
+   */
+  fetch(): Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.allCandidate, this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
+  /**
    * Function to return one candidate for current id
    *
    * @param id
