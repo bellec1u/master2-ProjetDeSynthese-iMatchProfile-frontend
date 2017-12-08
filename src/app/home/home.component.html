@@ -13,23 +13,13 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-4">
-      <h4>Developpeur JavaScript H/F</h4>
-      <h6><u>Ankama</u></h6>
-      <p>Nous recherchons un développeur expérimenté à l’affût des nouvelles tendances technologiques. Il prendra part à un nouveau projet phare d’Ankama, en lien étroit avec les équipes de production de nos jeux.</p>
-      <p><a class="btn btn-primary" href="#" role="button">Voir le poste &raquo;</a></p>
+
+    <div class="col-lg-4" *ngFor="let post of posts">
+      <h4>{{post.title}}</h4>
+      <h6><u>{{post.workplace}}</u></h6>
+      <p>{{post.description}}</p>
+      <p><a class="btn btn-primary" (click)="navigate(post)" role="button">Voir le poste &raquo;</a></p>
     </div>
-    <div class="col-lg-4">
-      <h4>Developpeur Junior H/F</h4>
-      <h6><u>Accenture</u></h6>
-      <p>Nous recherchons actuellement, pour notre entité Accenture Technology Solutions de Toulouse des ingénieurs d’études pour participer à des projets dans le domaine de l’aéronautique.</p>
-      <p><a class="btn btn-primary" href="#" role="button">Voir le poste &raquo;</a></p>
-    </div>
-    <div class="col-lg-4">
-      <h4>Developpeur Logiciel JAVA</h4>
-      <h6><u>Informatique Banque Populaire</u></h6>
-      <p>Pour renforcer nos équipes du site de Nantes, nous recrutons un Développeur Logiciel Java H/F. Tu veux apporter tes compétences Java au sein de la communauté des développeurs qui travaillent en mode Agile ? </p>
-      <p><a class="btn btn-primary" href="#" role="button">Voir le poste &raquo;</a></p>
-    </div>
+
   </div>
 </div>
