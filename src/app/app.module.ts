@@ -9,7 +9,7 @@ import { CandidateProfileComponent } from './candidate-profile/candidate-profile
 import { PostComponent } from './post/post.component';
 
 import { ListPostService } from './list-post/list-post.service';
-import { PostService } from './shared/services/post.service';
+import { PostService } from './shared/services/post-services/post.service';
 import { CandidateService } from './shared/services/candidate-service/candidate.service';
 
 import { APP_ROUTES } from './app.route';

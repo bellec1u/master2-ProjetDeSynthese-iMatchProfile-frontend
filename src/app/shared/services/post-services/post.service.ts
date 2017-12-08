@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/filter';
@@ -33,6 +33,17 @@ export class PostService {
     return this._http.get(this._backendURL.allPostMin, this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
+  }
+
+  /**
+   * Function to return one post for current id
+   *
+   * @param id
+   *
+   * @returns {Observable<any>}
+   */
+  fetchOne(id: string): Observable<any> {
+    return this._http.get(this._backendURL.onePost.replace(':id', id), this._options());
   }
 
   /**

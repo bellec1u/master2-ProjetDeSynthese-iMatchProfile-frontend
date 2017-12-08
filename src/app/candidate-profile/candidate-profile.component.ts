@@ -20,21 +20,23 @@ export class CandidateProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*
+
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._candidateService.fetchOne(params['id']))
-      .subscribe((candidate: any) =>
+      .subscribe((candidate: any) => {
         this._candidate = candidate
+        console.log(this._candidate); }
       );
-    */
+
     // For testing purpose
+    /*
     this._candidate = {
       firstname: 'Jean',
       lastname: 'Pierre',
       photo: 'http://trovacamporella.com/img/trovacamporella-fiat500.png',
       description: ''
-    };
+    };*/
   }
 
   get candidate() {

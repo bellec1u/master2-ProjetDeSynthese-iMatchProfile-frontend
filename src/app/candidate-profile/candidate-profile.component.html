@@ -1,8 +1,9 @@
-<div class="container-fluid">
+<div *ngIf="candidate" class="container-fluid">
   <div class="row">
     <div class="col-10">
-      <img src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
-      <h3 class="text-center">{{candidate.firstname}} {{candidate.lastname}}</h3>
+      <img *ngIf="candidate.photo" src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
+      <img *ngIf="!candidate.photo" src="../../assets/images/user-no-photo.png"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
+      <h3 class="text-center">{{candidate.user.firstname}} {{candidate.user.lastname}}</h3>
       <br>
       <div class="text-center">{{candidate.description}}</div>
       <br>
@@ -15,12 +16,12 @@
       </div>
     </div>
   </div>
+
+  <p class="alert alert-success">Formation</p>
+
+  <p class="alert alert-success">Compétences</p>
+
+  <p class="alert alert-success">Commentaires</p>
+
+  <app-skill-box></app-skill-box>
 </div>
-
-<p class="alert alert-success">Formation</p>
-
-<p class="alert alert-success">Compétences</p>
-
-<p class="alert alert-success">Commentaires</p>
-
-<app-skill-box></app-skill-box>
