@@ -7,7 +7,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/defaultIfEmpty';
 
 @Injectable()
-export class PostService {
+export class PostskillService {
 
   private _backendURL: any;
 
@@ -25,37 +25,15 @@ export class PostService {
   }
 
   /**
-   * Function to return list of miniature posts
+   * Function to return list of postskill
    *
    * @returns {Observable<any[]>}
    */
   fetch(): Observable<any[] | ArrayBuffer> {
-    return this._http.get(this._backendURL.allPostMin, this._options())
+    return this._http.get(this._backendURL.postSkill, this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
-
-  /**
-   * Function to return list of posts of a recruiter
-   * @returns {Observable<any[] | ArrayBuffer>}
-   */
-  fetchPostRecruiter(id: string): Observable<any[] | ArrayBuffer> {
-    return this._http.get(this._backendURL.listPostRecruiter.replace(':id', id), this._options())
-      .filter(_ => !!_)
-      .defaultIfEmpty([]);
-  }
-
-  /**
-   * Function to return one post for current id
-   *
-   * @param id
-   *
-   * @returns {Observable<any>}
-   */
-  fetchOne(id: string): Observable<any> {
-    return this._http.get(this._backendURL.onePost.replace(':id', id), this._options());
-  }
-
   /**
    * Function to return request options
    *

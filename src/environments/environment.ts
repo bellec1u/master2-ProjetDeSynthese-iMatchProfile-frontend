@@ -12,7 +12,10 @@ export const environment = {
     endpoints: {
       allPostMin:   '/imp/api/posts',
       onePost:      '/imp/api/posts/:id',
-      oneCandidate: '/imp/api/candidates/:id'
+      oneCandidate: '/imp/api/candidates/:id',
+      allCandidate: '/imp/api/candidates',
+      postSkill: '/imp/api/postskills/',
+      listPostRecruiter: '/imp/api/posts/:id/recruiter'
       /*
       allPeople: '/api/people',
       randomPeople: '/api/people/random',

@@ -1,0 +1,18 @@
+
+<p></p>
+
+<p class="alert alert-danger">Connaissances requises</p>
+<table class="table">
+  <tbody>
+  <tr>
+    <th scope="row">Thématique</th>
+    <th scope="row">Connaissance / Compétence </th>
+    <th scope="row">Obligatoire / Plus </th>
+  </tr>
+    <tr *ngFor="let ps of _postskill">
+    <th>{{ps.skill.type}}</th>
+    <td>{{ps.skill.description}}</td>
+    <td>{{ps.type}}</td>
+  </tr>
+  </tbody>
+</table>
