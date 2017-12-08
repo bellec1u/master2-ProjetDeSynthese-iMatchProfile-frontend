@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  private title = 'iMatchProfile';
+  title = 'iMatchProfile';
 
   constructor() { }
 
