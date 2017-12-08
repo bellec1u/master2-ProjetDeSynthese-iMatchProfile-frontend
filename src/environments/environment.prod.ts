@@ -1,16 +1,14 @@
 export const environment = {
-  production: true,
+  production: false,
   backend: {
     protocol: 'http',
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     port: '8080',
     endpoints: {
-      allPostMin: '/api/post/min'
-      /*
-      allPeople: '/api/people',
-      randomPeople: '/api/people/random',
-      onePeople: '/api/people/:id'
-      */
+      allPost:      '/imp/api/posts',
+      allPostMin:   '/imp/api/posts/min',
+      onePost:      '/imp/api/posts/:id',
+      oneCandidate: '/imp/api/candidates/:id'
     }
   }
 };

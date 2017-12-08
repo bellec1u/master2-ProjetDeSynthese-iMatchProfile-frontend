@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Post } from './post';
 import {PostService} from '../shared/services/post-services/post.service';
 
@@ -10,8 +10,8 @@ import {PostService} from '../shared/services/post-services/post.service';
 export class ListPostComponent implements OnInit {
   listPost: Post[];
 
-
-  constructor(private _postService: PostService) { }
+  constructor(private _postService: PostService) {
+  }
 
   ngOnInit() {
   }
@@ -20,4 +20,5 @@ export class ListPostComponent implements OnInit {
   showPost() {}
   updatePost() {}
   deletePost() {}
+
 }

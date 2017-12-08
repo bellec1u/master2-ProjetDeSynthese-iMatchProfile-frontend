@@ -1,0 +1,124 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content p-2">
+
+    <div class="container">
+      <h1>Création d'un nouveau poste</h1>
+      <form novalidate [formGroup]="form">
+        <div class="form-group">
+
+          <div class="form-group row">
+            <label for="publicationDate" class="col-sm-3 col-form-label">Date de publication :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="publicationDate" formControlName="publicationDate" required name="publicationDate">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="reference" class="col-sm-3 col-form-label">Référence :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="reference" formControlName="reference" required name="reference">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="title" class="col-sm-3 col-form-label">Titre :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="title" formControlName="title" required name="title">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="experience" class="col-sm-3 col-form-label">Experience requise :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="experience" formControlName="experience" required name="experience">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="salaryIndex" class="col-sm-3 col-form-label">Index du salaire :</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <span class="input-group-addon">€</span>
+                <input type="text" class="form-control" id="salaryIndex" formControlName="salaryIndex" required name="salaryIndex">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="minSalary" class="col-sm-3 col-form-label">Salaire minimum :</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <span class="input-group-addon">€</span>
+                <input type="text" class="form-control" id="minSalary" formControlName="minSalary" required name="minSalary">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="maxSalary" class="col-sm-3 col-form-label">Salaire maximum :</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <span class="input-group-addon">€</span>
+                <input type="text" class="form-control" id="maxSalary" formControlName="maxSalary" required name="maxSalary">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="contractType" class="col-sm-3 col-form-label">Type de contrat :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="contractType" formControlName="contractType" required name="contractType">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label">Description :</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="description" formControlName="description" required name="description" rows="3"></textarea>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="importantNotes" class="col-sm-3 col-form-label">Points importants :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="importantNotes" formControlName="importantNotes" required name="importantNotes">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="workplace" class="col-sm-3 col-form-label">Situation du poste :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="workplace" formControlName="workplace" required name="workplace">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="organization" class="col-sm-3 col-form-label">Entreprise :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="organization" formControlName="organization" required name="organization">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="workUnit" class="col-sm-3 col-form-label">Service du poste :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="workUnit" formControlName="workUnit" required name="workUnit">
+            </div>
+          </div>
+
+
+          <div>
+            <button type="button" class="btn btn-outline-secondary float-right m-2"
+                    data-dismiss="modal">Quitter</button>
+            <button type="submit" class="btn btn-outline-success float-right m-2"
+                    (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid">Créer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

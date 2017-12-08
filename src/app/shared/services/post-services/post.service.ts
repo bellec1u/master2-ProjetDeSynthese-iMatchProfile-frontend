@@ -47,6 +47,41 @@ export class PostService {
   }
 
   /**
+   * Function to create a new post
+   *
+   *
+   * @returns {Observable<any>}
+   * @param post
+   */
+  create(post): Observable<any> {
+    return this._http.post(this._backendURL.allPost, post, this._options());
+  }
+
+  /**
+   * Function to update one post
+   *
+   *
+   * @returns {Observable<any>}
+   * @param post
+   */
+  update(post: any): Observable<any> {
+    return this._http.put(this._backendURL.onePost.replace(':id', post.id), post, this._options());
+  }
+
+  /**
+   * Function to delete one post for current id
+   *
+   * @param id
+   *
+   * @returns {Observable<any[]>}
+   */
+  delete(id: string): Observable<any[] | ArrayBuffer> {
+    return this._http.delete(this._backendURL.onePost.replace(':id', id), this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
+  /**
    * Function to return request options
    *
    * @returns {any}
