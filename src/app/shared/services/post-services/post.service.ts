@@ -36,6 +36,16 @@ export class PostService {
   }
 
   /**
+   * Function to return list of posts of a recruiter
+   * @returns {Observable<any[] | ArrayBuffer>}
+   */
+  fetchPostRecruiter(id: string): Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.listPostRecruiter.replace(':id', id), this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
+  /**
    * Function to return one post for current id
    *
    * @param id

@@ -13,7 +13,8 @@ export const environment = {
       allPostMin:   '/imp/api/posts/min',
       onePost:      '/imp/api/posts/:id',
       oneCandidate: '/imp/api/candidates/:id',
-      allCandidate: '/imp/api/candidates'
+      allCandidate: '/imp/api/candidates',
+      listPostRecruiter: '/imp/api/posts/:id/recruiter'
       /*
       allPeople: '/api/people',
       randomPeople: '/api/people/random',
