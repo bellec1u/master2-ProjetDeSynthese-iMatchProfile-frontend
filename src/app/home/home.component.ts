@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../shared/services/post-services/post.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,21 @@ export class HomeComponent implements OnInit {
 
   private _posts: any[];
 
-  constructor(/*private _postService: PostService*/) { }
+  constructor(private _postService: PostService, private _router: Router) { }
+
+  get posts(): any[] {
+    return this._posts;
+  }
 
   ngOnInit() {
-    /*this._postService
-      .fetchPostMin()
-      .subscribe((posts: any[]) => this._posts = posts);*/
+    this._postService
+      .fetch()
+      .subscribe((posts: any[]) => this._posts = posts);
+    console.log(this._posts);
+  }
+
+  navigate(post) {
+    this._router.navigate(['/post', post.id]);
   }
 
 }

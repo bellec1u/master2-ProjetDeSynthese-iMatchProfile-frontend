@@ -3,8 +3,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/defaultIfEmpty';
+
 @Injectable()
-export class CandidateService {
+export class PostskillService {
 
   private _backendURL: any;
 
@@ -22,27 +25,15 @@ export class CandidateService {
   }
 
   /**
-   * Function to return list of candidates
+   * Function to return list of postskill
    *
    * @returns {Observable<any[]>}
    */
   fetch(): Observable<any[] | ArrayBuffer> {
-    return this._http.get(this._backendURL.allCandidate, this._options())
+    return this._http.get(this._backendURL.postSkill, this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
-
-  /**
-   * Function to return one candidate for current id
-   *
-   * @param id
-   *
-   * @returns {Observable<any>}
-   */
-  fetchOne(id: string): Observable<any> {
-    return this._http.get(this._backendURL.oneCandidate.replace(':id', id), this._options());
-  }
-
   /**
    * Function to return request options
    *

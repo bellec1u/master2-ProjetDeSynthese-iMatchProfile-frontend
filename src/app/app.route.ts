@@ -11,7 +11,7 @@ import {CandidateFormComponent} from './candidate-form/candidate-form.component'
 const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'post', component: ListPostComponent}, // affiche les posts dispo
+  { path: 'recruiterPost/:id', component: ListPostComponent}, // affiche les posts d'un recruteur
   { path: 'post/:id', component: PostComponent },
   { path: 'profile/:id', component: CandidateProfileComponent },
   { path: 'signup', component: CandidateFormComponent},

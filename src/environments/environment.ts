@@ -10,10 +10,12 @@ export const environment = {
     host: '0.0.0.0',
     port: '8080',
     endpoints: {
-      allPost:      '/imp/api/posts',
-      allPostMin:   '/imp/api/posts/min',
+      allPostMin:   '/imp/api/posts',
       onePost:      '/imp/api/posts/:id',
-      oneCandidate: '/imp/api/candidates/:id'
+      oneCandidate: '/imp/api/candidates/:id',
+      allCandidate: '/imp/api/candidates',
+      postSkill: '/imp/api/postskills/',
+      listPostRecruiter: '/imp/api/posts/:id/recruiter'
     }
   }
 };

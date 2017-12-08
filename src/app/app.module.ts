@@ -13,9 +13,12 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SkillBoxComponent } from './skill-box/skill-box.component';
+import { SkillBoxComponent } from './shared/components/skill-box/skill-box.component';
 import { PostService } from './shared/services/post-services/post.service';
 import { FormPostComponent } from './shared/modal/form-post/form-post.component';
+import { CandidateCardComponent } from './shared/components/candidate-card/candidate-card.component';
+import { PostskillComponent } from './postskill/postskill.component';
+import {PostskillService} from './shared/services/postskill-services/postskill.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { FormPostComponent } from './shared/modal/form-post/form-post.component'
     CandidateFormComponent,
     SkillBoxComponent,
     FormPostComponent,
+    CandidateCardComponent,
+    PostskillComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,7 @@ import { FormPostComponent } from './shared/modal/form-post/form-post.component'
   ],
   providers: [
     PostService,
+    PostskillService,
     CandidateService
   ],
   bootstrap: [AppComponent]
