@@ -10,7 +10,8 @@ export const environment = {
     host: '127.0.0.1',
     port: '8080',
     endpoints: {
-      allPostMin: '/api/post/min'
+      allPostMin: '/api/posts/min',
+      oneCandidate: '/api/candidates/:id'
       /*
       allPeople: '/api/people',
       randomPeople: '/api/people/random',

@@ -9,9 +9,12 @@ import { CandidateProfileComponent } from './candidate-profile/candidate-profile
 import { PostComponent } from './post/post.component';
 import { PostService } from './shared/services/post.service';
 import { APP_ROUTES } from './app.route';
+import { CandidateService } from './shared/services/candidate-service/candidate.service';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { SkillBoxComponent } from './skill-box/skill-box.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +33,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     APP_ROUTES
   ],
   providers: [
-    PostService
+    PostService,
+    SkillBoxComponent,
+    CandidateService
   ],
   bootstrap: [AppComponent]
 })
