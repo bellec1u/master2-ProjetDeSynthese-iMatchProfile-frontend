@@ -37,6 +37,7 @@ export class PostService {
 
   /**
    * Function to return list of posts of a recruiter
+   *
    * @returns {Observable<any[] | ArrayBuffer>}
    */
   fetchPostRecruiter(id: string): Observable<any[] | ArrayBuffer> {
@@ -59,7 +60,6 @@ export class PostService {
   /**
    * Function to create a new post
    *
-   *
    * @returns {Observable<any>}
    * @param post
    */
@@ -69,7 +69,6 @@ export class PostService {
 
   /**
    * Function to update one post
-   *
    *
    * @returns {Observable<any>}
    * @param post

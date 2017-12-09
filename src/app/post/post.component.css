@@ -1,0 +1,12 @@
+button {
+  cursor: pointer;
+}
+
+#control {
+  position: relative;
+}
+
+#control button:nth-child(4) {
+  position: absolute;
+  right: 0;
+}

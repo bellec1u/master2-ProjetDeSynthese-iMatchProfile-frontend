@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CandidateService } from '../shared/services/candidate-service/candidate.service';
 import { PostService } from '../shared/services/post-services/post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -16,14 +17,15 @@ export class PostComponent implements OnInit {
 
   constructor(private _postService: PostService,
               private _candidateService: CandidateService,
-              private _route: ActivatedRoute) {}
+              private _route: ActivatedRoute,
+              private _router: Router) {}
 
   ngOnInit() {
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._postService.fetchOne(params['id']))
       .subscribe((post: any) => {
-          this._post = post
+          this._post = post;
           console.log(this._post);
         }
       );
@@ -45,8 +47,12 @@ export class PostComponent implements OnInit {
     return this._matchingCandidates;
   }
 
+  delete() {
+    this._postService.delete(this._post.id).subscribe(_ => console.log('post deleted'));
+    this._router.navigate(['home']);
+  }
+
   Postuler() {}
   Contacter() {}
   Signaler() {}
-
 }
