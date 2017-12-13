@@ -24,8 +24,9 @@ export class PostskillComponent implements OnInit {
    * Initialisation
    */
   ngOnInit() {
-    this._postskillService
-      .fetch()
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postskillService.fetchPostSkill(params['id']))
       .subscribe((ps: any[]) => this._postskill = ps);
   }
 
