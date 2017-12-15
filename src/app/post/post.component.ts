@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CandidateService } from '../shared/services/candidate-service/candidate.service';
 import { PostService } from '../shared/services/post-services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Candidate } from '../shared/interfaces/candidate';
 
 @Component({
   selector: 'app-post',
@@ -13,7 +14,7 @@ export class PostComponent implements OnInit {
   private _post;
 
   // Property to store the value of the candidates matching for this post
-  private _matchingCandidates: any[];
+  private _matchingCandidates: Candidate[];
 
   constructor(private _postService: PostService,
               private _candidateService: CandidateService,
@@ -32,10 +33,8 @@ export class PostComponent implements OnInit {
 
     // Temporary
     this._candidateService.fetch()
-      .subscribe((candidates: any) => {
-        console.log(candidates);
-        this._matchingCandidates = candidates;
-        }
+      .subscribe((candidates: Candidate[]) =>
+        this._matchingCandidates = candidates
       );
   }
 
