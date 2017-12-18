@@ -17,8 +17,6 @@ import { SkillBoxComponent } from './shared/components/skill-box/skill-box.compo
 import { PostService } from './shared/services/post-services/post.service';
 import { FormPostComponent } from './shared/modal/form-post/form-post.component';
 import { CandidateCardComponent } from './shared/components/candidate-card/candidate-card.component';
-import { PostskillComponent } from './postskill/postskill.component';
-import {PostskillService} from './shared/services/postskill-services/postskill.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +32,6 @@ import {PostskillService} from './shared/services/postskill-services/postskill.s
     SkillBoxComponent,
     FormPostComponent,
     CandidateCardComponent,
-    PostskillComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +43,6 @@ import {PostskillService} from './shared/services/postskill-services/postskill.s
   ],
   providers: [
     PostService,
-    PostskillService,
     CandidateService
   ],
   bootstrap: [AppComponent]
