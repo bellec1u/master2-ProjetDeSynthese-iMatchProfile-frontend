@@ -1,4 +1,8 @@
-<div *ngIf="candidate" class="container-fluid">
+<div *ngIf="profileNotFound">
+  <p>Ce profil est introuvable.</p>
+</div>
+
+<div *ngIf="!profileNotFound && candidate" class="container-fluid">
   <div class="row">
     <div class="col-10">
       <img *ngIf="candidate.photo" src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">

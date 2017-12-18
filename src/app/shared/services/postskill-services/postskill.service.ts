@@ -29,8 +29,8 @@ export class PostskillService {
    *
    * @returns {Observable<any[]>}
    */
-  fetch(): Observable<any[] | ArrayBuffer> {
-    return this._http.get(this._backendURL.postSkill, this._options())
+  fetchPostSkill(id: string): Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.postSkill.replace(':id', id), this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
