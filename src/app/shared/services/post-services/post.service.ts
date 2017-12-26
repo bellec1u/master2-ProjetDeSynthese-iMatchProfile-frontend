@@ -25,7 +25,7 @@ export class PostService {
   }
 
   /**
-   * Function to return list of miniature posts
+   * Function to return list of posts
    *
    * @returns {Observable<any[]>}
    */
