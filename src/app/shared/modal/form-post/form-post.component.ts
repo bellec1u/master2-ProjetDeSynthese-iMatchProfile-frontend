@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../../services/post-services/post.service';
 import {Router} from '@angular/router';
+import {SkillService} from '../../services/skill-services/skill.service';
 
 @Component({
   selector: 'app-form-post',
@@ -11,9 +12,12 @@ import {Router} from '@angular/router';
 export class FormPostComponent implements OnInit {
   // private property to store form value
   private _form: FormGroup;
+  private _skill: any;
 
-  constructor(private _postService: PostService, private _router: Router) {
+
+  constructor(private _postService: PostService, private _skillService: SkillService, private _router: Router) {
     this._form = this._buildForm();
+    this._skill = {};
   }
 
   /**
@@ -26,6 +30,9 @@ export class FormPostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._skillService
+      .fetch()
+      .subscribe((skills: any[]) => this._skill = skills);
   }
 
   submit(form: any) {
@@ -36,6 +43,10 @@ export class FormPostComponent implements OnInit {
         this._router.navigate(['/posts', post.id]);
 
       });
+  }
+
+  get skill(): any {
+    return this._skill;
   }
 
   /**

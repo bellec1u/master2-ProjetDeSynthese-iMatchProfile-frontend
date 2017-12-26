@@ -25,7 +25,7 @@ export class SkillService {
   }
 
   /**
-   * Function to return list of posts
+   * Function to return list of skills
    *
    * @returns {Observable<any[]>}
    */

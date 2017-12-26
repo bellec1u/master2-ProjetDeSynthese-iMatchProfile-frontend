@@ -17,6 +17,7 @@ import { SkillBoxComponent } from './shared/components/skill-box/skill-box.compo
 import { PostService } from './shared/services/post-services/post.service';
 import { FormPostComponent } from './shared/modal/form-post/form-post.component';
 import { CandidateCardComponent } from './shared/components/candidate-card/candidate-card.component';
+import {SkillService} from './shared/services/skill-services/skill.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CandidateCardComponent } from './shared/components/candidate-card/candi
   ],
   providers: [
     PostService,
-    CandidateService
+    CandidateService,
+    SkillService
   ],
   bootstrap: [AppComponent]
 })

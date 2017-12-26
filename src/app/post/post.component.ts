@@ -11,7 +11,7 @@ import { Candidate } from '../shared/interfaces/candidate';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  private _post: any;
+  private _post;
 
   // Property to store the value of the candidates matching for this post
   private _matchingCandidates: Candidate[];
