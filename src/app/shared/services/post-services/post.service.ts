@@ -30,7 +30,7 @@ export class PostService {
    * @returns {Observable<any[]>}
    */
   fetch(): Observable<any[] | ArrayBuffer> {
-    return this._http.get(this._backendURL.allPostMin, this._options())
+    return this._http.get(this._backendURL.allPost, this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
@@ -41,7 +41,7 @@ export class PostService {
    * @returns {Observable<any[] | ArrayBuffer>}
    */
   fetchPostRecruiter(id: string): Observable<any[] | ArrayBuffer> {
-    return this._http.get(this._backendURL.listPostRecruiter.replace(':id', id), this._options())
+    return this._http.get(this._backendURL.oneRecruiter.replace(':id', id), this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
@@ -64,7 +64,7 @@ export class PostService {
    * @param post
    */
   create(post): Observable<any> {
-    return this._http.post(this._backendURL.allPost, post, this._options());
+    return this._http.post(this._backendURL.oneRecruiterPost.replace(':id', -1), post, this._options());
   }
 
   /**

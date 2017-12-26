@@ -5,4 +5,5 @@ export class AppPage {
   navigateTo() {
     return browser.get('/');
   }
+
 }

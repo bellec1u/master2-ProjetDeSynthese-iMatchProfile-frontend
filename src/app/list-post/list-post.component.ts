@@ -17,7 +17,7 @@ export class ListPostComponent implements OnInit {
       .filter(params => !!params['id'])
       .flatMap(params => this._postService.fetchPostRecruiter(params['id']))
       .subscribe((listPost: any[]) => {
-        this._listPost = listPost;
+        this._listPost = listPost['post'];
         console.log(this._listPost);
       });
   }
