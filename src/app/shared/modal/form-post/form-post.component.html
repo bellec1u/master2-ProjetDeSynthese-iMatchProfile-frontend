@@ -9,7 +9,13 @@
           <div class="form-group row">
             <label for="publicationDate" class="col-sm-3 col-form-label">Date de publication :</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="publicationDate" formControlName="publicationDate" required name="publicationDate">
+              <input type="date" class="form-control" id="publicationDate" formControlName="publicationDate" minlength="10" required name="publicationDate">
+              <div class="alert alert-danger" *ngIf="form.get('publicationDate').touched && form.get('publicationDate').hasError('required')">
+                La date est <strong>obligatoire</strong>
+              </div>
+              <div class="alert alert-danger" *ngIf="form.get('publicationDate').touched && form.get('publicationDate').hasError('minlength')">
+                Le date doit faire au moins 10 caractères
+              </div>
             </div>
           </div>
 
@@ -17,13 +23,22 @@
             <label for="reference" class="col-sm-3 col-form-label">Référence :</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="reference" formControlName="reference" required name="reference">
+              <div class="alert alert-danger" *ngIf="form.get('reference').touched && form.get('reference').hasError('required')">
+                La référence est <strong>obligatoire</strong>
+              </div>
             </div>
           </div>
 
           <div class="form-group row">
             <label for="title" class="col-sm-3 col-form-label">Titre :</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="title" formControlName="title" required name="title">
+              <input type="text" class="form-control" id="title" formControlName="title" minlength="5" required name="title">
+              <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('required')">
+                Le titre est <strong>obligatoire</strong>
+              </div>
+              <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('minlength')">
+                Le titre doit faire au moins 5 caractères
+              </div>
             </div>
           </div>
 
@@ -31,6 +46,9 @@
             <label for="experience" class="col-sm-3 col-form-label">Experience requise :</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="experience" formControlName="experience" required name="experience">
+              <div class="alert alert-danger" *ngIf="form.get('experience').touched && form.get('experience').hasError('required')">
+                L'expérience est <strong>obligatoire</strong>
+              </div>
             </div>
           </div>
 
@@ -39,7 +57,13 @@
             <div class="col-sm-9">
               <div class="input-group">
                 <span class="input-group-addon">€</span>
-                <input type="text" class="form-control" id="salaryIndex" formControlName="salaryIndex" required name="salaryIndex">
+                <input type="number" class="form-control" id="salaryIndex" formControlName="salaryIndex" min="0" required name="salaryIndex">
+                <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('required')">
+                  L'index du salaire est <strong>obligatoire</strong>
+                </div>
+                <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('min')">
+                  L'index du salaire ne peux pas être négatif
+                </div>
               </div>
             </div>
           </div>
@@ -49,7 +73,13 @@
             <div class="col-sm-9">
               <div class="input-group">
                 <span class="input-group-addon">€</span>
-                <input type="text" class="form-control" id="minSalary" formControlName="minSalary" required name="minSalary">
+                <input type="number" class="form-control" id="minSalary" formControlName="minSalary" min="0" required name="minSalary">
+                <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('required')">
+                  Le salaire minimum est <strong>obligatoire</strong>
+                </div>
+                <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('min')">
+                  Le salaire minimum ne peux pas être négatif
+                </div>
               </div>
             </div>
           </div>
@@ -59,7 +89,13 @@
             <div class="col-sm-9">
               <div class="input-group">
                 <span class="input-group-addon">€</span>
-                <input type="text" class="form-control" id="maxSalary" formControlName="maxSalary" required name="maxSalary">
+                <input type="number" class="form-control" id="maxSalary" formControlName="maxSalary" min="0" required name="maxSalary">
+                <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('required')">
+                  Le salaire maximum est <strong>obligatoire</strong>
+                </div>
+                <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('min')">
+                  Le salaire maximum ne peux pas être négatif
+                </div>
               </div>
             </div>
           </div>
@@ -68,13 +104,22 @@
             <label for="contractType" class="col-sm-3 col-form-label">Type de contrat :</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="contractType" formControlName="contractType" required name="contractType">
+              <div class="alert alert-danger" *ngIf="form.get('contractType').touched && form.get('contractType').hasError('required')">
+                Le type de contrat est <strong>obligatoire</strong>
+              </div>
             </div>
           </div>
 
           <div class="form-group row">
             <label for="description" class="col-sm-3 col-form-label">Description :</label>
             <div class="col-sm-9">
-              <textarea class="form-control" id="description" formControlName="description" required name="description" rows="3"></textarea>
+              <textarea class="form-control" id="description" formControlName="description" minlength="10" required name="description" rows="3"></textarea>
+              <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('required')">
+                La description est <strong>obligatoire</strong>
+              </div>
+              <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('minlength')">
+                Le description doit faire au moins 10 caractères
+              </div>
             </div>
           </div>
 
@@ -83,6 +128,9 @@
             <label for="importantNotes" class="col-sm-3 col-form-label">Points importants :</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="importantNotes" formControlName="importantNotes" required name="importantNotes">
+              <div class="alert alert-danger" *ngIf="form.get('importantNotes').touched && form.get('importantNotes').hasError('required')">
+                Les points importants sont <strong>obligatoires</strong>
+              </div>
             </div>
           </div>
 
@@ -90,6 +138,9 @@
             <label for="workplace" class="col-sm-3 col-form-label">Situation du poste :</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="workplace" formControlName="workplace" required name="workplace">
+              <div class="alert alert-danger" *ngIf="form.get('workplace').touched && form.get('workplace').hasError('required')">
+                La situation du poste est <strong>obligatoire</strong>
+              </div>
             </div>
           </div>
 
@@ -98,6 +149,9 @@
             <label for="organization" class="col-sm-3 col-form-label">Entreprise :</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="organization" formControlName="organization" required name="organization">
+              <div class="alert alert-danger" *ngIf="form.get('organization').touched && form.get('organization').hasError('required')">
+                Le nom de l'entreprise est <strong>obligatoire</strong>
+              </div>
             </div>
           </div>
 
@@ -106,6 +160,9 @@
             <label for="workUnit" class="col-sm-3 col-form-label">Service du poste :</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="workUnit" formControlName="workUnit" required name="workUnit">
+              <div class="alert alert-danger" *ngIf="form.get('workUnit').touched && form.get('workUnit').hasError('required')">
+                Le service du poste est <strong>obligatoire</strong>
+              </div>
             </div>
           </div>
 

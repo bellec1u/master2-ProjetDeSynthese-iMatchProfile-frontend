@@ -60,13 +60,13 @@ export class FormPostComponent implements OnInit {
         Validators.required, Validators.minLength(1)
       ])),
       salaryIndex: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), Validators.min(0)
       ])),
       minSalary: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), Validators.min(0)
       ])),
       maxSalary: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), Validators.min(0)
       ])),
       contractType: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(1)
