@@ -57,29 +57,29 @@
             <div class="col-sm-9">
               <div class="input-group">
                 <span class="input-group-addon">€</span>
-                <input type="number" class="form-control" id="salaryIndex" formControlName="salaryIndex" min="0" required name="salaryIndex">
-                <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('required')">
+                <input type="number" class="form-control" id="salaryIndex" formControlName="salaryIndex" min="1" required name="salaryIndex"></div>
+
+              <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('required')">
                   L'index du salaire est <strong>obligatoire</strong>
                 </div>
                 <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('min')">
-                  L'index du salaire ne peux pas être négatif
+                  L'index du salaire ne peut pas être inférieur à 1.
                 </div>
-              </div>
             </div>
           </div>
+
 
           <div class="form-group row">
             <label for="minSalary" class="col-sm-3 col-form-label">Salaire minimum :</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <span class="input-group-addon">€</span>
-                <input type="number" class="form-control" id="minSalary" formControlName="minSalary" min="0" required name="minSalary">
+                <input type="number" class="form-control" id="minSalary" formControlName="minSalary" min="1" required name="minSalary"></div>
                 <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('required')">
                   Le salaire minimum est <strong>obligatoire</strong>
                 </div>
                 <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('min')">
-                  Le salaire minimum ne peux pas être négatif
-                </div>
+                  Le salaire minimum ne peut pas être inférieur à 1
               </div>
             </div>
           </div>
@@ -89,14 +89,16 @@
             <div class="col-sm-9">
               <div class="input-group">
                 <span class="input-group-addon">€</span>
-                <input type="number" class="form-control" id="maxSalary" formControlName="maxSalary" min="0" required name="maxSalary">
+                <input type="number" class="form-control" id="maxSalary" formControlName="maxSalary" min="{{form.get('minSalary').value}}" required name="maxSalary"></div>
                 <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('required')">
                   Le salaire maximum est <strong>obligatoire</strong>
                 </div>
                 <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('min')">
-                  Le salaire maximum ne peux pas être négatif
+                  Le salaire maximum ne peut pas être inférieur à 1
                 </div>
-              </div>
+                <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').value < form.get('minSalary').value ">
+                  Le salaire maximum ne peut pas être inférieur au salaire minimum
+                </div>
             </div>
           </div>
 
