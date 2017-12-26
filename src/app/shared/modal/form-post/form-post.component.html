@@ -57,13 +57,10 @@
             <div class="col-sm-9">
               <div class="input-group">
                 <span class="input-group-addon">€</span>
-                <input type="number" class="form-control" id="salaryIndex" formControlName="salaryIndex" min="1" required name="salaryIndex"></div>
+                <input type="text" class="form-control" id="salaryIndex" formControlName="salaryIndex" required name="salaryIndex"></div>
 
               <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('required')">
                   L'index du salaire est <strong>obligatoire</strong>
-                </div>
-                <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('min')">
-                  L'index du salaire ne peut pas être inférieur à 1.
                 </div>
             </div>
           </div>

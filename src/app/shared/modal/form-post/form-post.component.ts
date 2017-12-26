@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../../services/post-services/post.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SkillService} from '../../services/skill-services/skill.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class FormPostComponent implements OnInit {
   private _skill: any;
 
 
-  constructor(private _postService: PostService, private _skillService: SkillService, private _router: Router) {
+  constructor(private _postService: PostService, private _skillService: SkillService, private _router: Router, private _route: ActivatedRoute) {
     this._form = this._buildForm();
     this._skill = {};
   }
@@ -37,11 +37,11 @@ export class FormPostComponent implements OnInit {
 
   submit(form: any) {
     console.log(form);
-    this._postService
-      .create(form)
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postService.create(form, params['id']))
       .subscribe((post: any) => {
         this._router.navigate(['/posts', post.id]);
-
       });
   }
 
@@ -71,7 +71,7 @@ export class FormPostComponent implements OnInit {
         Validators.required, Validators.minLength(1)
       ])),
       salaryIndex: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1), Validators.min(1)
+        Validators.required, Validators.minLength(1)
       ])),
       minSalary: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(1), Validators.min(1)
