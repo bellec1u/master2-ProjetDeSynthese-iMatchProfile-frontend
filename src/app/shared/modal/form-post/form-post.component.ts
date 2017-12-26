@@ -97,13 +97,12 @@ export class FormPostComponent implements OnInit {
       workUnit: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(1)
       ])),
-      skills: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      type: new FormControl('', Validators.compose([
-        Validators.required
-      ]))
+      postskill: new FormGroup({
+        skill: new FormGroup({
+          name: new FormControl()
+        }),
+        type: new FormControl('')
+      })
     });
   }
-
 }
