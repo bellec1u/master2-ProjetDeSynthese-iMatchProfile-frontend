@@ -11,7 +11,7 @@ import { Candidate } from '../shared/interfaces/candidate';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  private _post;
+  private _post: any;
 
   // Property to store the value of the candidates matching for this post
   private _matchingCandidates: Candidate[];
@@ -19,7 +19,9 @@ export class PostComponent implements OnInit {
   constructor(private _postService: PostService,
               private _candidateService: CandidateService,
               private _route: ActivatedRoute,
-              private _router: Router) {}
+              private _router: Router) {
+    this._post = {};
+  }
 
   ngOnInit() {
     this._route.params
@@ -27,7 +29,7 @@ export class PostComponent implements OnInit {
       .flatMap(params => this._postService.fetchOne(params['id']))
       .subscribe((post: any) => {
           this._post = post;
-          console.log(this._post);
+        console.log(this._post);
         }
       );
 
