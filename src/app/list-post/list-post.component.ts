@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../shared/services/post-services/post.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-post',
@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ListPostComponent implements OnInit {
   private _listPost: any[];
 
-  constructor(private _postService: PostService, private _route: ActivatedRoute) { }
+  constructor(private _postService: PostService, private _route: ActivatedRoute, private _router: Router) { }
 
   ngOnInit() {
     this._route.params
@@ -30,9 +30,13 @@ export class ListPostComponent implements OnInit {
     return this._listPost;
   }
 
+  update() {}
 
-  showPost() {}
-  updatePost() {}
-  deletePost() {}
+  delete(id: string) {
+    this._postService
+      .delete(id)
+      .subscribe(_ => this._router.navigate(['home']));
+
+  }
 
 }

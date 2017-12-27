@@ -20,7 +20,7 @@
       <th scope="col">Type</th>
       <th scope="col">Lieu</th>
       <th scope="col">Référence</th>
-      <th>Action</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -30,9 +30,10 @@
       <td>{{ post.contractType }}</td>
       <td>{{ post.workplace }}</td>
       <td>{{ post.reference }}</td>
-      <td><button [routerLink]="['/post', post.id]" type="button" class="btn btn-primary btn-sm">Afficher</button>
-        <button (click)="updatePost()" type="button" class="btn btn-warning btn-sm">Modifier</button>
-        <button (click)="deletePost()" type="button" class="btn btn-danger btn-sm">Supprimer</button>
+      <td>
+        <button [routerLink]="['/post', post.id]" type="button" class="btn btn-primary btn-sm">Afficher</button>
+        <button (click)="update()" type="button" class="btn btn-warning btn-sm">Modifier</button>
+        <button (click)="delete(post.id)" type="button" class="btn btn-danger btn-sm">Supprimer</button>
       </td>
     </tr>
     </tbody>
