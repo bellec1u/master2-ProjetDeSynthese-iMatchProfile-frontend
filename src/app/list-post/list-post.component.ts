@@ -29,9 +29,6 @@ export class ListPostComponent implements OnInit {
   get listPost(){
     return this._listPost;
   }
-
-  update() {}
-
   delete(id: string) {
     this._postService
       .delete(id)

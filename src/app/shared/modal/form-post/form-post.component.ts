@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../../services/post-services/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -9,7 +9,7 @@ import {SkillService} from '../../services/skill-services/skill.service';
   templateUrl: './form-post.component.html',
   styleUrls: ['./form-post.component.css']
 })
-export class FormPostComponent implements OnInit {
+export class FormPostComponent implements OnInit, OnChanges {
   // private property to store form value
   private _form: FormGroup;
   private _skills: any[];
@@ -18,6 +18,10 @@ export class FormPostComponent implements OnInit {
   private _nameSkill: any;
   private _typeSkill: any;
   private _postSkills: any[];
+  private _isUpdateMode: boolean;
+  private _model: any;
+  private _submit$: EventEmitter<any>;
+
 
   constructor(private _postService: PostService, private _skillService: SkillService, private _router: Router,
               private _route: ActivatedRoute) {
@@ -27,6 +31,7 @@ export class FormPostComponent implements OnInit {
     // for init this value
     this._typeSkill = this._typeSkills[0];
     this._postSkills = [];
+    this._submit$ = new EventEmitter();
   }
 
   /**
@@ -36,6 +41,55 @@ export class FormPostComponent implements OnInit {
    */
   get form(): FormGroup {
     return this._form;
+  }
+
+  /**
+   * Sets private property _model
+   *
+   * @param model
+   */
+  @Input()
+  set model(model: any) {
+    this._model = model;
+  }
+
+  /**
+   * Returns private property _model
+   *
+   * @returns {any}
+   */
+  get model(): any {
+    return this._model;
+  }
+
+  /**
+   * Returns private property _isUpdateMode
+   *
+   * @returns {boolean}
+   */
+  get isUpdateMode(): boolean {
+    return this._isUpdateMode;
+  }
+
+  /**
+   * Returns private property _submit$
+   *
+   * @returns {EventEmitter<any>}
+   */
+  @Output('submit')
+  get submit$(): EventEmitter<any> {
+    return this._submit$;
+  }
+
+  /**
+   * Function to handle component update
+   *
+   * @param record
+   */
+  ngOnChanges(record) {
+      this._model = record.model.currentValue;
+      this._isUpdateMode = true;
+      this._form.patchValue(this._model);
   }
 
   get skills(): any[] {
@@ -113,16 +167,24 @@ export class FormPostComponent implements OnInit {
    * @param form
    */
   submit(form: any) {
-    form['postskill'] = this._postSkills;
-    for (const ps of form['postskill']) {
-      ps.type = ps.type.toUpperCase();
+    if (this.isUpdateMode) {
+      form['postskill'] = this.model.postskill;
+      for (const ps of form['postskill']) {
+        ps.type = ps.type.toUpperCase();
+      }
+      this._submit$.emit(form);
+    }else {
+      form['postskill'] = this._postSkills;
+      for (const ps of form['postskill']) {
+        ps.type = ps.type.toUpperCase();
+      }
+      this._route.params
+        .filter(params => !!params['id'])
+        .flatMap(params => this._postService.create(form, params['id']))
+        .subscribe((post: any) => {
+          this._router.navigate(['/post', post.id]);
+        });
     }
-    this._route.params
-      .filter(params => !!params['id'])
-      .flatMap(params => this._postService.create(form, params['id']))
-      .subscribe((post: any) => {
-        this._router.navigate(['/post', post.id]);
-      });
   }
 
   /**

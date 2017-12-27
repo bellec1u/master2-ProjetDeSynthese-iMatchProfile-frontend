@@ -2,7 +2,9 @@
   <div class="modal-content p-2">
 
     <div class="container">
-      <h1>Création d'un nouveau poste</h1>
+      <h1 *ngIf="!isUpdateMode">Création d'un nouveau poste</h1>
+      <h1 *ngIf="isUpdateMode">Mise a jour du poste</h1>
+
       <form novalidate [formGroup]="form">
         <div class="form-group">
 
@@ -167,7 +169,7 @@
             </div>
           </div>
 
-          <div class="form-group row">
+          <div *ngIf="!isUpdateMode" class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">Compétences</label>
 
             <div class="col-sm-4 mb-2">
@@ -190,7 +192,12 @@
             </div>
           </div>
 
-          <div>
+          <div *ngIf="isUpdateMode" class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Compétences: </label>
+              <p *ngFor="let ps of model.postskill">{{ps.skill.description}} - {{ps.type}} </p>
+          </div>
+
+            <div>
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Quitter</button>
             <button type="submit" class="btn btn-outline-success float-right m-2"

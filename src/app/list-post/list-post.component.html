@@ -32,7 +32,7 @@
       <td>{{ post.reference }}</td>
       <td>
         <button [routerLink]="['/post', post.id]" type="button" class="btn btn-primary btn-sm">Afficher</button>
-        <button (click)="update()" type="button" class="btn btn-warning btn-sm">Modifier</button>
+        <button [routerLink]="['/edit', post.id]" type="button" class="btn btn-warning btn-sm">Modifier</button>
         <button (click)="delete(post.id)" type="button" class="btn btn-danger btn-sm">Supprimer</button>
       </td>
     </tr>

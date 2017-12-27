@@ -18,6 +18,7 @@ import { PostService } from './shared/services/post-services/post.service';
 import { FormPostComponent } from './shared/modal/form-post/form-post.component';
 import { CandidateCardComponent } from './shared/components/candidate-card/candidate-card.component';
 import {SkillService} from './shared/services/skill-services/skill.service';
+import { UpdateComponent } from './update/update.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {SkillService} from './shared/services/skill-services/skill.service';
     SkillBoxComponent,
     FormPostComponent,
     CandidateCardComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,
