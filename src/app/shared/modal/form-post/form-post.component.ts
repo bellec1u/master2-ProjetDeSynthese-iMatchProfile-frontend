@@ -12,12 +12,21 @@ import {SkillService} from '../../services/skill-services/skill.service';
 export class FormPostComponent implements OnInit {
   // private property to store form value
   private _form: FormGroup;
-  private _skill: any;
+  private _skills: any[];
+  private _typeSkills: any[];
+  // skills choose for the post
+  private _nameSkill: any;
+  private _typeSkill: any;
+  private _postSkills: any[];
 
-
-  constructor(private _postService: PostService, private _skillService: SkillService, private _router: Router, private _route: ActivatedRoute) {
+  constructor(private _postService: PostService, private _skillService: SkillService, private _router: Router,
+              private _route: ActivatedRoute) {
     this._form = this._buildForm();
-    this._skill = {};
+    this._skills = [];
+    this._typeSkills = ['Obligatoire', 'Plus'];
+    // for init this value
+    this._typeSkill = this._typeSkills[0];
+    this._postSkills = [];
   }
 
   /**
@@ -29,24 +38,91 @@ export class FormPostComponent implements OnInit {
     return this._form;
   }
 
+  get skills(): any[] {
+    return this._skills;
+  }
+
+  get typeSkills(): any[] {
+    return this._typeSkills;
+  }
+
+  get postSkills(): any[] {
+    return this._postSkills;
+  }
+
   ngOnInit() {
     this._skillService
       .fetch()
-      .subscribe((skills: any[]) => this._skill = skills);
+      .subscribe((skills: any[]) => {
+        this._skills = skills;
+        // for init this value
+        this._nameSkill = skills[0].description;
+      });
   }
 
+  changeNameSkill(name: any) {
+    this._nameSkill = name.value;
+  }
+
+  changeTypeSkill(type: any) {
+    this._typeSkill = type.value;
+  }
+
+  addSkill() {
+    // test if the postSkill already exist
+    if (!this.findSkill()) {
+      // if ok, add it
+      this._postSkills.push({
+        'skill': this.getSkillByName(this._nameSkill),
+        'type': this._typeSkill
+      });
+    } else {
+      console.log('already add');
+    }
+  }
+
+  private findSkill(): boolean {
+    for (const postskill of this._postSkills) {
+      if (postskill.skill.description === this._nameSkill && postskill.type === this._typeSkill) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private getSkillByName(name: any): any {
+    for (const skill of this._skills) {
+      if (skill.description === name) {
+        return {
+          'description': skill.description,
+          'id': skill.id
+        };
+      }
+    }
+  }
+
+  delSkill(ps) {
+    this._postSkills = this.postSkills.filter(
+      postskill => postskill.skill.description !== ps.skill.description || postskill.type !== ps.type
+    );
+  }
+
+  /**
+   * Create the form and send it to the db
+   *
+   * @param form
+   */
   submit(form: any) {
-    console.log(form);
+    form['postskill'] = this._postSkills;
+    for (const ps of form['postskill']) {
+      ps.type = ps.type.toUpperCase();
+    }
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._postService.create(form, params['id']))
       .subscribe((post: any) => {
-        this._router.navigate(['/posts', post.id]);
+        this._router.navigate(['/post', post.id]);
       });
-  }
-
-  get skill(): any {
-    return this._skill;
   }
 
   /**
@@ -96,13 +172,7 @@ export class FormPostComponent implements OnInit {
       ])),
       workUnit: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(1)
-      ])),
-      postskill: new FormGroup({
-        skill: new FormGroup({
-          name: new FormControl()
-        }),
-        type: new FormControl('')
-      })
+      ]))
     });
   }
 }
