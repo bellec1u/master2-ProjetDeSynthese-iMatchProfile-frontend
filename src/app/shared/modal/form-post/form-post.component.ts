@@ -139,7 +139,7 @@ export class FormPostComponent implements OnInit, OnChanges {
 
   private findSkill(): boolean {
     for (const postskill of this._postSkills) {
-      if (postskill.skill.description === this._nameSkill && postskill.type === this._typeSkill) {
+      if (postskill.skill.description === this._nameSkill) {
         return true;
       }
     }

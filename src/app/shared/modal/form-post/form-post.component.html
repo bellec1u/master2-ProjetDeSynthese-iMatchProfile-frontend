@@ -196,7 +196,7 @@
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Quitter</button>
             <button type="submit" class="btn btn-outline-success float-right m-2"
-                    (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid">Publier</button>
+                    (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid || postSkills.length == 0" >Publier</button>
           </div>
         </div>
       </form>

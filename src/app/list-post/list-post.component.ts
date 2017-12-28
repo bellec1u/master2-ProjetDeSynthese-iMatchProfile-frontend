@@ -32,7 +32,8 @@ export class ListPostComponent implements OnInit {
   delete(id: string) {
     this._postService
       .delete(id)
-      .subscribe(_ => this._router.navigate(['home']));
+      .subscribe((people: any[]) => this._listPost = people);
+    window.location.reload();
 
   }
 
