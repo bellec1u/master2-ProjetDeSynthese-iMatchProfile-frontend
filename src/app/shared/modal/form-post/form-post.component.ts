@@ -172,7 +172,7 @@ export class FormPostComponent implements OnInit, OnChanges {
     form['postskill'] = this._postSkills;
     for (const ps of form['postskill']) {
       ps.type = ps.type.toUpperCase();
-
+    }
     if (this.isUpdateMode) {
       this._submit$.emit(form);
     }else {
@@ -182,7 +182,6 @@ export class FormPostComponent implements OnInit, OnChanges {
         .subscribe((post: any) => {
           this._router.navigate(['/post', post.id]);
         });
-    }
     }
   }
 
