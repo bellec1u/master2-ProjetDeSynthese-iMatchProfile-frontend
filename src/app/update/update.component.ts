@@ -22,8 +22,6 @@ export class UpdateComponent implements OnInit {
       .map((params: any) => params.id)
       .flatMap((id: string) => this._postService.fetchOne(id))
       .subscribe((post: any) => { this._data = post; });
-    console.log(this._data);
-
   }
 
   get data(): any {
@@ -31,8 +29,6 @@ export class UpdateComponent implements OnInit {
   }
 
   update(post: any) {
-    console.log(this._data);
-    console.log(post);
     post['id'] = this._data.id;
     this._postService.update(post)
       .subscribe((p: any) => this._router.navigate(['/post', post.id])

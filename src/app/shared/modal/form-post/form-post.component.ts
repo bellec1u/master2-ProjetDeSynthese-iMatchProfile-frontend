@@ -32,6 +32,7 @@ export class FormPostComponent implements OnInit, OnChanges {
     this._typeSkill = this._typeSkills[0];
     this._postSkills = [];
     this._submit$ = new EventEmitter();
+    this.ngOnInit();
   }
 
   /**
@@ -51,6 +52,7 @@ export class FormPostComponent implements OnInit, OnChanges {
   @Input()
   set model(model: any) {
     this._model = model;
+    this._postSkills = model.postskill;
   }
 
   /**
@@ -167,23 +169,20 @@ export class FormPostComponent implements OnInit, OnChanges {
    * @param form
    */
   submit(form: any) {
+    form['postskill'] = this._postSkills;
+    for (const ps of form['postskill']) {
+      ps.type = ps.type.toUpperCase();
+
     if (this.isUpdateMode) {
-      form['postskill'] = this.model.postskill;
-      for (const ps of form['postskill']) {
-        ps.type = ps.type.toUpperCase();
-      }
       this._submit$.emit(form);
     }else {
-      form['postskill'] = this._postSkills;
-      for (const ps of form['postskill']) {
-        ps.type = ps.type.toUpperCase();
-      }
       this._route.params
         .filter(params => !!params['id'])
         .flatMap(params => this._postService.create(form, params['id']))
         .subscribe((post: any) => {
           this._router.navigate(['/post', post.id]);
         });
+    }
     }
   }
 
