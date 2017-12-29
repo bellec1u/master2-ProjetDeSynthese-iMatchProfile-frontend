@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
     this._postService
       .fetch()
       .subscribe((posts: any[]) => this._posts = posts);
-    console.log(this._posts);
   }
 
   navigate(post) {
