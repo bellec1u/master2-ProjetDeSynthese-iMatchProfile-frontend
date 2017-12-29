@@ -1,0 +1,45 @@
+<div class="container">
+    <h1 *ngIf="!isUpdateMode">Renseigner son profil</h1>
+    <h1 *ngIf="isUpdateMode">Modifier le profil</h1>
+
+    <form novalidate [formGroup]="form">
+      <div class="form-group">
+
+        <div formGroupName="user">
+          <div class="form-group row">
+            <label for="lastname" class="col-sm-3 col-form-label">Nom :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="lastname" name="lastname" formControlName="lastname" required>
+              <div class="alert alert-danger" *ngIf="form.get('user').get('lastname').touched && form.get('user').get('lastname').hasError('required')">
+                Le nom est <strong>obligatoire</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="firstname" class="col-sm-3 col-form-label">Prénom :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="firstname" name="firstname" formControlName="firstname" required>
+              <div class="alert alert-danger" *ngIf="form.get('user').get('firstname').touched && form.get('user').get('firstname').hasError('required')">
+                Le prénom est <strong>obligatoire</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="description" class="col-sm-3 col-form-label">Description :</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" id="description" name="description" formControlName="description" minlength="10" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div>
+          <button type="button" class="btn btn-outline-secondary float-right m-2"
+                  (click)="cancel()" data-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-outline-success float-right m-2"
+                  (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid" >Modifier</button>
+        </div>
+      </div>
+    </form>
+  </div>

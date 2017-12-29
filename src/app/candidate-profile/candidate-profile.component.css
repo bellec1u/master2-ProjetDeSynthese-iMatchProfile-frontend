@@ -1,0 +1,9 @@
+#profile-menu button {
+  cursor: hand;
+  background-color: white;
+  margin-bottom: 3px;
+}
+
+#profile-menu button:hover {
+  color: black;
+}
