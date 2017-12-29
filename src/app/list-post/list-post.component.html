@@ -2,7 +2,7 @@
   <h2>Mes postes</h2>
 
   <!-- add post part -->
-  <button type="button" class="btn btn-outline-secondary m-2 float-xl-right" data-toggle="modal" data-target=".postFormModal">
+  <button id="addPostButton" type="button" class="btn btn-outline-secondary m-2 float-xl-right" data-toggle="modal" data-target=".postFormModal">
     Ajouter un poste
   </button>
 
@@ -24,8 +24,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let post of listPost">
-      <td>{{ post.id }}</td>
+    <tr id="post" *ngFor="let post of listPost">
+      <td id="postTitle">{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.contractType }}</td>
       <td>{{ post.workplace }}</td>

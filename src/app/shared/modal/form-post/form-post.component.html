@@ -170,7 +170,7 @@
               </select>
             </div>
             <div class="col-sm-1">
-              <button type="button" class="btn" (click)="addSkill()"> + </button>
+              <button id="addSkill" type="button" class="btn" (click)="addSkill()"> + </button>
             </div>
 
             <div class="col-sm-9 offset-3" *ngFor="let ps of postSkills">
@@ -182,7 +182,7 @@
             <div>
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Quitter</button>
-            <button type="submit" class="btn btn-outline-success float-right m-2"
+            <button id="sendForm" type="submit" class="btn btn-outline-success float-right m-2"
                     (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid || postSkills.length == 0" >Publier</button>
           </div>
         </div>
