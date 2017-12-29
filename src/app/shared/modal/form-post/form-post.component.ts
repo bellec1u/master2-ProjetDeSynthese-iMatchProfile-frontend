@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../../services/post-services/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SkillService} from '../../services/skill-services/skill.service';
+import {CustomValidators} from "./custom-validators";
 
 @Component({
   selector: 'app-form-post',
@@ -195,16 +196,16 @@ export class FormPostComponent implements OnInit, OnChanges {
   private _buildForm(): FormGroup {
     return new FormGroup({
       reference: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ])),
       title: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(5)
+        Validators.required, Validators.minLength(5), CustomValidators.space
       ])),
       experience: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ])),
       salaryIndex: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ])),
       minSalary: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(1), Validators.min(1)
@@ -213,22 +214,22 @@ export class FormPostComponent implements OnInit, OnChanges {
         Validators.required, Validators.minLength(1), Validators.min(1)
       ])),
       contractType: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ])),
       description: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(10)
+        Validators.required, Validators.minLength(10), CustomValidators.space
       ])),
       importantNotes: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ])),
       workplace: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ])),
       organization: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ])),
       workUnit: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        Validators.required, Validators.minLength(1), CustomValidators.space
       ]))
     });
   }
