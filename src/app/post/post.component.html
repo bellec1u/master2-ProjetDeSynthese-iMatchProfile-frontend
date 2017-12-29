@@ -1,3 +1,8 @@
+<div *ngIf="!post.title">
+  Il n'y a aucun poste qui correspond à cette id
+</div>
+
+<div *ngIf="post.title">
 <p id="control">
   <button (click)="Postuler()" type="button" class="btn btn-success">Postuler</button>
   <button (click)="Contacter()" type="button" class="btn btn-info">Contacter</button>
@@ -11,7 +16,7 @@
   <tbody>
   <tr>
     <th scope="row">Date de publication</th>
-    <td>09/12/201</td>
+    <td>{{post.publicationDate | date}}</td>
   </tr>
   <tr>
     <th scope="row">Référence</th>
@@ -87,3 +92,4 @@
 
 <p class="alert alert-danger">Candidats potentiels</p>
 <app-candidate-card [candidate]="candidate" *ngFor="let candidate of matchingCandidates"></app-candidate-card>
+</div>

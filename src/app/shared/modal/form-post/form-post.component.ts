@@ -194,9 +194,6 @@ export class FormPostComponent implements OnInit, OnChanges {
    */
   private _buildForm(): FormGroup {
     return new FormGroup({
-      publicationDate: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(10)
-      ])),
       reference: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(1)
       ])),
