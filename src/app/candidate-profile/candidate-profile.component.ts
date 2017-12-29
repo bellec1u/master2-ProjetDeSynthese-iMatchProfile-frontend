@@ -32,8 +32,9 @@ export class CandidateProfileComponent implements OnInit {
       .filter(params => !!params['id'])
       .flatMap(params => this._candidateService.fetchOne(params['id']))
       .subscribe(
-        (candidate: Candidate) =>
-          this._candidate = candidate,
+        (candidate: Candidate) => {
+          this._candidate = candidate; console.log(candidate);
+        },
         (error: any) => {
           if (error.status === 404) {
             this._profileNotFound = true;
@@ -48,6 +49,33 @@ export class CandidateProfileComponent implements OnInit {
 
   get profileNotFound(): boolean {
     return this._profileNotFound;
+  }
+
+  /**
+   * Function to update the candidate profile.
+   * @param {Candidate} candidate
+   */
+  update(candidate: Candidate) {
+    this._candidateService.update(candidate)
+      .subscribe((cand: Candidate) => this._candidate = cand);
+  }
+
+  /**
+   * Function to suspend or unsuspend the candidate profile.
+   */
+  suspend(reverse: boolean) {
+    this.candidate.user.state = reverse ? 'OK' : 'SUSPENDED';
+    this._candidateService.update(this._candidate)
+      .subscribe((cand: Candidate) => this._candidate = cand);
+  }
+
+  /**
+   * Function to delete the candidate profile.
+   */
+  delete() {
+    // TODO ajouter une modal de confirmation de la suppression
+    this._candidateService.delete(this._candidate.id)
+      .subscribe(() => this._router.navigate(['/home']));
   }
 
   contact() {}

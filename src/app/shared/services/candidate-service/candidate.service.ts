@@ -44,6 +44,29 @@ export class CandidateService {
   }
 
   /**
+   * Function to update one candidate
+   *
+   * @returns {Observable<any>}
+   * @param candidate
+   */
+  update(candidate: any): Observable<any> {
+    return this._http.put(this._backendURL.oneCandidate.replace(':id', candidate.id), candidate, this._options());
+  }
+
+  /**
+   * Function to delete one candidate for current id
+   *
+   * @param id
+   *
+   * @returns {Observable<any[]>}
+   */
+  delete(id: string): Observable<any[] | ArrayBuffer> {
+    return this._http.delete(this._backendURL.oneCandidate.replace(':id', id), this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
+  /**
    * Function to return request options
    *
    * @returns {any}

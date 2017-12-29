@@ -2,7 +2,114 @@
   <p>Ce profil est introuvable.</p>
 </div>
 
-<div *ngIf="!profileNotFound && candidate" class="container-fluid">
+<div *ngIf="!profileNotFound && candidate && candidate.user.state === 'BANNED'">
+  <p>Cet utilisateur est banni.</p>
+</div>
+
+<div *ngIf="!profileNotFound && candidate &&
+(candidate.user.state === 'OK' || candidate.user.state === 'SUSPENDED')" class="container-fluid">
+
+  <div *ngIf="candidate && candidate.user.state === 'SUSPENDED'" class="alert alert-warning text-center" role="alert">
+    Ce profil est actuellement <strong>suspendu</strong>.
+  </div>
+
+  <!-- profile menu -->
+  <div id="profile-menu" class="position-absolute" style="z-index: 1;">
+    <button class="btn fa fa-pencil fa-lg d-block"  aria-hidden="true" title="Modifier le profil"
+            data-toggle="modal" data-target=".profileFormModal"></button>
+    <button id="drowpdown-profile-menu-button" class="btn fa fa-ellipsis-h fa-lg" title="Autres options..."
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></button>
+    <div class="dropdown-menu" aria-labelledby="drowpdown-profile-menu-button">
+
+      <button *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
+        Suspendre le profil
+      </button>
+
+      <button *ngIf="candidate.user.state === 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".unsuspendProfileModal">
+        Annuler la suspension du profil
+      </button>
+
+      <button class="dropdown-item" data-toggle="modal" data-target=".deleteProfileModal">
+        Supprimer le profil
+      </button>
+    </div>
+  </div>
+
+  <!-- edit modal -->
+  <div class="modal fade profileFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">
+      <div class="modal-content p-2">
+        <app-form-candidate-profile (submit)="update($event)" [model]="candidate"></app-form-candidate-profile>
+      </div>
+    </div>
+  </div>
+
+  <!-- suspend profile modal -->
+  <div class="modal fade suspendProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">
+      <div class="modal-content p-2">
+        <div class="container">
+          <p>
+            Une fois suspendu, votre profil n'appara&icirc;tra plus dans les recherches.
+            <br>
+            &Ecirc;tes vous certain de vouloir suspendre votre profil ?
+          </p>
+
+          <div>
+            <button type="button" class="btn btn-outline-secondary float-right m-2"
+                    data-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-outline-success float-right m-2"
+                    (click)="suspend(false)" data-dismiss="modal">Suspendre</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- unsuspend profile modal -->
+  <div class="modal fade unsuspendProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">
+      <div class="modal-content p-2">
+        <div class="container">
+          <p>
+            Une fois la suspension annulée, votre profil appara&icirc;tra à nouveau dans les recherches.
+            <br>
+            &Ecirc;tes vous certain de vouloir annuler la suspension de votre profil ?
+          </p>
+
+          <div>
+            <button type="button" class="btn btn-outline-secondary float-right m-2"
+                    data-dismiss="modal">Conserver la suspension</button>
+            <button type="submit" class="btn btn-outline-success float-right m-2"
+                    (click)="suspend(true)" data-dismiss="modal">Annuler la suspension</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- delete profile modal -->
+  <div class="modal fade deleteProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">
+      <div class="modal-content p-2">
+        <div class="container">
+          <p>
+            Toutes les informations concernant votre profil seront supprimées.
+            <br>
+            &Ecirc;tes vous certain de vouloir supprimer votre profil ?
+          </p>
+
+          <div>
+            <button type="button" class="btn btn-outline-secondary float-right m-2"
+                    data-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-outline-success float-right m-2"
+                    (click)="delete()" data-dismiss="modal">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-10">
       <img *ngIf="candidate.photo" src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">

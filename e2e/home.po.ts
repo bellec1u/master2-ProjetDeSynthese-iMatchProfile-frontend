@@ -9,5 +9,15 @@ export class HomePage {
     return element(by.css('.navbar-brand'));
   }
 
+  getCreateCandidateButton() {
+    return element(by.id('candidat'));
+  }
 
+  getCreateRecruiterButton() {
+    return element(by.id('recruteur'));
+  }
+
+  getGoToPostButton() {
+    return element(by.id('topost'));
+  }
 }
