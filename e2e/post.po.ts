@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class PostPage {
   navigateTo() {
-    return browser.get('/post/15');
+    return browser.get('/post/12');
   }
 
   getDeleteButton() {
