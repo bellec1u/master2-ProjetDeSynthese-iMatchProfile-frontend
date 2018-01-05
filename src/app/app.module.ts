@@ -20,6 +20,7 @@ import { CandidateCardComponent } from './shared/components/candidate-card/candi
 import {SkillService} from './shared/services/skill-services/skill.service';
 import { UpdateComponent } from './update/update.component';
 import { FormCandidateProfileComponent } from './shared/components/form-candidate-profile/form-candidate-profile.component';
+import {DateValueAccessorModule} from 'angular-date-value-accessor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FormCandidateProfileComponent } from './shared/components/form-candidat
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    APP_ROUTES
+    APP_ROUTES,
+    DateValueAccessorModule
   ],
   providers: [
     PostService,
