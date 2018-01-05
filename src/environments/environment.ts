@@ -14,9 +14,9 @@ export const environment = {
       oneCandidate: '/imp/api/candidates/:id',
       allRecruiter: '/imp/api/recruiters',
       oneRecruiter: '/imp/api/recruiters/:id',
-      oneRecruiterPost: '/imp/api/recruiters/:id/post',
       allPost: '/imp/api/posts',
       onePost: '/imp/api/posts/:id',
+      onePostForRecruiter: '/imp/api/posts/newPostFor/:id',
       allSkill: '/imp/api/skills'
     }
   }

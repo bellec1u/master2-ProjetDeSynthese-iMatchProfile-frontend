@@ -64,7 +64,7 @@ export class PostService {
    * @param post
    */
   create(post, id: string): Observable<any> {
-    return this._http.post(this._backendURL.oneRecruiterPost.replace(':id', id), post, this._options());
+    return this._http.post(this._backendURL.onePostForRecruiter.replace(':id', id), post, this._options());
   }
 
   /**
