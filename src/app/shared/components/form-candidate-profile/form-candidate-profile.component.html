@@ -28,6 +28,16 @@
         </div>
 
         <div class="form-group row">
+          <label for="birthDate" class="col-sm-3 col-form-label">Date de naissance :</label>
+          <div class="col-sm-9">
+            <input type="date" useValueAsDate class="form-control" id="birthDate" name="birthDate" formControlName="birthDate" required>
+            <div class="alert alert-danger" *ngIf="form.get('birthDate').touched && form.get('birthDate').hasError('required')">
+              La date de naissance est <strong>obligatoire</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
           <label for="description" class="col-sm-3 col-form-label">Description :</label>
           <div class="col-sm-9">
             <textarea class="form-control" id="description" name="description" formControlName="description" minlength="10" rows="3"></textarea>

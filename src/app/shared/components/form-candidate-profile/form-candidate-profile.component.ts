@@ -39,6 +39,9 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
           lastname: new FormControl('', Validators.required),
           firstname: new FormControl('', Validators.required)
         }),
+        birthDate: new FormControl('', Validators.compose([
+          Validators.required
+        ])),
         description: new FormControl(''),
       });
     }
@@ -82,6 +85,7 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
       this._isUpdateMode = true;
+      this._model.birthDate = new Date(this._model.birthDate);
       this._form.patchValue(this._model);
     } else {
       this._isUpdateMode = false;
@@ -103,6 +107,8 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
     this._model.user.lastname = form.user.lastname;
     this._model.user.firstname = form.user.firstname;
     this._model.description = form.description;
+    // getting rid of time to conform to API
+    this._model.birthDate = form.birthDate.toISOString().split('T')[0];
     this._submit$.emit(this._model);
   }
 }
