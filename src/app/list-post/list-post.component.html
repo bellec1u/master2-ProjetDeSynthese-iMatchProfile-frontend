@@ -10,6 +10,7 @@
     <app-form-post></app-form-post>
   </div>
 
+
   <!-- list of posts -->
   <br>
   <table class="table table-hover">
@@ -24,7 +25,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr id="post" *ngFor="let post of listPost">
+    <tr *ngFor="let post of listPost">
       <td id="postTitle">{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.contractType }}</td>
@@ -32,7 +33,11 @@
       <td>{{ post.reference }}</td>
       <td>
         <button [routerLink]="['/post', post.id]" type="button" class="btn btn-primary btn-sm">Afficher</button>
-        <button [routerLink]="['/edit', post.id]" type="button" class="btn btn-warning btn-sm">Modifier</button>
+        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" [attr.data-target]="'.updateFormModal'.concat(post.id)">Modifier</button>
+        <div [class]="'modal fade updateFormModal'.concat(post.id)" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <app-form-post (submit)="update($event,post.id)" [model]=post></app-form-post>
+        </div>
+
         <button (click)="delete(post.id)" type="button" class="btn btn-danger btn-sm">Supprimer</button>
       </td>
     </tr>

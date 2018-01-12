@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ListPostComponent implements OnInit {
   private _listPost: any[];
 
+
   constructor(private _postService: PostService, private _route: ActivatedRoute, private _router: Router) { }
 
   ngOnInit() {
@@ -29,12 +30,21 @@ export class ListPostComponent implements OnInit {
   get listPost(){
     return this._listPost;
   }
+
   delete(id: string) {
     this._postService
       .delete(id)
       .subscribe((people: any[]) => this._listPost = people);
     window.location.reload();
 
+  }
+
+  update(post: any, id: string) {
+    post['id'] = id;
+    console.log(post);
+    this._postService.update(post)
+      .subscribe((p: any) => this._router.navigate(['/post', post.id])
+      );
   }
 
 }
