@@ -29,7 +29,6 @@ export class PostComponent implements OnInit {
       .flatMap(params => this._postService.fetchOne(params['id']))
       .subscribe((post: any) => {
           this._post = post;
-        console.log(this._post);
         }
       );
 
@@ -49,8 +48,11 @@ export class PostComponent implements OnInit {
   }
 
   delete() {
-    this._postService.delete(this._post.id).subscribe(_ => console.log('post deleted'));
-    this._router.navigate(['home']);
+    this._postService
+      .delete(this._post.id)
+      .subscribe(_ => {
+        this._router.navigate(['home']);
+    });
   }
 
   Postuler() {}

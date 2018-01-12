@@ -16,6 +16,7 @@ export class ListPostComponent implements OnInit {
 
 
   constructor(private _postService: PostService, private _route: ActivatedRoute, private _router: Router) {
+    this._listPost = [];
     this._isNewPost = true;
   }
 

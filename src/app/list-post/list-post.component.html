@@ -23,7 +23,7 @@
       <th>Actions</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="listPost.length != 0">
     <tr id="post" *ngFor="let post of listPost">
       <td id="postTitle">{{ post.id }}</td>
       <td>{{ post.title }}</td>
@@ -41,7 +41,9 @@
     </tr>
     </tbody>
     <tbody *ngIf="listPost.length == 0">
-    <td>Vous n'avez aucun poste</td>
+    <tr>
+      Vous n'avez aucun poste
+    </tr>
     </tbody>
   </table>
 </div>

@@ -120,8 +120,6 @@ export class FormPostComponent implements OnInit, OnChanges {
         'skill': this.getSkillByName(this._nameSkill),
         'type': this._typeSkill
       });
-    } else {
-      console.log('already add');
     }
   }
 
@@ -170,8 +168,6 @@ export class FormPostComponent implements OnInit, OnChanges {
   }
 
   add(post: any) {
-    console.log('add');
-    console.log(post);
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._postService.create(post, params['id']))

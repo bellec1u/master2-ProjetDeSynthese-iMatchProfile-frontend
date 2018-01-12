@@ -33,18 +33,18 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
    *
    * @private
    */
-    private _buildForm(): FormGroup {
-      return new FormGroup({
-        user: new FormGroup({
-          lastname: new FormControl('', Validators.required),
-          firstname: new FormControl('', Validators.required)
-        }),
-        birthDate: new FormControl('', Validators.compose([
-          Validators.required
-        ])),
-        description: new FormControl(''),
-      });
-    }
+  private _buildForm(): FormGroup {
+    return new FormGroup({
+      user: new FormGroup({
+        lastname: new FormControl('', Validators.required),
+        firstname: new FormControl('', Validators.required)
+      }),
+      birthDate: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      description: new FormControl(''),
+    });
+  }
 
   @Input()
   set model(model: any) {

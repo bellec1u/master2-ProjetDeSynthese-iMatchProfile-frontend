@@ -33,7 +33,7 @@ export class CandidateProfileComponent implements OnInit {
       .flatMap(params => this._candidateService.fetchOne(params['id']))
       .subscribe(
         (candidate: Candidate) => {
-          this._candidate = candidate; console.log(candidate);
+          this._candidate = candidate;
         },
         (error: any) => {
           if (error.status === 404) {
