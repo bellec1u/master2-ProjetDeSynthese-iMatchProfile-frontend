@@ -4,11 +4,11 @@ export class CustomValidators {
 
   static space(control: FormControl) {
     // space regex
-    const regex = /^\S/;
+    const regex = /^\s.*$/;
 
     // returns control
-    return regex.test(control.value) ? null : {
+    return regex.test(control.value) ? {
       space: true
-    };
+    } : null;
   }
 }
