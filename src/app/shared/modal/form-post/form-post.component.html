@@ -1,219 +1,229 @@
-<div class="modal-dialog modal-lg">
-  <div class="modal-content p-2">
+<div class="modal fade" id="postFormModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-2">
 
-    <div class="container">
-      <h1 *ngIf="!isUpdateMode">Création d'un nouveau poste</h1>
-      <h1 *ngIf="isUpdateMode">Mise a jour du poste</h1>
-
-      <form novalidate [formGroup]="form">
-        <div class="form-group">
+      <div class="container">
 
 
-          <div class="form-group row">
-            <label for="reference" class="col-sm-3 col-form-label">Référence :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="reference" formControlName="reference" required name="reference">
-              <div class="alert alert-danger" *ngIf="form.get('reference').touched && form.get('reference').hasError('required')">
-                La référence est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('reference').touched && form.get('reference').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="title" class="col-sm-3 col-form-label">Titre :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="title" formControlName="title" minlength="5" required name="title">
-              <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('required')">
-                Le titre est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('minlength')">
-                Le titre doit faire au moins 5 caractères
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="experience" class="col-sm-3 col-form-label">Experience requise :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="experience" formControlName="experience" required name="experience">
-              <div class="alert alert-danger" *ngIf="form.get('experience').touched && form.get('experience').hasError('required')">
-                L'expérience est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('experience').touched && form.get('experience').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="salaryIndex" class="col-sm-3 col-form-label">Index du salaire :</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="salaryIndex" formControlName="salaryIndex" required name="salaryIndex">
-              <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('required')">
-                L'index du salaire est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="form-group row">
-            <label for="minSalary" class="col-sm-3 col-form-label">Salaire minimum :</label>
-            <div class="col-sm-9">
-              <div class="input-group">
-                <span class="input-group-addon">€</span>
-                <input type="number" class="form-control" id="minSalary" formControlName="minSalary" min="1" required name="minSalary">
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('required')">
-                Le salaire minimum est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('min')">
-                Le salaire minimum ne peut pas être inférieur à 1
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="maxSalary" class="col-sm-3 col-form-label">Salaire maximum :</label>
-            <div class="col-sm-9">
-              <div class="input-group">
-                <span class="input-group-addon">€</span>
-                <input type="number" class="form-control" id="maxSalary" formControlName="maxSalary" min="{{form.get('minSalary').value}}" required name="maxSalary">
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('required')">
-                Le salaire maximum est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('min')">
-                Le salaire maximum ne peut pas être inférieur à 1
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').value < form.get('minSalary').value ">
-                Le salaire maximum ne peut pas être inférieur au salaire minimum
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="contractType" class="col-sm-3 col-form-label">Type de contrat :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="contractType" formControlName="contractType" required name="contractType">
-              <div class="alert alert-danger" *ngIf="form.get('contractType').touched && form.get('contractType').hasError('required')">
-                Le type de contrat est <strong>obligatoire</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="description" class="col-sm-3 col-form-label">Description :</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" id="description" formControlName="description" minlength="10" required name="description" rows="3"></textarea>
-              <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('required')">
-                La description est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('minlength')">
-                Le description doit faire au moins 10 caractères
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="form-group row">
-            <label for="importantNotes" class="col-sm-3 col-form-label">Points importants :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="importantNotes" formControlName="importantNotes" required name="importantNotes">
-              <div class="alert alert-danger" *ngIf="form.get('importantNotes').touched && form.get('importantNotes').hasError('required')">
-                Les points importants sont <strong>obligatoires</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('importantNotes').touched && form.get('importantNotes').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="workplace" class="col-sm-3 col-form-label">Situation du poste :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="workplace" formControlName="workplace" required name="workplace">
-              <div class="alert alert-danger" *ngIf="form.get('workplace').touched && form.get('workplace').hasError('required')">
-                La situation du poste est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('workplace').touched && form.get('workplace').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="form-group row">
-            <label for="organization" class="col-sm-3 col-form-label">Entreprise :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="organization" formControlName="organization" required name="organization">
-              <div class="alert alert-danger" *ngIf="form.get('organization').touched && form.get('organization').hasError('required')">
-                Le nom de l'entreprise est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('organization').touched && form.get('organization').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="form-group row">
-            <label for="workUnit" class="col-sm-3 col-form-label">Service du poste :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="workUnit" formControlName="workUnit" required name="workUnit">
-              <div class="alert alert-danger" *ngIf="form.get('workUnit').touched && form.get('workUnit').hasError('required')">
-                Le service du poste est <strong>obligatoire</strong>
-              </div>
-              <div class="alert alert-danger" *ngIf="form.get('workUnit').touched && form.get('workUnit').hasError('space')">
-                Pas d'espace <strong>au début</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="name" class="col-sm-3 col-form-label">Compétences</label>
-
-            <div class="col-sm-4 mb-2">
-              <select class="form-control" id="name" (change)="changeNameSkill($event.target)">
-                <option *ngFor="let ps of skills" >{{ps.description}}</option>
-              </select>
-            </div>
-            <div class="col-sm-4">
-              <select class="form-control" id="type" (change)="changeTypeSkill($event.target)">
-                <option *ngFor="let ts of typeSkills">{{ts}}</option>
-              </select>
-            </div>
-            <div class="col-sm-1">
-              <button id="addSkill" type="button" class="btn" (click)="addSkill()"> + </button>
-            </div>
-
-            <div class="col-sm-9 offset-3" *ngFor="let ps of postSkills">
-              <label>{{ps.skill.description}} - {{ps.type}}</label>
-              <button type="button" class="btn btn-danger btn-sm float-right" (click)="delSkill(ps)">Supprimer</button>
-            </div>
-          </div>
-
-            <div>
-            <button type="button" class="btn btn-outline-secondary float-right m-2"
-                    data-dismiss="modal">Quitter</button>
-            <button id="sendForm" type="submit" class="btn btn-outline-success float-right m-2"
-                    (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid || postSkills.length == 0" >Publier</button>
-          </div>
+        <div class="modal-header">
+          <h1 *ngIf="!isUpdateMode">Création d'un nouveau poste</h1>
+          <h1 *ngIf="isUpdateMode">Mise a jour du poste</h1>
         </div>
-      </form>
+
+
+        <div class="modal-body">
+          <form novalidate [formGroup]="form">
+            <div class="form-group">
+
+              <div class="form-group row">
+                <label for="reference" class="col-sm-3 col-form-label">Référence :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="reference" formControlName="reference" required name="reference">
+                  <div class="alert alert-danger" *ngIf="form.get('reference').touched && form.get('reference').hasError('required')">
+                    La référence est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('reference').touched && form.get('reference').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="title" class="col-sm-3 col-form-label">Titre :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="title" formControlName="title" minlength="5" required name="title">
+                  <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('required')">
+                    Le titre est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('title').touched && form.get('title').hasError('minlength')">
+                    Le titre doit faire au moins 5 caractères
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="experience" class="col-sm-3 col-form-label">Experience requise :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="experience" formControlName="experience" required name="experience">
+                  <div class="alert alert-danger" *ngIf="form.get('experience').touched && form.get('experience').hasError('required')">
+                    L'expérience est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('experience').touched && form.get('experience').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="salaryIndex" class="col-sm-3 col-form-label">Index du salaire :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="salaryIndex" formControlName="salaryIndex" required name="salaryIndex">
+                  <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('required')">
+                    L'index du salaire est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('salaryIndex').touched && form.get('salaryIndex').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="minSalary" class="col-sm-3 col-form-label">Salaire minimum :</label>
+                <div class="col-sm-9">
+                  <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <input type="number" class="form-control" id="minSalary" formControlName="minSalary" min="1" required name="minSalary">
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('required')">
+                    Le salaire minimum est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('minSalary').touched && form.get('minSalary').hasError('min')">
+                    Le salaire minimum ne peut pas être inférieur à 1
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="maxSalary" class="col-sm-3 col-form-label">Salaire maximum :</label>
+                <div class="col-sm-9">
+                  <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <input type="number" class="form-control" id="maxSalary" formControlName="maxSalary" min="{{form.get('minSalary').value}}" required name="maxSalary">
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('required')">
+                    Le salaire maximum est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').hasError('min')">
+                    Le salaire maximum ne peut pas être inférieur à 1
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('maxSalary').touched && form.get('maxSalary').value < form.get('minSalary').value ">
+                    Le salaire maximum ne peut pas être inférieur au salaire minimum
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="contractType" class="col-sm-3 col-form-label">Type de contrat :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="contractType" formControlName="contractType" required name="contractType">
+                  <div class="alert alert-danger" *ngIf="form.get('contractType').touched && form.get('contractType').hasError('required')">
+                    Le type de contrat est <strong>obligatoire</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="description" class="col-sm-3 col-form-label">Description :</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="description" formControlName="description" minlength="10" required name="description" rows="3"></textarea>
+                  <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('required')">
+                    La description est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('minlength')">
+                    Le description doit faire au moins 10 caractères
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('description').touched && form.get('description').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="importantNotes" class="col-sm-3 col-form-label">Points importants :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="importantNotes" formControlName="importantNotes" required name="importantNotes">
+                  <div class="alert alert-danger" *ngIf="form.get('importantNotes').touched && form.get('importantNotes').hasError('required')">
+                    Les points importants sont <strong>obligatoires</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('importantNotes').touched && form.get('importantNotes').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="workplace" class="col-sm-3 col-form-label">Situation du poste :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="workplace" formControlName="workplace" required name="workplace">
+                  <div class="alert alert-danger" *ngIf="form.get('workplace').touched && form.get('workplace').hasError('required')">
+                    La situation du poste est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('workplace').touched && form.get('workplace').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="organization" class="col-sm-3 col-form-label">Entreprise :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="organization" formControlName="organization" required name="organization">
+                  <div class="alert alert-danger" *ngIf="form.get('organization').touched && form.get('organization').hasError('required')">
+                    Le nom de l'entreprise est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('organization').touched && form.get('organization').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="workUnit" class="col-sm-3 col-form-label">Service du poste :</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="workUnit" formControlName="workUnit" required name="workUnit">
+                  <div class="alert alert-danger" *ngIf="form.get('workUnit').touched && form.get('workUnit').hasError('required')">
+                    Le service du poste est <strong>obligatoire</strong>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="form.get('workUnit').touched && form.get('workUnit').hasError('space')">
+                    Pas d'espace <strong>au début</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Compétences</label>
+
+                <div class="col-sm-4 mb-2">
+                  <select class="form-control" id="name" (change)="changeNameSkill($event.target)">
+                    <option *ngFor="let ps of skills" >{{ps.description}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <select class="form-control" id="type" (change)="changeTypeSkill($event.target)">
+                    <option *ngFor="let ts of typeSkills">{{ts}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-1">
+                  <button id="addSkill" type="button" class="btn" (click)="addSkill()"> + </button>
+                </div>
+
+                <div class="col-sm-9 offset-3" *ngFor="let ps of postSkills">
+                  <label>{{ps.skill.description}} - {{ps.type}}</label>
+                  <button type="button" class="btn btn-danger btn-sm float-right" (click)="delSkill(ps)">Supprimer</button>
+                </div>
+              </div>
+
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary float-right m-2"
+                        data-dismiss="modal">Quitter</button>
+                <button id="sendForm" type="submit" class="btn btn-outline-success float-right m-2"
+                        (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid || postSkills.length == 0" >Publier</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
     </div>
-
-
   </div>
 </div>

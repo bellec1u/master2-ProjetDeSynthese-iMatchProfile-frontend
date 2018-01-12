@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PostService} from '../../services/post-services/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SkillService} from '../../services/skill-services/skill.service';
-import {CustomValidators} from "./custom-validators";
+import {CustomValidators} from './custom-validators';
 
 @Component({
   selector: 'app-form-post',
@@ -21,7 +21,6 @@ export class FormPostComponent implements OnInit, OnChanges {
   private _postSkills: any[];
   private _isUpdateMode: boolean;
   private _model: any;
-  private _submit$: EventEmitter<any>;
 
 
   constructor(private _postService: PostService, private _skillService: SkillService, private _router: Router,
@@ -32,8 +31,6 @@ export class FormPostComponent implements OnInit, OnChanges {
     // for init this value
     this._typeSkill = this._typeSkills[0];
     this._postSkills = [];
-    this._submit$ = new EventEmitter();
-    this.ngOnInit();
   }
 
   /**
@@ -75,24 +72,14 @@ export class FormPostComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Returns private property _submit$
-   *
-   * @returns {EventEmitter<any>}
-   */
-  @Output('submit')
-  get submit$(): EventEmitter<any> {
-    return this._submit$;
-  }
-
-  /**
    * Function to handle component update
    *
    * @param record
    */
   ngOnChanges(record) {
-      this._model = record.model.currentValue;
-      this._isUpdateMode = true;
-      this._form.patchValue(this._model);
+    this._model = record.model.currentValue;
+    this._isUpdateMode = true;
+    this._form.patchValue(this._model);
   }
 
   get skills(): any[] {
@@ -174,16 +161,30 @@ export class FormPostComponent implements OnInit, OnChanges {
     for (const ps of form['postskill']) {
       ps.type = ps.type.toUpperCase();
     }
-    if (this.isUpdateMode) {
-      this._submit$.emit(form);
-    }else {
-      this._route.params
-        .filter(params => !!params['id'])
-        .flatMap(params => this._postService.create(form, params['id']))
-        .subscribe((post: any) => {
-          this._router.navigate(['/post', post.id]);
-        });
+    if (this._isUpdateMode) {
+      form['id'] = this._model.id;
+      this.update(form);
+    } else {
+      this.add(form);
     }
+  }
+
+  add(post: any) {
+    console.log('add');
+    console.log(post);
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postService.create(post, params['id']))
+      .subscribe((p: any) => {
+        this._router.navigate(['/post', p.id]);
+      });
+  }
+
+  update(post: any) {
+    this._postService
+      .update(post)
+      .subscribe((p: any) => this._router.navigate(['/post', p.id])
+      );
   }
 
   /**

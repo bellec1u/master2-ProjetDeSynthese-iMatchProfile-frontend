@@ -2,14 +2,13 @@
   <h2>Mes postes</h2>
 
   <!-- add post part -->
-  <button id="addPostButton" type="button" class="btn btn-outline-secondary m-2 float-xl-right" data-toggle="modal" data-target=".postFormModal">
+  <button id="addPostButton" type="button" class="btn btn-outline-secondary m-2 float-xl-right" data-toggle="modal" data-target="#postFormModal"
+          (click)="clickUpdatePost(null, true)">
     Ajouter un poste
   </button>
 
-  <div class="modal fade postFormModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <app-form-post></app-form-post>
-  </div>
-
+  <app-form-post *ngIf="isNewPost"></app-form-post>
+  <app-form-post *ngIf="!isNewPost" [model]="postToUpdate"></app-form-post>
 
   <!-- list of posts -->
   <br>
@@ -25,20 +24,19 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let post of listPost">
+    <tr id="post" *ngFor="let post of listPost">
       <td id="postTitle">{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.contractType }}</td>
       <td>{{ post.workplace }}</td>
       <td>{{ post.reference }}</td>
       <td>
-        <button [routerLink]="['/post', post.id]" type="button" class="btn btn-primary btn-sm">Afficher</button>
-        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" [attr.data-target]="'.updateFormModal'.concat(post.id)">Modifier</button>
-        <div [class]="'modal fade updateFormModal'.concat(post.id)" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-          <app-form-post (submit)="update($event,post.id)" [model]=post></app-form-post>
-        </div>
-
-        <button (click)="delete(post.id)" type="button" class="btn btn-danger btn-sm">Supprimer</button>
+        <button type="button" class="btn btn-primary btn-sm"
+                [routerLink]="['/post', post.id]">Afficher</button>
+        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#postFormModal"
+                (click)="clickUpdatePost(post, false)">Modifier</button>
+        <button type="button" class="btn btn-danger btn-sm"
+                (click)="delete(post.id)">Supprimer</button>
       </td>
     </tr>
     </tbody>
