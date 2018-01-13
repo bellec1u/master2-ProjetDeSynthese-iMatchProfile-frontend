@@ -31,6 +31,7 @@ describe('imp post view', function() {
     page.getPostWorkUnitInput().sendKeys('test workUnit');
     page.getPostAddSkillButton().click();
     page.getSendFormButton().click();
+    browser.waitForAngular();
     // go to the page that contains all the posts available (recruiter 7)
     page.navigateToRecruiterPosts();
     // there should be 3 posts
@@ -59,6 +60,7 @@ describe('imp post view', function() {
     browser.wait(protractor.ExpectedConditions.visibilityOf(page.getPostTitleInput()));
     page.getPostTitleInput().sendKeys('2');
     page.getSendFormButton().click();
+    browser.waitForAngular();
     // go to the page that contains all the posts available (recruiter 7)
     page.navigateToRecruiterPosts();
     // see the poste updated and see the modification

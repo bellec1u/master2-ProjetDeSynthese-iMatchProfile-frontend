@@ -1,5 +1,5 @@
 import { CandidatePage } from './Candidate.po';
-import {browser} from 'protractor';
+import {browser, protractor} from 'protractor';
 
 describe('imp candidate view', function() {
   let page: CandidatePage;
@@ -16,6 +16,12 @@ describe('imp candidate view', function() {
     expect(page.getCandidateDescription().getText()).toEqual('Je cherche un stage !');
     expect(page.getCandidateSkills().count()).toEqual(2);
     // TODO maybe add some tests
+  });
+
+  it('should see users information from a post', () => {
+    page.navigateToPost(9);
+    page.getUserMatchedSeeProfileButton().first().click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
   });
 
 });

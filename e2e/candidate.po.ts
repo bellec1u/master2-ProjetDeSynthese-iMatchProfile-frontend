@@ -5,6 +5,10 @@ export class CandidatePage {
     return browser.get('/profile/' + id);
   }
 
+  navigateToPost(id: number) {
+    return browser.get('/post/' + id);
+  }
+
   getCandidateFirstnameAndLastname() {
     return element(by.id('firstname&lastname'));
   }
@@ -15,6 +19,10 @@ export class CandidatePage {
 
   getCandidateSkills() {
     return element.all(by.id('skill'));
+  }
+
+  getUserMatchedSeeProfileButton() {
+    return element.all(by.id('seeProfileButton'));
   }
 
 }
