@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Form field validation styling */
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442;
+}
+
+.form-group.required label:after {
+  content:" *";
+  color:red;
+}

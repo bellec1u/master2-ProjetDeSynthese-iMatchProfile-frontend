@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {PostService} from '../../services/post-services/post.service';
+import {PostService} from '../../services/post-service/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SkillService} from '../../services/skill-services/skill.service';
+import {SkillService} from '../../services/skill-service/skill.service';
 import {CustomValidators} from "./custom-validators";
 
 @Component({

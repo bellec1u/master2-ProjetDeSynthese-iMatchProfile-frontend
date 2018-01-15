@@ -4,7 +4,7 @@ import {Skill} from './skill';
 export interface Candidate {
     id?: string;
     user: User;
-    birthDate: string;
+    birthDate?: string;
     description?: string;
     photo?: string;
     skills: Skill[];

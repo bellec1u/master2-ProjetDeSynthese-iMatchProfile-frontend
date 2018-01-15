@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
@@ -36,13 +36,31 @@ export class SkillService {
   }
 
   /**
+   * Function to return list of skills like this description
+   *
+   * @returns {Observable<any[]>}
+   */
+  fetchLikeDescription(description: string): Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.allSkill, this._options(undefined, { 'description': description }))
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
+
+  /**
    * Function to return request options
    *
    * @returns {any}
    */
-  private _options(headerList: Object = {}): any {
+  private _options(headerList: Object = {}, paramsList: Object = {}): any {
     const headers = new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList));
-    return { headers };
+    let params = new HttpParams();
+    for (const key in paramsList) {
+      if (paramsList.hasOwnProperty(key)) {
+        params = params.set(key, paramsList[key]);
+      }
+    }
+    return { headers: headers, params: params };
   }
 
 }

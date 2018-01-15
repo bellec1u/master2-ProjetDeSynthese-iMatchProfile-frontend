@@ -44,6 +44,16 @@ export class CandidateService {
   }
 
   /**
+   * Function to create a new candidate
+   *
+   * @returns {Observable<any>}
+   * @param candidate
+   */
+  create(candidate: any): Observable<any> {
+    return this._http.post(this._backendURL.allCandidate, candidate, this._options());
+  }
+
+  /**
    * Function to update one candidate
    *
    * @returns {Observable<any>}

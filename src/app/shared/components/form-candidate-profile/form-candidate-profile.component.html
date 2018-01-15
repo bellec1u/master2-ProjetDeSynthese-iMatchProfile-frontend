@@ -5,7 +5,7 @@
     <form novalidate [formGroup]="form">
       <div class="form-group">
 
-        <div formGroupName="user">
+        <div class="border-0" formGroupName="user">
           <div class="form-group row">
             <label for="lastname" class="col-sm-3 col-form-label">Nom :</label>
             <div class="col-sm-9">
@@ -30,17 +30,14 @@
         <div class="form-group row">
           <label for="birthDate" class="col-sm-3 col-form-label">Date de naissance :</label>
           <div class="col-sm-9">
-            <input type="date" useValueAsDate class="form-control" id="birthDate" name="birthDate" formControlName="birthDate" required>
-            <div class="alert alert-danger" *ngIf="form.get('birthDate').touched && form.get('birthDate').hasError('required')">
-              La date de naissance est <strong>obligatoire</strong>
-            </div>
+            <input type="date" useValueAsDate class="form-control" id="birthDate" name="birthDate" formControlName="birthDate">
           </div>
         </div>
 
         <div class="form-group row">
           <label for="description" class="col-sm-3 col-form-label">Description :</label>
           <div class="col-sm-9">
-            <textarea class="form-control" id="description" name="description" formControlName="description" minlength="10" rows="3"></textarea>
+            <textarea class="form-control" id="description" name="description" formControlName="description" rows="3"></textarea>
           </div>
         </div>
 

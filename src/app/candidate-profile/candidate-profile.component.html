@@ -119,11 +119,11 @@
       <div class="text-center">{{candidate.description}}</div>
       <br>
     </div>
-    <div class="col-2 container">
-      <div class="text-center">
-        <button class="row btn btn-success btn-block" (click)="proposePost()" type="button">Proposer un poste</button>
-        <button class="row btn btn-primary btn-block" (click)="contact()" type="button" >Contacter</button>
-        <button class="row btn btn-danger btn-block" (click)="signal()" type="button" >Signaler le profil</button>
+    <div class="col-2">
+      <div class="mt-3">
+        <button class="btn btn-success btn-block" (click)="proposePost()" type="button">Proposer un poste</button>
+        <button class="btn btn-primary btn-block" (click)="contact()" type="button" >Contacter</button>
+        <button class="btn btn-danger btn-block" (click)="signal()" type="button" >Signaler le profil</button>
       </div>
     </div>
   </div>
@@ -132,6 +132,7 @@
   <p></p>
 
   <p class="alert alert-success">Compétences</p>
+  <button type="button" class="btn-success">Ajouter une compétence</button>
   <div class="container-fluid pb-3">
     <app-skill-box [skill]="skill" *ngFor="let skill of candidate.skills"></app-skill-box>
   </div>

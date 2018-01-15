@@ -7,8 +7,8 @@
       iMatchProfile vous permet de trouver les postes à pourvoir et les candidats qui vous correspondent le mieux.
     </p>
     <p>
-      <a class="btn btn-lg btn-success" href="/signup" id="candidat">Créer un compte candidat</a>
-      <a class="btn btn-lg btn-success" href="#" id="recruteur">Créer un compte recruteur</a>
+      <a class="btn btn-lg btn-success" [routerLink]="['/signup']" [queryParams]="{ role: 'candidate' }" id="candidat">Créer un compte candidat</a>
+      <a class="btn btn-lg btn-success" [routerLink]="['/signup']" [queryParams]="{ role: 'recruiter' }" id="recruteur">Créer un compte recruteur</a>
     </p>
   </div>
 

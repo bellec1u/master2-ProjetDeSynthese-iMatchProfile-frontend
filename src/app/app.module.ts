@@ -10,16 +10,17 @@ import { PostComponent } from './post/post.component';
 import { APP_ROUTES } from './app.route';
 import { CandidateService } from './shared/services/candidate-service/candidate.service';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SkillBoxComponent } from './shared/components/skill-box/skill-box.component';
-import { PostService } from './shared/services/post-services/post.service';
+import { PostService } from './shared/services/post-service/post.service';
 import { FormPostComponent } from './shared/modal/form-post/form-post.component';
 import { CandidateCardComponent } from './shared/components/candidate-card/candidate-card.component';
-import {SkillService} from './shared/services/skill-services/skill.service';
+import {SkillService} from './shared/services/skill-service/skill.service';
 import { FormCandidateProfileComponent } from './shared/components/form-candidate-profile/form-candidate-profile.component';
 import {DateValueAccessorModule} from 'angular-date-value-accessor';
+import { SignupComponent } from './signup/signup.component';
+import {RecruiterService} from './shared/services/recruiter-service/recruiter.service';
 
 @NgModule({
   declarations: [
@@ -31,11 +32,11 @@ import {DateValueAccessorModule} from 'angular-date-value-accessor';
     CandidateProfileComponent,
     HomeComponent,
     NotfoundComponent,
-    CandidateFormComponent,
     SkillBoxComponent,
     FormPostComponent,
     CandidateCardComponent,
-    FormCandidateProfileComponent
+    FormCandidateProfileComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +50,7 @@ import {DateValueAccessorModule} from 'angular-date-value-accessor';
   providers: [
     PostService,
     CandidateService,
+    RecruiterService,
     SkillService
   ],
   bootstrap: [AppComponent]

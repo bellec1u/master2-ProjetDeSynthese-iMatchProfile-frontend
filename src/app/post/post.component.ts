@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CandidateService } from '../shared/services/candidate-service/candidate.service';
-import { PostService } from '../shared/services/post-services/post.service';
+import { PostService } from '../shared/services/post-service/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Candidate } from '../shared/interfaces/candidate';
 
