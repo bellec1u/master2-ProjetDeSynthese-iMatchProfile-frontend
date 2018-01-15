@@ -31,8 +31,7 @@ export class CandidateProfileComponent implements OnInit {
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._candidateService.fetchOne(params['id']))
-      .subscribe(
-        (candidate: Candidate) =>
+      .subscribe((candidate: Candidate) =>
           this._candidate = candidate,
         (error: any) => {
           if (error.status === 404) {

@@ -8,18 +8,6 @@ describe('imp post view', function() {
     page = new PostPage();
   });
 
-  it('should click on the see profil and redirect to profil page', () => {
-    // page.navigateToRecruiterPosts();
-    // page.getSeeButton().click();
-    // expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
-  });
-
-  it('should click on the delete and redirect to home page', () => {
-    // page.navigateToRecruiterPosts();
-    // page.getDeleteButton().click();
-    // expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
-  });
-
   it('should see all my posts, can create one post, update it and delete it', () => {
     // go to the page that contains all the posts available (recruiter 7)
     page.navigateToRecruiterPosts();
@@ -43,6 +31,7 @@ describe('imp post view', function() {
     page.getPostWorkUnitInput().sendKeys('test workUnit');
     page.getPostAddSkillButton().click();
     page.getSendFormButton().click();
+    browser.waitForAngular();
     // go to the page that contains all the posts available (recruiter 7)
     page.navigateToRecruiterPosts();
     // there should be 3 posts
@@ -68,8 +57,10 @@ describe('imp post view', function() {
     // update the new post (change its title) and validate
     browser.wait(protractor.ExpectedConditions.visibilityOf(page.getAllPosts().get(0)));
     page.getAllUpdatePostButton().last().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getPostTitleInput()));
     page.getPostTitleInput().sendKeys('2');
     page.getSendFormButton().click();
+    browser.waitForAngular();
     // go to the page that contains all the posts available (recruiter 7)
     page.navigateToRecruiterPosts();
     // see the poste updated and see the modification

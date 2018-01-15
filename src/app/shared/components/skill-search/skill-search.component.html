@@ -1,0 +1,4 @@
+<input type="text" (input)="search($event)" [(ngModel)]="searchText" autocomplete="off" spellcheck="false">
+<ul *ngFor="let skill of skills">
+  <li>{{skill.description}}</li>
+</ul>

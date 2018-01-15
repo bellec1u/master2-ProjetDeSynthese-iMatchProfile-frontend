@@ -114,9 +114,9 @@
     <div class="col-10">
       <img *ngIf="candidate.photo" src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
       <img *ngIf="!candidate.photo" src="../../assets/images/user-no-photo.png"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
-      <h3 class="text-center">{{candidate.user.firstname}} {{candidate.user.lastname}}</h3>
+      <h3 id="firstname&lastname" class="text-center">{{candidate.user.firstname}} {{candidate.user.lastname}}</h3>
       <br>
-      <div class="text-center">{{candidate.description}}</div>
+      <div id="candidateDescription" class="text-center">{{candidate.description}}</div>
       <br>
     </div>
     <div class="col-2">
@@ -134,7 +134,7 @@
   <p class="alert alert-success">Compétences</p>
   <button type="button" class="btn-success">Ajouter une compétence</button>
   <div class="container-fluid pb-3">
-    <app-skill-box [skill]="skill" *ngFor="let skill of candidate.skills"></app-skill-box>
+    <app-skill-box id="skill" [skill]="skill" *ngFor="let skill of candidate.skills"></app-skill-box>
   </div>
 
   <p class="alert alert-success">Commentaires</p>
