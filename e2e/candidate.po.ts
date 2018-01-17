@@ -26,7 +26,7 @@ export class CandidatePage {
   }
 
   getCandidateFirstnameAndLastname() {
-    return element(by.id('firstname&lastname'));
+    return element(by.id('firstnameANDlastname'));
   }
 
   getCandidateDescription() {
