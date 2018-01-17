@@ -19,7 +19,7 @@ describe('imp candidate view', function() {
   });
 
   it('should see users information from a post', () => {
-    page.navigateToPost(9);
+    page.navigateToPost(1);
     page.getUserMatchedSeeProfileButton().first().click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
   });

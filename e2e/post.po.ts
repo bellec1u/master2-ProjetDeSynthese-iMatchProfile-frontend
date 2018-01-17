@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class PostPage {
   navigateToRecruiterPosts() {
-    return browser.get('/recruiterPost/7');
+    return browser.get('/recruiterPost/1');
   }
 
   /**

@@ -29,7 +29,7 @@ describe('imp home view', function() {
   it('should click on the see post button and redirect to the post page', () => {
     page.navigateTo();
     page.getGoToPostButton().click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/post/12');
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/post/1');
   });
 
 });
