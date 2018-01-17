@@ -37,7 +37,7 @@
 
   <!-- edit modal -->
   <div class="modal fade profileFormModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content p-2">
         <app-form-candidate-profile (submit)="update($event)" [model]="candidate"></app-form-candidate-profile>
       </div>
@@ -128,7 +128,7 @@
     </div>
   </div>
 
-  <p class="alert alert-success">Formation</p>
+  <p class="alert alert-success">Formations</p>
   <table class="table">
     <thead>
     <tr>
