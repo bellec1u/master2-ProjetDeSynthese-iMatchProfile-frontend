@@ -1,5 +1,6 @@
 import {User} from './user';
 import {Skill} from './skill';
+import {Education} from './education';
 
 export interface Candidate {
     id?: string;
@@ -8,4 +9,5 @@ export interface Candidate {
     description?: string;
     photo?: string;
     skills: Skill[];
+    descriptions: Education[];
 }

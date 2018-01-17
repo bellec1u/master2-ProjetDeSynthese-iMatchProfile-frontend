@@ -129,10 +129,24 @@
   </div>
 
   <p class="alert alert-success">Formation</p>
-  <p></p>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Diplome </th>
+      <th scope="col">Date d'obtiention </th>
+      <th scope="col">Description </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let education of candidate.educations">
+      <td> {{education.name}} </td>
+      <td> {{education.obtainingDate}} </td>
+      <td> {{education.description}} </td>
+    </tr>
+    </tbody>
+  </table>
 
   <p class="alert alert-success">Compétences</p>
-  <button type="button" class="btn-success">Ajouter une compétence</button>
   <div class="container-fluid pb-3">
     <app-skill-box id="skill" [skill]="skill" *ngFor="let skill of candidate.skills"></app-skill-box>
   </div>

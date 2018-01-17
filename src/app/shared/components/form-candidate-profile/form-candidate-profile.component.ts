@@ -1,6 +1,6 @@
 import {Component, OnInit, EventEmitter, OnChanges, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Candidate} from '../../interfaces/candidate';
+import {SkillService} from '../../services/skill-service/skill.service';
 
 @Component({
   selector: 'app-form-candidate-profile',
@@ -21,9 +21,16 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   // property to store form value
   private _form: FormGroup;
 
-  constructor() {
+  private _skillsAvailable: any[];
+
+  private _nameSkill: any;
+  private _typeSkill: any;
+
+  constructor(private _skillService: SkillService) {
     this._submit$ = new EventEmitter();
     this._form = this._buildForm();
+
+    this._skillsAvailable = [];
   }
 
   /**
@@ -61,6 +68,10 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
     return this._isUpdateMode;
   }
 
+  get skillsAvailable(): any[] {
+      return this._skillsAvailable;
+  }
+
   /**
    * Returns private property _submit$
    *
@@ -72,6 +83,13 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this._skillService
+      .fetch()
+      .subscribe((skills: any[]) => {
+        this._skillsAvailable = skills;
+        // for init this value
+        this._nameSkill = skills[0].description;
+      });
   }
 
   /**
@@ -96,6 +114,47 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
    */
   cancel() {
     this._form.patchValue(this._model);
+  }
+
+  changeNameSkill(name: any) {
+    this._nameSkill = name.value;
+  }
+
+  changeTypeSkill(type: any) {
+    this._typeSkill = type.value;
+  }
+
+  addSkill() {
+    console.log(this._model);
+    console.log(this._skillsAvailable);
+    // test if the postSkill already exist
+    if (!this.findSkill()) {
+      // if ok, add it
+      this._model['skills'].push(this.getSkill(this._nameSkill));
+    }
+  }
+
+  private findSkill(): any {
+    for (const skill of this._model.skills) {
+      if (skill.description === this._nameSkill) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private getSkill(nameSkill: any): any {
+    for (const skill of this._skillsAvailable) {
+      if (skill.description === nameSkill) {
+        return skill;
+      }
+    }
+  }
+
+  delSkill(skill) {
+    this._model['skills'] = this._model['skills'].filter(
+      skills => skills.description !== skill.description
+    );
   }
 
   /**
