@@ -14,10 +14,16 @@ describe('imp home view', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
   });
 
-  it('should click on the create candidate button and redirect to sign up form page', () => {
+  it('should click on the create candidate button and redirect to sign up candidate form page', () => {
     page.navigateTo();
     page.getCreateCandidateButton().click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/signup');
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/signup?role=candidate');
+  });
+
+  it('should click on the create recruiter button and redirect to sign up recruiter form page', () => {
+    page.navigateTo();
+    page.getCreateRecruiterButton().click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/signup?role=recruiter');
   });
 
   it('should click on the see post button and redirect to the post page', () => {
