@@ -1,4 +1,4 @@
-import { CandidatePage } from './Candidate.po';
+import { CandidatePage } from './candidate.po';
 import {browser, protractor} from 'protractor';
 
 describe('imp candidate view', function() {
