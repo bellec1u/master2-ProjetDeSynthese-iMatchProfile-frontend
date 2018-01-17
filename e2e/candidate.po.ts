@@ -9,6 +9,22 @@ export class CandidatePage {
     return browser.get('/post/' + id);
   }
 
+  getMenuButton() {
+    return element(by.id('drowpdown-profile-menu-button'));
+  }
+
+  getDeleteButton() {
+    return element(by.id('delete'));
+  }
+
+  getValidDeleteButton() {
+    return element(by.id('validDelete'));
+  }
+
+  getNotFoundText() {
+    return element(by.id('notfound'));
+  }
+
   getCandidateFirstnameAndLastname() {
     return element(by.id('firstname&lastname'));
   }

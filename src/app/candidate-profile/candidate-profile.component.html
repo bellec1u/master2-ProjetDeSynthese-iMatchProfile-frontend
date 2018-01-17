@@ -1,4 +1,4 @@
-<div *ngIf="profileNotFound">
+<div id="notfound" *ngIf="profileNotFound">
   <p>Ce profil est introuvable.</p>
 </div>
 
@@ -29,7 +29,7 @@
         Annuler la suspension du profil
       </button>
 
-      <button class="dropdown-item" data-toggle="modal" data-target=".deleteProfileModal">
+      <button id="delete" class="dropdown-item" data-toggle="modal" data-target=".deleteProfileModal">
         Supprimer le profil
       </button>
     </div>
@@ -102,7 +102,7 @@
           <div>
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-outline-success float-right m-2"
+            <button id="validDelete" type="submit" class="btn btn-outline-success float-right m-2"
                     (click)="delete()" data-dismiss="modal">Supprimer</button>
           </div>
         </div>

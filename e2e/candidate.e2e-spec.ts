@@ -24,4 +24,16 @@ describe('imp candidate view', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
   });
 
+  it('delete user', () => {
+    // delete user with id = 1
+    page.navigateToUser(1);
+    page.getMenuButton().click();
+    page.getDeleteButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
+    page.getValidDeleteButton().click();
+    // check if deleted
+    page.navigateToUser(1);
+    expect(page.getNotFoundText().getText()).toEqual('Ce profil est introuvable.');
+  });
+
 });
