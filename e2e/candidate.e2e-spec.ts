@@ -24,6 +24,30 @@ describe('imp candidate view', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
   });
 
+  it('create user', () => {
+    page.navigateToCreateUser();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getFormLastname()));
+    page.getFormLastname().sendKeys('nom');
+    page.getFormFirstname().sendKeys('prenom');
+    page.getFormEmail().sendKeys('test@a.fr');
+    page.getFormPassword().sendKeys('azerty');
+    page.getFormPasswordVerif().sendKeys('azerty');
+    page.getFormSubmitButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateFirstnameAndLastname()));
+    expect(page.getCandidateFirstnameAndLastname().getText()).toEqual('prenom nom');
+  });
+
+  it('create recruiter', () => {
+    page.navigateToCreateRecruiter();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getFormCompany()));
+    page.getFormCompany().sendKeys('Pingouin');
+    page.getFormLastname().sendKeys('nom');
+    page.getFormFirstname().sendKeys('prenom');
+    page.getFormEmail().sendKeys('test@a.fr');
+    page.getFormPassword().sendKeys('azerty');
+    page.getFormPasswordVerif().sendKeys('azerty');
+    page.getFormSubmitButton().click();
+  });
 
   it('edit user', () => {
     // edit user with id = 1

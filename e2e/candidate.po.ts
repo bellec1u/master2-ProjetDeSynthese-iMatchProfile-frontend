@@ -69,4 +69,41 @@ export class CandidatePage {
     return element.all(by.id('seeProfileButton'));
   }
 
+
+  navigateToCreateUser() {
+    return browser.get('/signup?role=candidate');
+  }
+
+  navigateToCreateRecruiter() {
+    return browser.get('/signup?role=recruiter');
+  }
+
+  getFormLastname() {
+    return element(by.id('lastname'));
+  }
+
+  getFormFirstname() {
+    return element(by.id('firstname'));
+  }
+
+  getFormEmail() {
+    return element(by.id('email'));
+  }
+
+  getFormPassword() {
+    return element(by.id('password'));
+  }
+
+  getFormPasswordVerif() {
+    return element(by.id('password-verif'));
+  }
+
+  getFormSubmitButton() {
+    return element(by.id('submit'));
+  }
+
+  getFormCompany(){
+    return element(by.id('company'));
+  }
+
 }
