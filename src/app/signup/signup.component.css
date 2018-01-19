@@ -1,3 +1,12 @@
+/* Overrid form validation styling */
+/*.ng-valid[required], .ng-valid.required  {
+  border-left: 0px !important;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 0px !important;
+}*/
+
 .switch-field input {
   position: absolute !important;
   clip: rect(0, 0, 0, 0);
