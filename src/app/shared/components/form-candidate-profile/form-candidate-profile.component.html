@@ -1,7 +1,10 @@
 <div class="container">
+  <div class="modal-header">
     <h1 *ngIf="!isUpdateMode">Renseigner son profil</h1>
     <h1 *ngIf="isUpdateMode">Modifier le profil</h1>
+  </div>
 
+  <div class="modal-body">
     <form novalidate [formGroup]="form">
       <div class="form-group">
 
@@ -42,7 +45,35 @@
         </div>
 
         <div class="form-group row">
-          <label for="name" class="col-sm-3 col-form-label">Compétences</label>
+          <label for="name" class="col-sm-3 col-form-label">Formations :</label>
+
+          <div class="col-sm-9 mb-2">
+            <input type="text" class="form-control" id="educationName" name="educationName" required placeholder="Nom du diplome" (input)="nameEducation($event.target.value)">
+          </div>
+
+          <div class="col-sm-9 offset-3 mb-2">
+            <input type="text" class="form-control" id="educationObtainingDate" name="educationObtainingDate" required placeholder="Année d'obtention" (input)="obtainingDateEducation($event.target.value)">
+          </div>
+
+          <div class="col-sm-9 offset-3 mb-2">
+            <textarea class="form-control" id="educationDescription" name="educationDescription" rows="3" placeholder="Description de la formation" (input)="descriptionEducation($event.target.value)"></textarea>
+          </div>
+
+          <div class="col-sm-1 offset-3 mb-2">
+            <button id="addEducation" type="button" class="btn" (click)="addEducation()"> + </button>
+          </div>
+
+          <div class="col-sm-9 offset-3 mb-2" *ngFor="let education of model.educations">
+            <hr>
+            <label for="name" class="col-sm-9">Diplome : {{education.name}} </label>
+            <label for="name" class="col-sm-9">Date d'obtention : {{education.obtainingDate}} </label>
+            <label for="name" class="col-sm-9">Description : {{education.description}} </label>
+            <button type="button" class="btn btn-danger btn-sm float-right" (click)="delEducation(education)">Supprimer</button>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="name" class="col-sm-3 col-form-label">Compétences :</label>
 
           <div class="col-sm-8 mb-2">
             <select class="form-control" id="name" (change)="changeNameSkill($event.target)">
@@ -55,17 +86,19 @@
           </div>
 
           <div class="col-sm-9 offset-3" *ngFor="let skill of model.skills">
+            <hr>
             <label>{{skill.description}}</label>
             <button type="button" class="btn btn-danger btn-sm float-right" (click)="delSkill(skill)">Supprimer</button>
           </div>
         </div>
 
-        <div>
+        <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary float-right m-2"
                   (click)="cancel()" data-dismiss="modal">Annuler</button>
-          <button type="submit" class="btn btn-outline-success float-right m-2"
+          <button id="candidatModal" type="submit" class="btn btn-outline-success float-right m-2"
                   (click)="submit(form.value)" data-dismiss="modal" [disabled]="form.invalid" >Modifier</button>
         </div>
       </div>
     </form>
   </div>
+</div>

@@ -26,6 +26,10 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   private _nameSkill: any;
   private _typeSkill: any;
 
+  private _nameEducation: any;
+  private _obtainingDateEducation: any;
+  private _descriptionEducation: any;
+
   constructor(private _skillService: SkillService) {
     this._submit$ = new EventEmitter();
     this._form = this._buildForm();
@@ -70,6 +74,18 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
 
   get skillsAvailable(): any[] {
       return this._skillsAvailable;
+  }
+
+  nameEducation(name) {
+    this._nameEducation = name;
+  }
+
+  obtainingDateEducation(obtainingDate) {
+    this._obtainingDateEducation = obtainingDate;
+  }
+
+  descriptionEducation(description) {
+    this._descriptionEducation = description;
   }
 
   /**
@@ -154,6 +170,28 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   delSkill(skill) {
     this._model['skills'] = this._model['skills'].filter(
       skills => skills.description !== skill.description
+    );
+  }
+
+  addEducation() {
+    console.log(this._model);
+    this._model['educations'].push(
+      this.formateEducation(this._nameEducation, this._obtainingDateEducation, this._descriptionEducation)
+    );
+  }
+
+  private formateEducation(name: any, obtainingDate: any, description: any): any {
+    return {
+      'name': name,
+      'obtainingDate': obtainingDate,
+      'description': description
+    };
+  }
+
+  delEducation(e) {
+    console.log(this._model);
+    this._model['educations'] = this._model['educations'].filter(
+      education => education.name !== e.name && education.obtainingDate !== e.obtainingDate && education.description !== e.description
     );
   }
 

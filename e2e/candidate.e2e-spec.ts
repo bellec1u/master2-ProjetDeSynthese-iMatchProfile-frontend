@@ -24,4 +24,73 @@ describe('imp candidate view', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
   });
 
+  it('create user', () => {
+    page.navigateToCreateUser();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getFormLastname()));
+    page.getFormLastname().sendKeys('nom');
+    page.getFormFirstname().sendKeys('prenom');
+    page.getFormEmail().sendKeys('test@a.fr');
+    page.getFormPassword().sendKeys('azerty');
+    page.getFormPasswordVerif().sendKeys('azerty');
+    page.getFormSubmitButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateFirstnameAndLastname()));
+    expect(page.getCandidateFirstnameAndLastname().getText()).toEqual('prenom nom');
+  });
+
+  it('create recruiter', () => {
+    page.navigateToCreateRecruiter();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getFormCompany()));
+    page.getFormCompany().sendKeys('Pingouin');
+    page.getFormLastname().sendKeys('nom');
+    page.getFormFirstname().sendKeys('prenom');
+    page.getFormEmail().sendKeys('test@a.fr');
+    page.getFormPassword().sendKeys('azerty');
+    page.getFormPasswordVerif().sendKeys('azerty');
+    page.getFormSubmitButton().click();
+  });
+
+  it('edit user', () => {
+    // edit user with id = 1
+    page.navigateToUser(1);
+    page.getEditButton().click();
+    // update
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    page.getCandidateModaDesc().sendKeys('ok');
+    page.getValidUpdate().click();
+    // check if updated
+    expect(page.getCandidateDescription().getText()).toEqual('Je cherche un stage !ok');
+  });
+
+  it('suspend user', () => {
+    // suspend user with id = 1
+    page.navigateToUser(1);
+    page.getMenuButton().click();
+    page.getSuspendButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
+    page.getValidSuspendButton().click();
+    // check if suspend
+    expect(page.getSuspendText().getText()).toEqual('Ce profil est actuellement suspendu.');
+  });
+
+  it('delete user', () => {
+    // delete user with id = 1
+    page.navigateToUser(1);
+    page.getMenuButton().click();
+    page.getDeleteButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
+    page.getValidDeleteButton().click();
+    // check if deleted
+    page.navigateToUser(1);
+    expect(page.getNotFoundText().getText()).toEqual('Ce profil est introuvable.');
+  });
+
 });
