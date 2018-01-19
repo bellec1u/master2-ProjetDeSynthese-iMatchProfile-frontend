@@ -1,4 +1,4 @@
-<div id="notfound" *ngIf="profileNotFound">
+<div id="notFound" *ngIf="profileNotFound">
   <p>Ce profil est introuvable.</p>
 </div>
 
@@ -15,7 +15,7 @@
 
   <!-- profile menu -->
   <div id="profile-menu" class="position-absolute" style="z-index: 1;">
-    <button class="btn fa fa-pencil fa-lg d-block"  aria-hidden="true" title="Modifier le profil"
+    <button id="editButton" class="btn fa fa-pencil fa-lg d-block"  aria-hidden="true" title="Modifier le profil"
             data-toggle="modal" data-target=".profileFormModal"></button>
     <button id="drowpdown-profile-menu-button" class="btn fa fa-ellipsis-h fa-lg" title="Autres options..."
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></button>

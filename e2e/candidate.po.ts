@@ -30,11 +30,27 @@ export class CandidatePage {
   }
 
   getNotFoundText() {
-    return element(by.id('notfound'));
+    return element(by.id('notFound'));
   }
 
   getSuspendText() {
     return element(by.id('suspendText'));
+  }
+
+  getCandidateModaDesc() {
+    return element(by.id('description'));
+  }
+
+  getCandidateSec() {
+    return element(by.id('candidateDescription'));
+  }
+
+  getValidUpdate() {
+    return element(by.id('candidatModal'));
+  }
+
+  getEditButton() {
+    return element(by.id('editButton'));
   }
 
   getCandidateFirstnameAndLastname() {

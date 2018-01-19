@@ -24,11 +24,29 @@ describe('imp candidate view', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
   });
 
+
+  it('edit user', () => {
+    // edit user with id = 1
+    page.navigateToUser(1);
+    page.getEditButton().click();
+    // update
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
+    page.getCandidateModaDesc().sendKeys('ok');
+    page.getValidUpdate().click();
+    // check if updated
+    expect(page.getCandidateDescription().getText()).toEqual('Je cherche un stage !ok');
+  });
+
   it('suspend user', () => {
     // suspend user with id = 1
     page.navigateToUser(1);
     page.getMenuButton().click();
     page.getSuspendButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
     browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
     browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
     page.getValidSuspendButton().click();
@@ -41,6 +59,8 @@ describe('imp candidate view', function() {
     page.navigateToUser(1);
     page.getMenuButton().click();
     page.getDeleteButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
     browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
     browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
     page.getValidDeleteButton().click();
