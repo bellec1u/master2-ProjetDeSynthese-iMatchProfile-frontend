@@ -17,12 +17,24 @@ export class CandidatePage {
     return element(by.id('delete'));
   }
 
+  getSuspendButton() {
+    return element(by.id('suspend'));
+  }
+
   getValidDeleteButton() {
     return element(by.id('validDelete'));
   }
 
+  getValidSuspendButton() {
+    return element(by.id('validSuspend'));
+  }
+
   getNotFoundText() {
     return element(by.id('notfound'));
+  }
+
+  getSuspendText() {
+    return element(by.id('suspendText'));
   }
 
   getCandidateFirstnameAndLastname() {

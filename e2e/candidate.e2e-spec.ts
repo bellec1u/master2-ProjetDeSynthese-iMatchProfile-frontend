@@ -24,11 +24,24 @@ describe('imp candidate view', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
   });
 
+  it('suspend user', () => {
+    // suspend user with id = 1
+    page.navigateToUser(1);
+    page.getMenuButton().click();
+    page.getSuspendButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
+    page.getValidSuspendButton().click();
+    // check if suspend
+    expect(page.getSuspendText().getText()).toEqual('Ce profil est actuellement suspendu.');
+  });
+
   it('delete user', () => {
     // delete user with id = 1
     page.navigateToUser(1);
     page.getMenuButton().click();
     page.getDeleteButton().click();
+    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
     browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
     page.getValidDeleteButton().click();
     // check if deleted

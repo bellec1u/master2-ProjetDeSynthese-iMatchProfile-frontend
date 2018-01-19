@@ -9,7 +9,7 @@
 <div *ngIf="!profileNotFound && candidate &&
 (candidate.user.state === 'OK' || candidate.user.state === 'SUSPENDED')" class="container-fluid">
 
-  <div *ngIf="candidate && candidate.user.state === 'SUSPENDED'" class="alert alert-warning text-center" role="alert">
+  <div id="suspendText" *ngIf="candidate && candidate.user.state === 'SUSPENDED'" class="alert alert-warning text-center" role="alert">
     Ce profil est actuellement <strong>suspendu</strong>.
   </div>
 
@@ -21,7 +21,7 @@
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></button>
     <div class="dropdown-menu" aria-labelledby="drowpdown-profile-menu-button">
 
-      <button *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
+      <button id="suspend" *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
         Suspendre le profil
       </button>
 
@@ -58,7 +58,7 @@
           <div>
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-outline-success float-right m-2"
+            <button id="validSuspend" type="submit" class="btn btn-outline-success float-right m-2"
                     (click)="suspend(false)" data-dismiss="modal">Suspendre</button>
           </div>
         </div>
