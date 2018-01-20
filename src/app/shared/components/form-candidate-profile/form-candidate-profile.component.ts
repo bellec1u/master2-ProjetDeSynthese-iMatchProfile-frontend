@@ -116,7 +116,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   ngOnChanges(record) {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
-      console.log('modele INIT = ', this._model);
       this._isUpdateMode = true;
       this._model.birthDate = this._model.birthDate ? new Date(this._model.birthDate) : null;
       this._form.patchValue(this._model);
@@ -142,8 +141,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   addSkill() {
-    console.log(this._model);
-    console.log(this._skillsAvailable);
     // test if the postSkill already exist
     if (!this.findSkill()) {
       // if ok, add it
@@ -175,7 +172,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   addEducation() {
-    console.log(this._model);
     this._model['educations'].push(
       this.formateEducation(this._nameEducation, this._obtainingDateEducation, this._descriptionEducation)
     );
@@ -190,7 +186,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   delEducation(e) {
-    console.log(this._model);
     this._model['educations'] = this._model['educations'].filter(
       education => education.name !== e.name && education.obtainingDate !== e.obtainingDate && education.description !== e.description
     );
