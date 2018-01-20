@@ -116,6 +116,7 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   ngOnChanges(record) {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
+      console.log('modele INIT = ', this._model);
       this._isUpdateMode = true;
       this._model.birthDate = this._model.birthDate ? new Date(this._model.birthDate) : null;
       this._form.patchValue(this._model);
@@ -201,6 +202,10 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   submit(form: any) {
     // getting rid of time to conform to API
     form.birthDate = form.birthDate ? form.birthDate.toISOString().split('T')[0] : null;
+    // assign (merge) form.user first because nested fields are not fully copied
+    // and assign directly model to form would delete nested fields
+    Object.assign(this._model.user, form.user)
+    delete form.user;
     Object.assign(this._model, form);
     this._submit$.emit(this._model);
   }
