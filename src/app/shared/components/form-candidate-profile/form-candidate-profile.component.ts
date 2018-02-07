@@ -194,10 +194,10 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   submit(form: any) {
     // getting rid of time to conform to API
     form.birthDate = form.birthDate ? form.birthDate.toISOString().split('T')[0] : null;
-
-    console.log('########');
-    console.log(this._model);
-    console.log(form);
+    // assign (merge) form.user first because nested fields are not fully copied
+    // and assign directly model to form would delete nested fields
+    Object.assign(this._model.user, form.user)
+    delete form.user;
     Object.assign(this._model, form);
 
     console.log('--------');

@@ -21,6 +21,7 @@ import { FormCandidateProfileComponent } from './shared/components/form-candidat
 import {DateValueAccessorModule} from 'angular-date-value-accessor';
 import { SignupComponent } from './signup/signup.component';
 import {RecruiterService} from './shared/services/recruiter-service/recruiter.service';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {RecruiterService} from './shared/services/recruiter-service/recruiter.se
     FormPostComponent,
     CandidateCardComponent,
     FormCandidateProfileComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

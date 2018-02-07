@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CandidateService } from '../shared/services/candidate-service/candidate.service';
 import { PostService } from '../shared/services/post-service/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Candidate } from '../shared/interfaces/candidate';
@@ -18,10 +17,10 @@ export class PostComponent implements OnInit {
   private _matchingPercentCandidates: any[];
 
   constructor(private _postService: PostService,
-              private _candidateService: CandidateService,
               private _route: ActivatedRoute,
               private _router: Router) {
     this._post = {};
+    this._matchingCandidates = [];
   }
 
   ngOnInit() {
@@ -33,19 +32,23 @@ export class PostComponent implements OnInit {
         }
       );
 
+    // matching user with mandatory skills
     this._route.params
       .filter(params => !!params['id'])
-      .flatMap(params => this._candidateService.fetchMatchingPercent(params['id']))
+      .flatMap(params => this._postService.getMatchingUserByMandatorySkills(params['id']))
+      .subscribe((candidates: Candidate[]) => {
+        this._matchingCandidates = candidates;
+        }
+      );
+
+    // matching users with percent
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postService.fetchMatchingPercent(params['id']))
       .subscribe((candidates: any[]) => {
           this._matchingPercentCandidates = candidates;
         }
       );
-
-    // Temporary
-    this._candidateService.fetch()
-      .subscribe((candidates: Candidate[]) => {
-        this._matchingCandidates = candidates;
-      });
   }
 
   get post() {

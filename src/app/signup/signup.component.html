@@ -56,6 +56,10 @@
           <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('email').hasError('email') && !form.get('user').get('email').hasError('required')">
             L'adresse email est <strong>invalide</strong>
           </div>
+          <!-- handling by a boolean value -->
+          <div class="alert alert-danger" *ngIf="emailAlreadyUsed">
+            Cette adresse email est <strong>déjà utilisée</strong>
+          </div>
         </div>
       </div>
 

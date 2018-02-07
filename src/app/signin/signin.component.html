@@ -1,0 +1,42 @@
+<div class="container">
+  <form novalidate [formGroup]="form" class="form-group">
+
+    <div formGroupName="user" class="border-0">
+
+      <div class="form-group row required">
+        <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="email" name="email" formControlName="email" required>
+          <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('email').hasError('required')">
+            L'adresse email est <strong>obligatoire</strong>
+          </div>
+          <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('email').hasError('email') && !form.get('user').get('email').hasError('required')">
+            L'adresse email est <strong>invalide</strong>
+          </div>
+          <!-- handling by a boolean value -->
+          <div class="alert alert-danger" *ngIf="emailDoesNotExist">
+            Cette adresse email <strong>ne correspond à aucun utilisateur</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row required">
+        <label for="password" class="col-sm-3 col-form-label text-right">Mot de passe</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" id="password" name="password" formControlName="password" required>
+          <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('password').hasError('required')">
+            Le mot de passe est <strong>obligatoire</strong>
+          </div>
+          <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('password').hasError('minlength')">
+            Le mot de passe doit faire au minimum <strong>6 caractères</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center">
+      <button id="submit" type="submit" class="btn btn-outline-success" (click)="submit(form.value)">Se Connecter</button>
+    </div>
+  </form>
+</div>
