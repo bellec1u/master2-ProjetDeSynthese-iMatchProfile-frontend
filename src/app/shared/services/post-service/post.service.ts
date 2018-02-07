@@ -91,6 +91,17 @@ export class PostService {
   }
 
   /**
+   *
+   * @param {string} id
+   * @returns {Observable<any[] | ArrayBuffer>}
+   */
+  getMatchingUserByMandatorySkills(id: string):  Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.msMatchingCandidate.replace(':id', id), this._options())
+    .filter(_ => !!_)
+    .defaultIfEmpty([]);
+  }
+
+  /**
    * Function to return request options
    *
    * @returns {any}

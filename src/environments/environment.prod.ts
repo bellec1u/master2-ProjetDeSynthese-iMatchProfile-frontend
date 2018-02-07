@@ -9,9 +9,10 @@ export const environment = {
       oneCandidate: '/imp/api/candidates/:id',
       allRecruiter: '/imp/api/recruiters',
       oneRecruiter: '/imp/api/recruiters/:id',
-      oneRecruiterPost: '/imp/api/recruiters/:id/post',
+      allPostForRecruiter: '/imp/api/recruiters/:id/posts',
       allPost: '/imp/api/posts',
       onePost: '/imp/api/posts/:id',
+      msMatchingCandidate : '/imp/api/posts/:id/candidatebyMandatorySkills',
       allSkill: '/imp/api/skills'
     }
   }
