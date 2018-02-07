@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CandidateService } from '../shared/services/candidate-service/candidate.service';
 import { PostService } from '../shared/services/post-service/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Candidate } from '../shared/interfaces/candidate';
@@ -14,13 +13,13 @@ export class PostComponent implements OnInit {
   private _post;
 
   // Property to store the value of the candidates matching for this post
-  private _matchingCandidates: Candidate[];
+  private _matchingCandidates: Candidate [];
 
   constructor(private _postService: PostService,
-              private _candidateService: CandidateService,
               private _route: ActivatedRoute,
               private _router: Router) {
     this._post = {};
+    this._matchingCandidates = [];
   }
 
   ngOnInit() {
@@ -32,10 +31,13 @@ export class PostComponent implements OnInit {
         }
       );
 
-    // Temporary
-    this._candidateService.fetch()
-      .subscribe((candidates: Candidate[]) =>
-        this._matchingCandidates = candidates
+    // matching user with mandatory skills
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postService.getMatchingUserByMandatorySkills(params['id']))
+      .subscribe((candidates: Candidate[]) => {
+        this._matchingCandidates = candidates;
+        }
       );
   }
 
