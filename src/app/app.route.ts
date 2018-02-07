@@ -7,6 +7,7 @@ import {CandidateProfileComponent} from './candidate-profile/candidate-profile.c
 import {ListPostComponent} from './list-post/list-post.component';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {SignupComponent} from './signup/signup.component';
+import {SigninComponent} from './signin/signin.component';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const ROUTES: Routes = [
   { path: 'post/:id', component: PostComponent },
   { path: 'profile/:id', component: CandidateProfileComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'signin', component: SigninComponent },
   // 404 page
   {path: '**', component: NotfoundComponent}
 ];
