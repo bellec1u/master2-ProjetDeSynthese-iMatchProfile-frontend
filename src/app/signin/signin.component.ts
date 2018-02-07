@@ -47,7 +47,7 @@ export class SigninComponent implements OnInit {
         password: new FormControl('', Validators.compose([
           Validators.required, Validators.minLength(6)
         ])),
-      }, CustomValidators.passwordVerif)
+      })
     });
   }
 
