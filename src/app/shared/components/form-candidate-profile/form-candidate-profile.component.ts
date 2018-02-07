@@ -24,7 +24,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   private _skillsAvailable: any[];
 
   private _nameSkill: any;
-  private _typeSkill: any;
 
   private _nameEducation: any;
   private _obtainingDateEducation: any;
@@ -119,6 +118,8 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
       this._isUpdateMode = true;
       this._model.birthDate = this._model.birthDate ? new Date(this._model.birthDate) : null;
       this._form.patchValue(this._model);
+      console.log('@@@@@@@@@');
+      console.log(this._model);
     } else {
       this._isUpdateMode = false;
     }
@@ -136,13 +137,7 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
     this._nameSkill = name.value;
   }
 
-  changeTypeSkill(type: any) {
-    this._typeSkill = type.value;
-  }
-
   addSkill() {
-    console.log(this._model);
-    console.log(this._skillsAvailable);
     // test if the postSkill already exist
     if (!this.findSkill()) {
       // if ok, add it
@@ -174,7 +169,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   addEducation() {
-    console.log(this._model);
     this._model['educations'].push(
       this.formateEducation(this._nameEducation, this._obtainingDateEducation, this._descriptionEducation)
     );
@@ -189,7 +183,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   delEducation(e) {
-    console.log(this._model);
     this._model['educations'] = this._model['educations'].filter(
       education => education.name !== e.name && education.obtainingDate !== e.obtainingDate && education.description !== e.description
     );
@@ -201,7 +194,14 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   submit(form: any) {
     // getting rid of time to conform to API
     form.birthDate = form.birthDate ? form.birthDate.toISOString().split('T')[0] : null;
+
+    console.log('########');
+    console.log(this._model);
+    console.log(form);
     Object.assign(this._model, form);
+
+    console.log('--------');
+    console.log(this._model);
     this._submit$.emit(this._model);
   }
 }

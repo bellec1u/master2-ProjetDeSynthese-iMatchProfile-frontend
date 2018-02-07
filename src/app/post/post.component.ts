@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
 
   // Property to store the value of the candidates matching for this post
   private _matchingCandidates: Candidate[];
+  private _matchingPercentCandidates: any[];
 
   constructor(private _postService: PostService,
               private _candidateService: CandidateService,
@@ -32,11 +33,19 @@ export class PostComponent implements OnInit {
         }
       );
 
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._candidateService.fetchMatchingPercent(params['id']))
+      .subscribe((candidates: any[]) => {
+          this._matchingPercentCandidates = candidates;
+        }
+      );
+
     // Temporary
     this._candidateService.fetch()
-      .subscribe((candidates: Candidate[]) =>
-        this._matchingCandidates = candidates
-      );
+      .subscribe((candidates: Candidate[]) => {
+        this._matchingCandidates = candidates;
+      });
   }
 
   get post() {
@@ -45,6 +54,10 @@ export class PostComponent implements OnInit {
 
   get matchingCandidates(): any[] {
     return this._matchingCandidates;
+  }
+
+  get matchingPercentCandidates(): any[] {
+    return this._matchingPercentCandidates;
   }
 
   delete() {
