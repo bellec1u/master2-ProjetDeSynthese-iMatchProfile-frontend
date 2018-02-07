@@ -141,8 +141,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   addSkill() {
-    console.log(this._model);
-    console.log(this._skillsAvailable);
     // test if the postSkill already exist
     if (!this.findSkill()) {
       // if ok, add it
@@ -174,7 +172,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   addEducation() {
-    console.log(this._model);
     this._model['educations'].push(
       this.formateEducation(this._nameEducation, this._obtainingDateEducation, this._descriptionEducation)
     );
@@ -189,7 +186,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   }
 
   delEducation(e) {
-    console.log(this._model);
     this._model['educations'] = this._model['educations'].filter(
       education => education.name !== e.name && education.obtainingDate !== e.obtainingDate && education.description !== e.description
     );
@@ -201,6 +197,10 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   submit(form: any) {
     // getting rid of time to conform to API
     form.birthDate = form.birthDate ? form.birthDate.toISOString().split('T')[0] : null;
+    // assign (merge) form.user first because nested fields are not fully copied
+    // and assign directly model to form would delete nested fields
+    Object.assign(this._model.user, form.user)
+    delete form.user;
     Object.assign(this._model, form);
     this._submit$.emit(this._model);
   }

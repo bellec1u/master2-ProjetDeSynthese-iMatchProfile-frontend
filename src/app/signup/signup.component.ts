@@ -20,6 +20,9 @@ export class SignupComponent implements OnInit {
   // boolean indicating if the form has already been submitted
   private _submitted: boolean;
 
+  // boolean indicating that the submitted email is already used
+  private _emailAlreadyUsed: boolean;
+
   constructor(private _candidateService: CandidateService,
               private _recruiterService: RecruiterService,
               private _route: ActivatedRoute,
@@ -73,6 +76,10 @@ export class SignupComponent implements OnInit {
     return this._submitted;
   }
 
+  get emailAlreadyUsed(): boolean {
+    return this._emailAlreadyUsed;
+  }
+
   /**
    * Function called on form submit.
    * @param form The signup form
@@ -88,12 +95,24 @@ export class SignupComponent implements OnInit {
         delete form.company;
         this._candidateService
           .create(form)
-          .subscribe((candidate: Candidate) => this._router.navigate(['profile/', candidate.id]));
+          .subscribe((candidate: Candidate) =>
+              this._router.navigate(['profile/', candidate.id]),
+            (error: any) => {
+              if (error.status === 409) {
+                this._emailAlreadyUsed = true;
+              }
+            });
         break;
       case 'recruiter':
         this._recruiterService
           .create(form)
-          .subscribe((recruiter: Recruiter) => this._router.navigate(['home/']));
+          .subscribe((recruiter: Recruiter) =>
+              this._router.navigate(['home/']),
+            (error: any) => {
+              if (error.status === 409) {
+                this._emailAlreadyUsed = true;
+              }
+            });
         break;
       default:
         console.log('Invalid role');
