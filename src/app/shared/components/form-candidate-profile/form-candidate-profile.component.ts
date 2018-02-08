@@ -24,7 +24,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
   private _skillsAvailable: any[];
 
   private _nameSkill: any;
-  private _typeSkill: any;
 
   private _nameEducation: any;
   private _obtainingDateEducation: any;
@@ -119,6 +118,8 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
       this._isUpdateMode = true;
       this._model.birthDate = this._model.birthDate ? new Date(this._model.birthDate) : null;
       this._form.patchValue(this._model);
+      console.log('@@@@@@@@@');
+      console.log(this._model);
     } else {
       this._isUpdateMode = false;
     }
@@ -134,10 +135,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
 
   changeNameSkill(name: any) {
     this._nameSkill = name.value;
-  }
-
-  changeTypeSkill(type: any) {
-    this._typeSkill = type.value;
   }
 
   addSkill() {
@@ -202,6 +199,9 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
     Object.assign(this._model.user, form.user)
     delete form.user;
     Object.assign(this._model, form);
+
+    console.log('--------');
+    console.log(this._model);
     this._submit$.emit(this._model);
   }
 }

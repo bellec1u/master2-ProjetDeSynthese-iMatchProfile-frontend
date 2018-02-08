@@ -18,7 +18,7 @@ export class CandidateProfileComponent implements OnInit {
   /**
    * Property to store the candidate
    */
-  private _candidate: Candidate;
+  private _candidate: any;
 
   /**
    * Property specifiying if the current profile was not found.
@@ -34,8 +34,9 @@ export class CandidateProfileComponent implements OnInit {
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._candidateService.fetchOne(params['id']))
-      .subscribe((candidate: Candidate) =>
-          this._candidate = candidate,
+      .subscribe((candidate: any) => {
+          this._candidate = candidate;
+        },
         (error: any) => {
           if (error.status === 404) {
             this._profileNotFound = true;
@@ -56,7 +57,7 @@ export class CandidateProfileComponent implements OnInit {
    * Function to update the candidate profile.
    * @param {Candidate} candidate
    */
-  update(candidate: Candidate) {
+  update(candidate: any) {
       this._candidateService.update(candidate)
         .subscribe((cand: Candidate) =>
           this._candidate = cand);

@@ -3,93 +3,114 @@
 </div>
 
 <div *ngIf="post.title">
-<p id="control">
-  <button (click)="Postuler()" type="button" class="btn btn-success">Postuler</button>
-  <button (click)="Contacter()" type="button" class="btn btn-info">Contacter</button>
-  <button (click)="Signaler()" type="button" class="btn btn-warning">Signaler</button>
-  <button (click)="delete()" type="button" class="btn btn-danger">Supprimer</button>
-</p>
+  <p id="control">
+    <button (click)="Postuler()" type="button" class="btn btn-success">Postuler</button>
+    <button (click)="Contacter()" type="button" class="btn btn-info">Contacter</button>
+    <button (click)="Signaler()" type="button" class="btn btn-warning">Signaler</button>
+    <button (click)="delete()" type="button" class="btn btn-danger">Supprimer</button>
+  </p>
 
-<p class="alert alert-success">Caractéristiques</p>
+  <p class="alert alert-success">Caractéristiques</p>
 
-<table class="table">
-  <tbody>
-  <tr>
-    <th scope="row">Date de publication</th>
-    <td>{{post.publicationDate | date : "dd/MM/yyyy"}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Référence</th>
-    <td id="reference">{{post.reference}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Intitulé du poste</th>
-    <td id="title">{{post.title}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Nombre d’années d’expérience</th>
-    <td id="experience">{{post.experience}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Indice grille de salaire</th>
-    <td id="salaryIndex">{{post.salaryIndex}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Salaire moyen</th>
-    <td>{{post.minSalary}} à {{post.maxSalary}}€</td>
-  </tr>
-  <tr>
-    <th scope="row">Type d'engagement</th>
-    <td id="contractType">{{post.contractType}}</td>
-  </tr>
-  </tbody>
-</table>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th scope="row">Date de publication</th>
+      <td>{{post.publicationDate | date : "dd/MM/yyyy"}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Référence</th>
+      <td id="reference">{{post.reference}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Intitulé du poste</th>
+      <td id="title">{{post.title}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Nombre d’années d’expérience</th>
+      <td id="experience">{{post.experience}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Indice grille de salaire</th>
+      <td id="salaryIndex">{{post.salaryIndex}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Salaire moyen</th>
+      <td>{{post.minSalary}} à {{post.maxSalary}}€</td>
+    </tr>
+    <tr>
+      <th scope="row">Type d'engagement</th>
+      <td id="contractType">{{post.contractType}}</td>
+    </tr>
+    </tbody>
+  </table>
 
-<p></p>
-<p class="alert alert-success">Contexte du poste</p>
+  <p></p>
+  <p class="alert alert-success">Contexte du poste</p>
 
-<table class="table">
-  <tbody>
-  <tr>
-    <th scope="row">Lieu de travail</th>
-    <td id="workplace">{{post.workplace}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Organisation demandeuse</th>
-    <td id="organization">{{post.organization}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Service concerné</th>
-    <td id="workUnit">{{post.workUnit}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Résumé du poste à pourvoir</th>
-    <td id="description">{{post.description}}</td>
-  </tr>
-  <tr>
-    <th scope="row">Points d'attention</th>
-    <td id="importantNotes">{{post.importantNotes}}</td>
-  </tr>
-  </tbody>
-</table>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th scope="row">Lieu de travail</th>
+      <td id="workplace">{{post.workplace}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Organisation demandeuse</th>
+      <td id="organization">{{post.organization}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Service concerné</th>
+      <td id="workUnit">{{post.workUnit}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Résumé du poste à pourvoir</th>
+      <td id="description">{{post.description}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Points d'attention</th>
+      <td id="importantNotes">{{post.importantNotes}}</td>
+    </tr>
+    </tbody>
+  </table>
 
-<p></p>
-<p class="alert alert-danger">Connaissances requises</p>
-<table class="table">
-  <tbody>
-  <tr>
-    <th scope="row">Thématique</th>
-    <th scope="row">Connaissance / Compétence </th>
-    <th scope="row">Obligatoire / Plus </th>
-  </tr>
-  <tr *ngFor="let ps of post.postskill">
-    <th>{{ps.skill.type}}</th>
-    <td>{{ps.skill.description}}</td>
-    <td>{{ps.type}}</td>
-  </tr>
-  </tbody>
-</table>
+  <p></p>
+  <p class="alert alert-danger">Connaissances requises</p>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th scope="row">Thématique</th>
+      <th scope="row">Connaissance / Compétence </th>
+      <th scope="row">Obligatoire / Plus </th>
+    </tr>
+    <tr *ngFor="let ps of post.postskill">
+      <th>{{ps.skill.type}}</th>
+      <td>{{ps.skill.description}}</td>
+      <td>{{ps.type}}</td>
+    </tr>
+    </tbody>
+  </table>
 
-<p class="alert alert-danger">Candidats potentiels</p>
-<app-candidate-card [candidate]="candidate" *ngFor="let candidate of matchingCandidates"></app-candidate-card>
+  <p class="alert alert-danger">Candidats potentiels</p>
+
+  <nav>
+    <div class="nav nav-tabs mb-1" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-obligatoire-tab" data-toggle="tab" href="#nav-obligatoire" role="tab" aria-controls="nav-obligatoire" aria-selected="true">
+        100% obligatoire
+      </a>
+      <a class="nav-item nav-link" id="nav-matching-tab" data-toggle="tab" href="#nav-matching" role="tab" aria-controls="nav-matching" aria-selected="false">
+        Matching
+      </a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-obligatoire" role="tabpanel" aria-labelledby="nav-obligatoire-tab">
+      <app-candidate-card [candidate]="candidate" *ngFor="let candidate of matchingCandidates"></app-candidate-card>
+    </div>
+    <div class="tab-pane fade" id="nav-matching" role="tabpanel" aria-labelledby="nav-matching-tab">
+      <div *ngFor="let data of matchingPercentCandidates">
+        <app-candidate-card [candidate]="data.candidate"></app-candidate-card>
+        {{ data.percent }}
+      </div>
+    </div>
+  </div>
 </div>
