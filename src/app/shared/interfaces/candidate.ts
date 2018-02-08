@@ -9,5 +9,5 @@ export interface Candidate {
     description?: string;
     photo?: string;
     skills: Skill[];
-    descriptions: Education[];
+    educations: Education[];
 }
