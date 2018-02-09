@@ -4,13 +4,14 @@ import {CustomValidators} from '../signup/custom-validators';
 import {CandidateService} from '../shared/services/candidate-service/candidate.service';
 import {RecruiterService} from '../shared/services/recruiter-service/recruiter.service';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../shared/authentication/authentication.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class SigninComponent implements OnInit {
+export class LoginComponent implements OnInit {
 // property to store form value
   private _form: FormGroup;
 
@@ -22,7 +23,8 @@ export class SigninComponent implements OnInit {
 
   constructor(private _candidateService: CandidateService,
               private _recruiterService: RecruiterService,
-              private _router: Router) {
+              private _router: Router,
+              private _authenticationService: AuthenticationService) {
 
     this._form = this._buildForm();
     this._submitted = false;
@@ -68,32 +70,15 @@ export class SigninComponent implements OnInit {
    * @param form The signup form
    */
   submit(form: any) {
+
     this._submitted = true;
     if (this._form.invalid) {
       return;
     }
 
-    //  case 'candidate':
-    //    this._candidateService
-    //      .get(form)
-    //      .subscribe((candidate: Candidate) =>
-    //          this._router.navigate(['profile/', candidate.id]),
-    //        (error: any) => {
-    //          if (error.status === xxx) {
-    //            this._emailDoesNotExist = true;
-    //          }
-    //        });
-    //  case 'recruiter':
-    //    this._recruiterService
-    //      .get(form)
-    //      .subscribe((recruiter: Recruiter) =>
-    //          this._router.navigate(['home/']),
-    //        (error: any) => {
-    //         if (error.status === xxx) {
-    //            this._emailDoesNotExist = true;
-    //          }
-    //        });
-    //
-    //
+    this._authenticationService
+      .login(form.user.email, form.user.password)
+      .subscribe(
+      );
   }
 }

@@ -16,12 +16,13 @@ import { SkillBoxComponent } from './shared/components/skill-box/skill-box.compo
 import { PostService } from './shared/services/post-service/post.service';
 import { FormPostComponent } from './shared/modal/form-post/form-post.component';
 import { CandidateCardComponent } from './shared/components/candidate-card/candidate-card.component';
-import {SkillService} from './shared/services/skill-service/skill.service';
+import { SkillService } from './shared/services/skill-service/skill.service';
 import { FormCandidateProfileComponent } from './shared/components/form-candidate-profile/form-candidate-profile.component';
-import {DateValueAccessorModule} from 'angular-date-value-accessor';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { SignupComponent } from './signup/signup.component';
-import {RecruiterService} from './shared/services/recruiter-service/recruiter.service';
-import { SigninComponent } from './signin/signin.component';
+import { RecruiterService } from './shared/services/recruiter-service/recruiter.service';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationModule } from './shared/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { SigninComponent } from './signin/signin.component';
     CandidateCardComponent,
     FormCandidateProfileComponent,
     SignupComponent,
-    SigninComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import { SigninComponent } from './signin/signin.component';
     ReactiveFormsModule,
     HttpClientModule,
     APP_ROUTES,
-    DateValueAccessorModule
+    DateValueAccessorModule,
+    AuthenticationModule
   ],
   providers: [
     PostService,

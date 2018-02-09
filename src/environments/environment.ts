@@ -19,7 +19,8 @@ export const environment = {
       allPostForRecruiter: '/imp/api/recruiters/:id/posts',
       matchingCandidatePost: '/imp/api/posts/:id/bySkills',
       msMatchingCandidate : '/imp/api/posts/:id/candidatebyMandatorySkills',
-      allSkill: '/imp/api/skills'
+      allSkill: '/imp/api/skills',
+      login: '/imp/api/login'
     }
   }
 };
