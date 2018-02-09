@@ -19,9 +19,9 @@
       </form>
 
       <div class="navbar-nav mr-auto">
-        <div *ngIf="isRecruiter()">
-          <a class="nav-item nav-link">Vos postes<span class="sr-only">(current)</span></a>
-        </div>
+        <a class="nav-item nav-link" *ngIf="isRecruiter()" (click)="goToPostsView()">Vos postes<span class="sr-only">(current)</span></a>
+
+        <a class="nav-item nav-link" *ngIf="isCandidate()" (click)="goToProfileView()">Profil<span class="sr-only">(current)</span></a>
       </div>
 
       <!-- Items -->

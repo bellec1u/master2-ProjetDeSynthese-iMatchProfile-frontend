@@ -26,6 +26,14 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['home']);
   }
 
+  goToPostsView() {
+    this._router.navigate(['/recruiterPost', this._authentication.getId()]);
+  }
+
+  goToProfileView() {
+    this._router.navigate(['/profile', this._authentication.getId()]);
+  }
+
   isConnected(): boolean {
     return this._authentication.isConnected();
   }
