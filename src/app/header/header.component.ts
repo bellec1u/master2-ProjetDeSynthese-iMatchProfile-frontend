@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/authentication/authentication.service';
-import {TokenStorage} from '../shared/authentication/token-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +12,7 @@ export class HeaderComponent implements OnInit {
   title = 'iMatchProfile';
 
   constructor(private _router: Router,
-              private _authentication: AuthenticationService,
-              private _tokenStorage: TokenStorage) { }
+              private _authentication: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -29,15 +27,15 @@ export class HeaderComponent implements OnInit {
   }
 
   isConnected(): boolean {
-    return this._tokenStorage.isConnected();
+    return this._authentication.isConnected();
   }
 
   isRecruiter(): boolean {
-    return this._tokenStorage.isRecruiter();
+    return this._authentication.isRecruiter();
   }
 
   isCandidate(): boolean {
-    return this._tokenStorage.isCandidate();
+    return this._authentication.isCandidate();
   }
 
 }
