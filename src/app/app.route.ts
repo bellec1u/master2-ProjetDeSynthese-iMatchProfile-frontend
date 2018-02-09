@@ -27,10 +27,10 @@ const ROUTES: Routes = [
     path: 'profile/:id', component: CandidateProfileComponent,
   },
   { // inscription
-    path: 'signup', component: SignupComponent,
+    path: 'signup', component: SignupComponent, canActivate: [ PublicGuard ]
   },
   {
-    path: 'login', component: LoginComponent,
+    path: 'login', component: LoginComponent, canActivate: [ PublicGuard ]
   },
   // 404 page
   {

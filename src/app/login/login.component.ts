@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   // boolean indicating that the submitted email does not exist
   private _emailDoesNotExist: boolean;
 
+  private _authError: boolean;
+
   constructor(private _candidateService: CandidateService,
               private _recruiterService: RecruiterService,
               private _router: Router,
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
 
     this._form = this._buildForm();
     this._submitted = false;
+    this._authError = false;
   }
 
   ngOnInit() {
@@ -66,6 +69,10 @@ export class LoginComponent implements OnInit {
     return this._emailDoesNotExist;
   }
 
+  get authError(): boolean {
+    return this._authError;
+  }
+
   /**
    * Function called on form submit.
    * @param form The signup form
@@ -78,8 +85,9 @@ export class LoginComponent implements OnInit {
 
     this._authenticationService
       .login(form.user.email, form.user.password)
-      .subscribe(_ => {
-          this._router.navigate(['home']);
-      });
+      .subscribe(
+        _ => { this._router.navigate(['home']); this._authError = false; },
+       err => this._authError = true
+      );
   }
 }

@@ -1,4 +1,8 @@
 <div class="container">
+  <div *ngIf="authError" class="alert alert-danger">
+    <strong>Oups !</strong> Identifiants incorrects, veuillez réessayer.
+  </div>
+
   <form novalidate [formGroup]="form" class="form-group">
 
     <div formGroupName="user" class="border-0">

@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+a:not([href]) {
+  cursor: pointer !important;
+}
+
 /* Form field validation styling */
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid #42A948;
