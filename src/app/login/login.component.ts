@@ -5,6 +5,7 @@ import {CandidateService} from '../shared/services/candidate-service/candidate.s
 import {RecruiterService} from '../shared/services/recruiter-service/recruiter.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/authentication/authentication.service';
+import {TokenStorage} from '../shared/authentication/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -70,7 +71,6 @@ export class LoginComponent implements OnInit {
    * @param form The signup form
    */
   submit(form: any) {
-
     this._submitted = true;
     if (this._form.invalid) {
       return;
@@ -78,7 +78,8 @@ export class LoginComponent implements OnInit {
 
     this._authenticationService
       .login(form.user.email, form.user.password)
-      .subscribe(
-      );
+      .subscribe(_ => {
+          this._router.navigate(['home']);
+      });
   }
 }

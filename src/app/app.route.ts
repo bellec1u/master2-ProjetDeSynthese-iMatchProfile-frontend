@@ -15,33 +15,26 @@ const ROUTES: Routes = [
     path: '', redirectTo: 'home', pathMatch: 'full'
   },
   {
-    path: 'home', component: HomeComponent,
-    canActivate: [ PublicGuard ]
+    path: 'home', component: HomeComponent
   },
   {
     path: 'recruiterPost/:id', component: ListPostComponent,
-    canActivate: [ ProtectedGuard ]
   }, // affiche les posts d'un recruteur
   {
     path: 'post/:id', component: PostComponent,
-    canActivate: [ PublicGuard ]
   },
   {
     path: 'profile/:id', component: CandidateProfileComponent,
-    canActivate: [ PublicGuard ]
   },
   { // inscription
     path: 'signup', component: SignupComponent,
-    canActivate: [ PublicGuard ]
   },
   {
     path: 'login', component: LoginComponent,
-    canActivate: [ PublicGuard ]
   },
   // 404 page
   {
     path: '**', component: NotfoundComponent,
-    canActivate: [ PublicGuard ]
   }
 ];
 
