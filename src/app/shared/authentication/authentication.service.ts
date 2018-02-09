@@ -132,4 +132,28 @@ export class AuthenticationService implements AuthService {
     return { headers: headers };
   }
 
+  public getEmail(): string {
+    return this.tokenStorage.getEmail();
+  }
+
+  public getRole(): string {
+    return this.tokenStorage.getRole();
+  }
+
+  public getId(): string {
+    return this.tokenStorage.getId();
+  }
+
+  public isConnected(): boolean {
+    return this.tokenStorage.isConnected();
+  }
+
+  public isRecruiter(): boolean {
+    return this.tokenStorage.isRecruiter();
+  }
+
+  public isCandidate(): boolean {
+    return this.tokenStorage.isCandidate();
+  }
+
 }

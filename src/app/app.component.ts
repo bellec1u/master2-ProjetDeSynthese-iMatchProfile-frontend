@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {TokenStorage} from './shared/authentication/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,6 @@ import {TokenStorage} from './shared/authentication/token-storage.service';
 })
 export class AppComponent {
 
-  constructor (private _tokenStorage: TokenStorage) {}
+  constructor () {}
 
 }

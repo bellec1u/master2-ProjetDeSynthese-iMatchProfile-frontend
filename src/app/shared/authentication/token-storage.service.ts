@@ -27,6 +27,14 @@ export class TokenStorage {
     return localStorage.getItem('email') !== null;
   }
 
+  public isRecruiter(): boolean {
+    return localStorage.getItem('role') === 'RECRUITER';
+  }
+
+  public isCandidate(): boolean {
+    return localStorage.getItem('role') === 'CANDIDATE';
+  }
+
   /**
    * Get access token
    * @returns {Observable<string>}

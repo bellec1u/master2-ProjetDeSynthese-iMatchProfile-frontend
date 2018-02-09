@@ -32,4 +32,12 @@ export class HeaderComponent implements OnInit {
     return this._tokenStorage.isConnected();
   }
 
+  isRecruiter(): boolean {
+    return this._tokenStorage.isRecruiter();
+  }
+
+  isCandidate(): boolean {
+    return this._tokenStorage.isCandidate();
+  }
+
 }
