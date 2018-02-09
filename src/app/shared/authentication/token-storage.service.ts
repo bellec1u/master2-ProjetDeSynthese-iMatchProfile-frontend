@@ -11,16 +11,20 @@ interface JWTToken {
 @Injectable()
 export class TokenStorage {
 
-  public static getEmail(): string {
+  public getEmail(): string {
     return localStorage.getItem('email');
   }
 
-  public static getRole(): string {
+  public getRole(): string {
     return localStorage.getItem('role');
   }
 
-  public static getId(): string {
+  public getId(): string {
     return localStorage.getItem('id');
+  }
+
+  public isConnected(): boolean {
+    return localStorage.getItem('email') !== null;
   }
 
   /**

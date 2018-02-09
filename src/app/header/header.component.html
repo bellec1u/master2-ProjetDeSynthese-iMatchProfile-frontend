@@ -20,9 +20,8 @@
 
       <!-- Items -->
       <div class="navbar-nav mr-auto">
-        <a class="nav-item nav-link" href="/login">Connexion<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Truc</a>
-        <a class="nav-item nav-link" href="#">Bidule</a>
+        <a class="nav-item nav-link" *ngIf="!isConnected()" (click)="login()">Connexion<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" *ngIf="isConnected()" (click)="logout()">Deconnexion<span class="sr-only">(current)</span></a>
       </div>
 
       <!-- Params menu -->
