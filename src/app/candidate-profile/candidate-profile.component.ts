@@ -6,6 +6,7 @@ import { Candidate } from '../shared/interfaces/candidate';
 import * as jsPDF from 'jspdf';
 
 import 'rxjs/add/operator/mergeMap';
+import {AuthenticationService} from '../shared/authentication/authentication.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class CandidateProfileComponent implements OnInit {
 
   constructor(private _candidateService: CandidateService,
               private _route: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router,
+              private _authentication: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -86,6 +88,18 @@ export class CandidateProfileComponent implements OnInit {
   proposePost() {}
 
   signal() {}
+
+  isRecruiter(): boolean {
+    return this._authentication.isRecruiter();
+  }
+
+  isCandidate(): boolean {
+    return this._authentication.isCandidate();
+  }
+
+  isOwner(): boolean {
+    return this._authentication.getId() == this._candidate.id;
+  }
 
   /**
    * Function to generate the candidate cv

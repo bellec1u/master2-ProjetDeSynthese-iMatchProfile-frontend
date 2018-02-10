@@ -14,7 +14,7 @@
   </div>
 
   <!-- profile menu -->
-  <div id="profile-menu" class="position-absolute" style="z-index: 1;">
+  <div *ngIf="isCandidate() && isOwner()" id="profile-menu" class="position-absolute" style="z-index: 1;">
     <button id="editButton" class="btn fa fa-pencil fa-lg d-block"  aria-hidden="true" title="Modifier le profil"
             data-toggle="modal" data-target=".profileFormModal"></button>
     <button id="drowpdown-profile-menu-button" class="btn fa fa-ellipsis-h fa-lg" title="Autres options..."
