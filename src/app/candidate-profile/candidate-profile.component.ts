@@ -101,6 +101,10 @@ export class CandidateProfileComponent implements OnInit {
     return this._authentication.getId() == this._candidate.id;
   }
 
+  isConnected(): boolean {
+    return this._authentication.isConnected();
+  }
+
   /**
    * Function to generate the candidate cv
    */

@@ -3,113 +3,160 @@
 </div>
 
 <div *ngIf="post.title">
-  <p id="control">
-    <button (click)="Postuler()" type="button" class="btn btn-success">Postuler</button>
-    <button (click)="Contacter()" type="button" class="btn btn-info">Contacter</button>
-    <button (click)="Signaler()" type="button" class="btn btn-warning">Signaler</button>
-    <button (click)="delete()" type="button" class="btn btn-danger">Supprimer</button>
-  </p>
+  <div class="position-relative my-3 p-3 bg-white rounded box-shadow">
+    <!-- menu -->
+    <div class="position-absolute btn-group mr-3" style="right: 0px" *ngIf="isConnected()">
+      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Options
+      </button>
+      <div class="dropdown-menu">
+        <div> <!-- TODO: add condition is not owner -->
+          <button (click)="Postuler()" type="button" class="dropdown-item">
+            Postuler
+          </button>
+          <button (click)="Contacter()" type="button" class="dropdown-item">
+            Contacter
+          </button>
+        </div>
 
-  <p class="alert alert-success">Caractéristiques</p>
+        <div> <!-- TODO: add condition is owner -->
+          <div class="dropdown-divider"></div>
+          <button (click)="delete()" type="button" class="dropdown-item">
+            Modifier
+          </button>
+          <button (click)="delete()" type="button" class="dropdown-item">
+            Supprimer
+          </button>
+        </div>
 
-  <table class="table">
-    <tbody>
-    <tr>
-      <th scope="row">Date de publication</th>
-      <td>{{post.publicationDate | date : "dd/MM/yyyy"}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Référence</th>
-      <td id="reference">{{post.reference}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Intitulé du poste</th>
-      <td id="title">{{post.title}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Nombre d’années d’expérience</th>
-      <td id="experience">{{post.experience}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Indice grille de salaire</th>
-      <td id="salaryIndex">{{post.salaryIndex}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Salaire moyen</th>
-      <td>{{post.minSalary}} à {{post.maxSalary}}€</td>
-    </tr>
-    <tr>
-      <th scope="row">Type d'engagement</th>
-      <td id="contractType">{{post.contractType}}</td>
-    </tr>
-    </tbody>
-  </table>
-
-  <p></p>
-  <p class="alert alert-success">Contexte du poste</p>
-
-  <table class="table">
-    <tbody>
-    <tr>
-      <th scope="row">Lieu de travail</th>
-      <td id="workplace">{{post.workplace}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Organisation demandeuse</th>
-      <td id="organization">{{post.organization}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Service concerné</th>
-      <td id="workUnit">{{post.workUnit}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Résumé du poste à pourvoir</th>
-      <td id="description">{{post.description}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Points d'attention</th>
-      <td id="importantNotes">{{post.importantNotes}}</td>
-    </tr>
-    </tbody>
-  </table>
-
-  <p></p>
-  <p class="alert alert-danger">Connaissances requises</p>
-  <table class="table">
-    <tbody>
-    <tr>
-      <th scope="row">Thématique</th>
-      <th scope="row">Connaissance / Compétence </th>
-      <th scope="row">Obligatoire / Plus </th>
-    </tr>
-    <tr *ngFor="let ps of post.postskill">
-      <th>{{ps.skill.type}}</th>
-      <td>{{ps.skill.description}}</td>
-      <td>{{ps.type}}</td>
-    </tr>
-    </tbody>
-  </table>
-
-  <p class="alert alert-danger">Candidats potentiels</p>
-
-  <nav>
-    <div class="nav nav-tabs mb-1" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-obligatoire-tab" data-toggle="tab" href="#nav-obligatoire" role="tab" aria-controls="nav-obligatoire" aria-selected="true">
-        100% obligatoire
-      </a>
-      <a class="nav-item nav-link" id="nav-matching-tab" data-toggle="tab" href="#nav-matching" role="tab" aria-controls="nav-matching" aria-selected="false">
-        Matching
-      </a>
+        <div> <!-- TODO: add condition is not owner -->
+          <div class="dropdown-divider"></div>
+          <button (click)="Signaler()" type="button" class="dropdown-item badge-danger">
+            Signaler
+          </button>
+        </div>
+      </div>
     </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-obligatoire" role="tabpanel" aria-labelledby="nav-obligatoire-tab">
-      <app-candidate-card [candidate]="candidate" *ngFor="let candidate of matchingCandidates"></app-candidate-card>
-    </div>
-    <div class="tab-pane fade" id="nav-matching" role="tabpanel" aria-labelledby="nav-matching-tab">
-      <div *ngFor="let data of matchingPercentCandidates">
-        <app-candidate-card [candidate]="data.candidate"></app-candidate-card>
-        {{ data.percent }}
+
+    <h2>Caractéristiques</h2>
+    <table class="table">
+      <tbody>
+      <tr>
+        <th scope="row">Date de publication</th>
+        <td>{{post.publicationDate | date : "dd/MM/yyyy"}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Référence</th>
+        <td id="reference">{{post.reference}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Intitulé du poste</th>
+        <td id="title">{{post.title}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Nombre d’années d’expérience</th>
+        <td id="experience">{{post.experience}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Indice grille de salaire</th>
+        <td id="salaryIndex">{{post.salaryIndex}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Salaire moyen</th>
+        <td>{{post.minSalary}} à {{post.maxSalary}}€</td>
+      </tr>
+      <tr>
+        <th scope="row">Type d'engagement</th>
+        <td id="contractType">{{post.contractType}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h2>Contexte du poste</h2>
+    <table class="table">
+      <tbody>
+      <tr>
+        <th scope="row">Lieu de travail</th>
+        <td id="workplace">{{post.workplace}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Organisation demandeuse</th>
+        <td id="organization">{{post.organization}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Service concerné</th>
+        <td id="workUnit">{{post.workUnit}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Résumé du poste à pourvoir</th>
+        <td id="description">{{post.description}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Points d'attention</th>
+        <td id="importantNotes">{{post.importantNotes}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h2>Connaissances requises</h2>
+    <table class="table">
+      <tbody>
+      <tr>
+        <th scope="row">Thématique</th>
+        <th scope="row">Connaissance / Compétence </th>
+        <th scope="row">Obligatoire / Plus </th>
+      </tr>
+      <tr *ngFor="let ps of post.postskill">
+        <th>{{ps.skill.type}}</th>
+        <td>{{ps.skill.description}}</td>
+        <td>{{ps.type}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="my-3 p-3 bg-white rounded box-shadow" *ngIf="isRecruiter()"> <!-- TODO: add condition is owner -->
+    <h2>Candidats potentiels</h2>
+    <nav>
+      <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-obligatoire-tab" data-toggle="tab" href="#nav-obligatoire" role="tab" aria-controls="nav-obligatoire" aria-selected="true">
+          100% obligatoire
+        </a>
+        <a class="nav-item nav-link" id="nav-matching-tab" data-toggle="tab" href="#nav-matching" role="tab" aria-controls="nav-matching" aria-selected="false">
+          Matchings
+        </a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-obligatoire" role="tabpanel" aria-labelledby="nav-obligatoire-tab">
+
+        <div class="row">
+          <app-candidate-card class="col-lg-4 mb-3" [candidate]="candidate" *ngFor="let candidate of matchingCandidates"></app-candidate-card>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="nav-matching" role="tabpanel" aria-labelledby="nav-matching-tab">
+        <div *ngFor="let data of matchingPercentCandidates">
+
+          <div class="card border-secondary mb-3 w-75 mx-auto">
+            <div class="card-header">Taux de matching : {{ data.percent }} %</div>
+            <div class="card-body text-secondary">
+              <h5 class="card-title">
+                {{ data.candidate.user.firstname }} {{ data.candidate.user.lastname }} - {{ data.candidate.user.email }}
+              </h5>
+              <p class="card-text text-right">
+                <button id="seeProfileButton" [routerLink]="['/profile', data.candidate.id]" class="btn btn-outline-primary">
+                  Voir le profil
+                </button>
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

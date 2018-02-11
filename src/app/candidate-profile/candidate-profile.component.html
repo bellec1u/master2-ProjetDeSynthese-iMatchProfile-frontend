@@ -13,28 +13,6 @@
     Ce profil est actuellement <strong>suspendu</strong>.
   </div>
 
-  <!-- profile menu -->
-  <div *ngIf="isCandidate() && isOwner()" id="profile-menu" class="position-absolute" style="z-index: 1;">
-    <button id="editButton" class="btn fa fa-pencil fa-lg d-block"  aria-hidden="true" title="Modifier le profil"
-            data-toggle="modal" data-target=".profileFormModal"></button>
-    <button id="drowpdown-profile-menu-button" class="btn fa fa-ellipsis-h fa-lg" title="Autres options..."
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-hidden="true"></button>
-    <div class="dropdown-menu" aria-labelledby="drowpdown-profile-menu-button">
-
-      <button id="suspend" *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
-        Suspendre le profil
-      </button>
-
-      <button *ngIf="candidate.user.state === 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".unsuspendProfileModal">
-        Annuler la suspension du profil
-      </button>
-
-      <button id="delete" class="dropdown-item" data-toggle="modal" data-target=".deleteProfileModal">
-        Supprimer le profil
-      </button>
-    </div>
-  </div>
-
   <!-- edit modal -->
   <div class="modal fade profileFormModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -112,48 +90,79 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-10">
-      <img *ngIf="candidate.photo" src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
-      <img *ngIf="!candidate.photo" src="../../assets/images/user-no-photo.png"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
-      <h3 id="firstnameANDlastname" class="text-center">{{candidate.user.firstname}} {{candidate.user.lastname}}</h3>
-      <br>
-      <div id="candidateDescription" class="text-center">{{candidate.description}}</div>
-      <br>
-    </div>
-    <div class="col-2">
-      <div class="mt-3">
-        <button class="btn btn-success btn-block" (click)="proposePost()" type="button">Proposer un poste</button>
-        <button class="btn btn-primary btn-block" (click)="contact()" type="button" >Contacter</button>
-        <button class="btn btn-danger btn-block" (click)="signal()" type="button" >Signaler le profil</button>
-        <button class="btn btn-warning btn-block" (click)="generatecv()" type="button" >Générer Mon CV</button>
+  <div class="position-relative my-3 p-3 bg-white rounded box-shadow">
+    <!-- menu -->
+    <div class="position-absolute btn-group m-3" style="right: 0px">
+      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Options
+      </button>
+      <div class="dropdown-menu">
+        <button class="dropdown-item" (click)="generatecv()" type="button">
+          Générer le CV
+        </button>
+
+        <div *ngIf="isOwner()">
+          <div class="dropdown-divider"></div>
+          <button id="editButton" class="dropdown-item" data-toggle="modal" data-target=".profileFormModal">
+            Modifier le profil
+          </button>
+          <button id="suspend" *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
+            Suspendre le profil
+          </button>
+          <button *ngIf="candidate.user.state === 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".unsuspendProfileModal">
+            Annuler la suspension du profil
+          </button>
+          <button id="delete" class="dropdown-item" data-toggle="modal" data-target=".deleteProfileModal">
+            Supprimer le profil
+          </button>
+        </div>
+
+        <div *ngIf="isConnected() && !isOwner()">
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item badge-danger" (click)="signal()" type="button" >
+            Signaler
+          </button>
+        </div>
       </div>
     </div>
+
+    <img *ngIf="candidate.photo" src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
+    <img *ngIf="!candidate.photo" src="../../assets/images/user-no-photo.png"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
+    <h3 id="firstnameANDlastname" class="text-center">{{candidate.user.firstname}} {{candidate.user.lastname}}</h3>
+    <br>
+    <div id="candidateDescription" class="text-center">{{candidate.description}}</div>
+    <br>
   </div>
 
-  <p class="alert alert-success">Formations</p>
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">Diplome </th>
-      <th scope="col">Date d'obtiention </th>
-      <th scope="col">Description </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let education of candidate.educations">
-      <td> {{education.name}} </td>
-      <td> {{education.obtainingDate}} </td>
-      <td> {{education.description}} </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <p class="alert alert-success">Compétences</p>
-  <div class="container-fluid pb-3">
-    <app-skill-box id="skill" [skill]="skill" *ngFor="let skill of candidate.skills"></app-skill-box>
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h2>Formations</h2>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Diplome </th>
+        <th scope="col">Date d'obtiention </th>
+        <th scope="col">Description </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let education of candidate.educations">
+        <td> {{education.name}} </td>
+        <td> {{education.obtainingDate}} </td>
+        <td> {{education.description}} </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
-  <p class="alert alert-success">Commentaires</p>
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h2>Compétences</h2>
+    <div class="container-fluid pb-3">
+      <app-skill-box id="skill" [skill]="skill" *ngFor="let skill of candidate.skills"></app-skill-box>
+    </div>
+  </div>
+
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h2>Commentaires</h2>
+  </div>
 
 </div>

@@ -1,0 +1,17 @@
+<div class="card mb-4">
+  <div class="card-header">
+    <h4>{{ post.title }}</h4>
+    <h6><u>{{ post.workplace }}</u></h6>
+  </div>
+
+  <div class="card-body">
+    <div class="mb-2 module personnalFade">
+      <p>{{ post.description }}</p>
+    </div>
+    <p>
+      <a class="btn btn-outline-primary float-right" [routerLink]="['/post', post.id]" id="topost" name='{{ post.id }}'>
+        Voir le poste &raquo;
+      </a>
+    </p>
+  </div>
+</div>

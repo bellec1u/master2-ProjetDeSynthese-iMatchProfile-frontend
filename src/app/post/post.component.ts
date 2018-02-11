@@ -85,4 +85,8 @@ export class PostComponent implements OnInit {
     return this._authentication.isCandidate();
   }
 
+  isConnected(): boolean {
+    return this._authentication.isConnected();
+  }
+
 }

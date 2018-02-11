@@ -16,6 +16,7 @@ import { SkillBoxComponent } from './shared/components/skill-box/skill-box.compo
 import { PostService } from './shared/services/post-service/post.service';
 import { FormPostComponent } from './shared/modal/form-post/form-post.component';
 import { CandidateCardComponent } from './shared/components/candidate-card/candidate-card.component';
+import { PostCardComponent} from './shared/components/post-card/post-card.component';
 import { SkillService } from './shared/services/skill-service/skill.service';
 import { FormCandidateProfileComponent } from './shared/components/form-candidate-profile/form-candidate-profile.component';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
@@ -37,6 +38,7 @@ import { AuthenticationModule } from './shared/authentication/authentication.mod
     SkillBoxComponent,
     FormPostComponent,
     CandidateCardComponent,
+    PostCardComponent,
     FormCandidateProfileComponent,
     SignupComponent,
     LoginComponent

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
 
   <div class="container">
 
@@ -15,13 +15,13 @@
 
       <!-- Search bar -->
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher ..." aria-label="Search">
       </form>
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" *ngIf="isRecruiter()" (click)="goToPostsView()">Vos postes<span class="sr-only">(current)</span></a>
-          <a class="nav-link" *ngIf="isCandidate()" (click)="goToProfileView()">Profil<span class="sr-only">(current)</span></a>
+          <a class="nav-link" *ngIf="isRecruiter()" (click)="goToPostsView()">Mes postes<span class="sr-only">(current)</span></a>
+          <a class="nav-link" *ngIf="isCandidate()" (click)="goToProfileView()">Mon profil<span class="sr-only">(current)</span></a>
         </li>
       </ul>
 

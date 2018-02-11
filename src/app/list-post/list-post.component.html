@@ -1,49 +1,51 @@
 <div class="container">
-  <h2>Mes postes</h2>
+  <div class="position-relative my-3 p-3 bg-white rounded box-shadow">
+    <!-- add post part -->
+    <button id="addPostButton" type="button" class="position-absolute btn btn-outline-secondary m-3" style="right: 0px"
+            data-toggle="modal" data-target="#postFormModal" (click)="clickUpdatePost(null, true)">
+      Ajouter un poste
+    </button>
 
-  <!-- add post part -->
-  <button id="addPostButton" type="button" class="btn btn-outline-secondary m-2 float-xl-right" data-toggle="modal" data-target="#postFormModal"
-          (click)="clickUpdatePost(null, true)">
-    Ajouter un poste
-  </button>
+    <h2>Mes postes</h2>
 
-  <app-form-post *ngIf="isNewPost"></app-form-post>
-  <app-form-post *ngIf="!isNewPost" [model]="postToUpdate"></app-form-post>
+    <app-form-post *ngIf="isNewPost"></app-form-post>
+    <app-form-post *ngIf="!isNewPost" [model]="postToUpdate"></app-form-post>
 
-  <!-- list of posts -->
-  <br>
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th scope="col">Identifiant</th>
-      <th scope="col">Intitulé</th>
-      <th scope="col">Type</th>
-      <th scope="col">Lieu</th>
-      <th scope="col">Référence</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody *ngIf="listPost.length != 0">
-    <tr id="post" *ngFor="let post of listPost">
-      <td id="postTitle">{{ post.id }}</td>
-      <td>{{ post.title }}</td>
-      <td>{{ post.contractType }}</td>
-      <td>{{ post.workplace }}</td>
-      <td>{{ post.reference }}</td>
-      <td>
-        <button type="button" class="btn btn-primary btn-sm"
-                [routerLink]="['/post', post.id]">Afficher</button>
-        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#postFormModal"
-                (click)="clickUpdatePost(post, false)">Modifier</button>
-        <button type="button" class="btn btn-danger btn-sm"
-                (click)="delete(post.id)">Supprimer</button>
-      </td>
-    </tr>
-    </tbody>
-    <tbody *ngIf="listPost.length == 0">
-    <tr>
-      Vous n'avez aucun poste
-    </tr>
-    </tbody>
-  </table>
+    <!-- list of posts -->
+    <br>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Identifiant</th>
+        <th scope="col">Intitulé</th>
+        <th scope="col">Type</th>
+        <th scope="col">Lieu</th>
+        <th scope="col">Référence</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="listPost.length != 0">
+      <tr id="post" *ngFor="let post of listPost">
+        <td id="postTitle">{{ post.id }}</td>
+        <td>{{ post.title }}</td>
+        <td>{{ post.contractType }}</td>
+        <td>{{ post.workplace }}</td>
+        <td>{{ post.reference }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-secondary btn-sm"
+                  [routerLink]="['/post', post.id]">Afficher</button>
+          <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#postFormModal"
+                  (click)="clickUpdatePost(post, false)">Modifier</button>
+          <button type="button" class="btn btn-outline-danger btn-sm"
+                  (click)="delete(post.id)">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+      <tbody *ngIf="listPost.length == 0">
+      <tr>
+        Vous n'avez aucun poste
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
