@@ -143,7 +143,9 @@
         <div *ngFor="let data of matchingPercentCandidates">
 
           <div class="card border-secondary mb-3 w-75 mx-auto">
-            <div class="card-header">Taux de matching : {{ data.percent }} %</div>
+            <div class="card-header">
+              Taux de matching : {{ data.percent }} %
+            </div>
             <div class="card-body text-secondary">
               <h5 class="card-title">
                 {{ data.candidate.user.firstname }} {{ data.candidate.user.lastname }} - {{ data.candidate.user.email }}
