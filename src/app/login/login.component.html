@@ -42,7 +42,7 @@
         </div>
 
         <div class="text-center">
-          <button id="submit" type="button" class="btn btn-outline-success" (click)="submit(form.value)">Se Connecter</button>
+          <button id="loginButton" type="button" class="btn btn-outline-success" (click)="submit(form.value)">Se Connecter</button>
         </div>
       </form>
     </div>
@@ -51,7 +51,7 @@
 
     <div class="text-center">
       <p>Pas de compte ? Créez en un !</p>
-      <button type="button" class="btn btn-outline-secondary" [routerLink]="['/signup']" [queryParams]="{ role: 'candidate' }">
+      <button id="signupButton" type="button" class="btn btn-outline-secondary" [routerLink]="['/signup']" [queryParams]="{ role: 'candidate' }">
         Créer un compte
       </button>
     </div>

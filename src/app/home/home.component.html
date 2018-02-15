@@ -7,10 +7,10 @@
       iMatchProfile vous permet de trouver les postes à pourvoir et les candidats qui vous correspondent le mieux.
     </p>
     <p *ngIf="!isConnected()">
-      <a class="btn btn-lg btn-success m-2" [routerLink]="['/signup']" [queryParams]="{ role: 'candidate' }" id="candidat">
+      <a class="btn btn-lg btn-success m-2" [routerLink]="['/signup']" [queryParams]="{ role: 'candidate' }" id="createCandidatButton">
         Créer un compte candidat
       </a>
-      <a class="btn btn-lg btn-success m-2" [routerLink]="['/signup']" [queryParams]="{ role: 'recruiter' }" id="recruteur">
+      <a class="btn btn-lg btn-success m-2" [routerLink]="['/signup']" [queryParams]="{ role: 'recruiter' }" id="createRecruiterButton">
         Créer un compte recruteur
       </a>
     </p>

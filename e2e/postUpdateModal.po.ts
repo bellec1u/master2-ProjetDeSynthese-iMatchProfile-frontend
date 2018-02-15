@@ -1,26 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class PostPage {
-
-  navigateTo(id: number) {
-    return browser.get('/post/' + id);
-  }
-
-  getOptionsMenuButton() {
-    return element(by.id('optionsMenuButton'));
-  }
-
-  getUpdatePostButton() {
-    return element(by.id('updatePostButton'));
-  }
-
-  getDeletePostButton() {
-    return element(by.id('deletePostButton'));
-  }
-
-  getPublicarionDate() {
-    return element(by.id('publicationDate'));
-  }
+export class PostUpdateModalPage {
 
   getReference() {
     return element(by.id('reference'));
@@ -38,8 +18,24 @@ export class PostPage {
     return element(by.id('salaryIndex'));
   }
 
+  getMinSalary() {
+    return element(by.id('minSalary'));
+  }
+
+  getMaxSalary() {
+    return element(by.id('maxSalary'));
+  }
+
   getContractType() {
     return element(by.id('contractType'));
+  }
+
+  getDescription() {
+    return element(by.id('description'));
+  }
+
+  getImportantNotes() {
+    return element(by.id('importantNotes'));
   }
 
   getWorkplace() {
@@ -54,12 +50,12 @@ export class PostPage {
     return element(by.id('workUnit'));
   }
 
-  getDescription() {
-    return element(by.id('description'));
+  getAddSkillButton() {
+    return element(by.id('addSkillButton'));
   }
 
-  getImportantNotes() {
-    return element(by.id('importantNotes'));
+  getSendNewPostButton() {
+    return element(by.id('sendNewPostButton'));
   }
 
 }

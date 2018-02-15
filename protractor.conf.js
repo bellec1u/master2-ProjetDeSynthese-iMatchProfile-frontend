@@ -16,11 +16,24 @@ exports.config = {
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 300000,
     print: function() {}
   },
   onPrepare() {
-browser.driver.manage().window().maximize();
+    browser.driver.manage().window().maximize();
+
+    var origFn = browser.driver.controlFlow().execute;
+
+    browser.driver.controlFlow().execute = function() {
+      var args = arguments;
+
+      // queue 100ms wait
+      origFn.call(browser.driver.controlFlow(), function() {
+        return protractor.promise.delayed(100);
+      });
+
+      return origFn.apply(browser.driver.controlFlow(), args);
+    };
 
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'

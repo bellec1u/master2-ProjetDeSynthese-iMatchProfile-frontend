@@ -36,7 +36,7 @@
           <div>
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Annuler</button>
-            <button id="validSuspend" type="submit" class="btn btn-outline-success float-right m-2"
+            <button id="validSuspendButton" type="submit" class="btn btn-outline-success float-right m-2"
                     (click)="suspend(false)" data-dismiss="modal">Suspendre</button>
           </div>
         </div>
@@ -58,7 +58,7 @@
           <div>
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Conserver la suspension</button>
-            <button type="submit" class="btn btn-outline-success float-right m-2"
+            <button id="validUnsuspendButton" type="submit" class="btn btn-outline-success float-right m-2"
                     (click)="suspend(true)" data-dismiss="modal">Annuler la suspension</button>
           </div>
         </div>
@@ -82,7 +82,7 @@
           <div>
             <button type="button" class="btn btn-outline-secondary float-right m-2"
                     data-dismiss="modal">Annuler</button>
-            <button id="validDelete" type="submit" class="btn btn-outline-success float-right m-2"
+            <button id="validDeleteButton" type="submit" class="btn btn-outline-success float-right m-2"
                     (click)="delete()" data-dismiss="modal">Supprimer</button>
           </div>
         </div>
@@ -93,7 +93,7 @@
   <div class="position-relative my-3 p-3 bg-white rounded box-shadow">
     <!-- menu -->
     <div class="position-absolute btn-group m-3" style="right: 0px">
-      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button id="optionsMenuButton" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Options
       </button>
       <div class="dropdown-menu">
@@ -103,16 +103,16 @@
 
         <div *ngIf="isOwner()">
           <div class="dropdown-divider"></div>
-          <button id="editButton" class="dropdown-item" data-toggle="modal" data-target=".profileFormModal">
+          <button id="editProfileButton" class="dropdown-item" data-toggle="modal" data-target=".profileFormModal">
             Modifier le profil
           </button>
-          <button id="suspend" *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
+          <button id="suspendProfileButton" *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
             Suspendre le profil
           </button>
-          <button *ngIf="candidate.user.state === 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".unsuspendProfileModal">
+          <button id="unsuspendProfileButton" *ngIf="candidate.user.state === 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".unsuspendProfileModal">
             Annuler la suspension du profil
           </button>
-          <button id="delete" class="dropdown-item" data-toggle="modal" data-target=".deleteProfileModal">
+          <button id="deleteProfileButton" class="dropdown-item" data-toggle="modal" data-target=".deleteProfileModal">
             Supprimer le profil
           </button>
         </div>
@@ -128,9 +128,9 @@
 
     <img *ngIf="candidate.photo" src="{{candidate.photo}}"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
     <img *ngIf="!candidate.photo" src="../../assets/images/user-no-photo.png"  class="rounded-circle img-fluid mx-auto d-block" height="200" width="200">
-    <h3 id="firstnameANDlastname" class="text-center">{{candidate.user.firstname}} {{candidate.user.lastname}}</h3>
+    <h3 id="firstnameAndLastname" class="text-center">{{candidate.user.firstname}} {{candidate.user.lastname}}</h3>
     <br>
-    <div id="candidateDescription" class="text-center">{{candidate.description}}</div>
+    <div id="description" class="text-center">{{candidate.description}}</div>
     <br>
   </div>
 

@@ -1,109 +1,55 @@
 import { browser, by, element } from 'protractor';
 
 export class CandidatePage {
-  navigateToUser(id: number) {
+
+  navigateTo(id: number) {
     return browser.get('/profile/' + id);
   }
 
-  navigateToPost(id: number) {
-    return browser.get('/post/' + id);
+  getOptionsMenuButton() {
+    return element(by.id('optionsMenuButton'));
   }
 
-  getMenuButton() {
-    return element(by.id('drowpdown-profile-menu-button'));
+  getEditProfileButton() {
+    return element(by.id('editProfileButton'));
   }
 
-  getDeleteButton() {
-    return element(by.id('delete'));
+  getSuspendProfileButton() {
+    return element(by.id('suspendProfileButton'));
   }
 
-  getSuspendButton() {
-    return element(by.id('suspend'));
+  getUnsuspendProfileButton() {
+    return element(by.id('unsuspendProfileButton'));
   }
 
-  getValidDeleteButton() {
-    return element(by.id('validDelete'));
+  getDeleteProfileButton() {
+    return element(by.id('deleteProfileButton'));
   }
 
-  getValidSuspendButton() {
-    return element(by.id('validSuspend'));
+  getFirstnameAndLastname() {
+    return element(by.id('firstnameAndLastname'));
   }
 
-  getNotFoundText() {
-    return element(by.id('notFound'));
-  }
-
-  getSuspendText() {
-    return element(by.id('suspendText'));
-  }
-
-  getCandidateModaDesc() {
+  getDescription() {
     return element(by.id('description'));
   }
 
-  getCandidateSec() {
-    return element(by.id('candidateDescription'));
+  getSuspendText () {
+    return element(by.id('suspendText'));
   }
 
-  getValidUpdate() {
-    return element(by.id('candidatModal'));
+  // modals
+
+  getValidSuspendButton() {
+    return element(by.id('validSuspendButton'));
   }
 
-  getEditButton() {
-    return element(by.id('editButton'));
+  getValidUnsuspendButton() {
+    return element(by.id('validUnsuspendButton'));
   }
 
-  getCandidateFirstnameAndLastname() {
-    return element(by.id('firstnameANDlastname'));
-  }
-
-  getCandidateDescription() {
-    return element(by.id('candidateDescription'));
-  }
-
-  getCandidateSkills() {
-    return element.all(by.id('skill'));
-  }
-
-  getUserMatchedSeeProfileButton() {
-    return element.all(by.id('seeProfileButton'));
-  }
-
-
-  navigateToCreateUser() {
-    return browser.get('/signup?role=candidate');
-  }
-
-  navigateToCreateRecruiter() {
-    return browser.get('/signup?role=recruiter');
-  }
-
-  getFormLastname() {
-    return element(by.id('lastname'));
-  }
-
-  getFormFirstname() {
-    return element(by.id('firstname'));
-  }
-
-  getFormEmail() {
-    return element(by.id('email'));
-  }
-
-  getFormPassword() {
-    return element(by.id('password'));
-  }
-
-  getFormPasswordVerif() {
-    return element(by.id('password-verif'));
-  }
-
-  getFormSubmitButton() {
-    return element(by.id('submit'));
-  }
-
-  getFormCompany(){
-    return element(by.id('company'));
+  getValidDeleteButton() {
+    return element(by.id('validDeleteButton'));
   }
 
 }

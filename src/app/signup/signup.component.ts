@@ -6,6 +6,7 @@ import {CandidateService} from '../shared/services/candidate-service/candidate.s
 import {RecruiterService} from '../shared/services/recruiter-service/recruiter.service';
 import {Candidate} from '../shared/interfaces/candidate';
 import {Recruiter} from '../shared/interfaces/recruiter';
+import {AuthenticationService} from '../shared/authentication/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -26,7 +27,8 @@ export class SignupComponent implements OnInit {
   constructor(private _candidateService: CandidateService,
               private _recruiterService: RecruiterService,
               private _route: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router,
+              private _authenticationService: AuthenticationService) {
 
     this._form = this._buildForm();
     this._submitted = false;
@@ -89,14 +91,20 @@ export class SignupComponent implements OnInit {
     if (this._form.invalid) {
       return;
     }
-
     switch (form.user.role) {
       case 'candidate':
         delete form.company;
+        form.user.role = 'CANDIDATE';
+        console.log(form);
         this._candidateService
           .create(form)
-          .subscribe((candidate: Candidate) =>
-              this._router.navigate(['profile/', candidate.id]),
+          .subscribe(_ => {
+              this._authenticationService
+                .login(form.user.email, form.user.password)
+                .subscribe(
+                  _ => this._router.navigate(['home'])
+                );
+            },
             (error: any) => {
               if (error.status === 409) {
                 this._emailAlreadyUsed = true;
@@ -104,10 +112,16 @@ export class SignupComponent implements OnInit {
             });
         break;
       case 'recruiter':
+        form.user.role = 'RECRUITER';
         this._recruiterService
           .create(form)
-          .subscribe((recruiter: Recruiter) =>
-              this._router.navigate(['home/']),
+          .subscribe(_ => {
+            this._authenticationService
+              .login(form.user.email, form.user.password)
+              .subscribe(
+                _ => this._router.navigate(['home'])
+              );
+            },
             (error: any) => {
               if (error.status === 409) {
                 this._emailAlreadyUsed = true;

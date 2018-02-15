@@ -32,11 +32,11 @@
         <td>{{ post.workplace }}</td>
         <td>{{ post.reference }}</td>
         <td>
-          <button type="button" class="btn btn-outline-secondary btn-sm"
+          <button id="showPostButton" type="button" class="btn btn-outline-secondary btn-sm"
                   [routerLink]="['/post', post.id]">Afficher</button>
-          <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#postFormModal"
+          <button id="updatePostButton" type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#postFormModal"
                   (click)="clickUpdatePost(post, false)">Modifier</button>
-          <button type="button" class="btn btn-outline-danger btn-sm"
+          <button id="deletePostButton" type="button" class="btn btn-outline-danger btn-sm"
                   (click)="delete(post.id)">Supprimer</button>
         </td>
       </tr>

@@ -1,96 +1,93 @@
 import { CandidatePage } from './candidate.po';
 import {browser, protractor} from 'protractor';
+import {HomePage} from './home.po';
+import {SignupPage} from './signup.po';
+import {HeaderPage} from './header.po';
+import {ListPostPage} from './list-post.po';
+import {PostPage} from './post.po';
+import {LoginPage} from './login.po';
+import {CandidateUpdateModalPage} from './candidateUpdateModal.po';
 
-describe('imp candidate view', function() {
-  let page: CandidatePage;
+describe('imp candidate - ', function() {
+  let headerPage: HeaderPage;
+  let homePage: HomePage;
+  let candidatePage: CandidatePage;
+  let candidateUpdateModalPage: CandidateUpdateModalPage;
+  let listPostPage: ListPostPage;
+  let postPage: PostPage;
+  let loginPage: LoginPage;
+  let signupPage: SignupPage;
+
 
   beforeEach(() => {
-    page = new CandidatePage();
+    headerPage = new HeaderPage();
+    homePage = new HomePage();
+    candidatePage = new CandidatePage();
+    candidateUpdateModalPage = new CandidateUpdateModalPage();
+    listPostPage = new ListPostPage();
+    postPage = new PostPage();
+    loginPage = new LoginPage();
+    signupPage = new SignupPage();
   });
 
-  it('should see user 1 and his infos', () => {
-    // go to user 1 view
-    page.navigateToUser(1);
-    // check infos
-    expect(page.getCandidateFirstnameAndLastname().getText()).toEqual('Jean Pierre');
-    expect(page.getCandidateDescription().getText()).toEqual('Je cherche un stage !');
-    expect(page.getCandidateSkills().count()).toEqual(2);
-    // TODO maybe add some tests
+  it('should test to login and logout a candidate', () => {
+    // login
+    loginPage.navigateTo();
+    loginPage.getEmail().sendKeys('john.doe@gmail.com');
+    loginPage.getPassword().sendKeys('candidate');
+    loginPage.getLoginButton().click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
+    expect(headerPage.getMyProfileButton().isPresent()).toBe(true);
+
+    // logout
+    headerPage.getUnconnectionButton().click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
+    expect(headerPage.getMyProfileButton().isPresent()).toBe(false);
   });
 
-  it('should see users information from a post', () => {
-    page.navigateToPost(1);
-    page.getUserMatchedSeeProfileButton().first().click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/profile/1');
-  });
+  it('should create a new candidate account, edit, suspend, unsuspend and delete it', () => {
+    // create
+    homePage.navigateTo();
+    homePage.getCreateCandidateButton().click();
+    signupPage.getLastname().sendKeys('nom');
+    signupPage.getFirstname().sendKeys('prenom');
+    signupPage.getEmail().sendKeys('nom.prenom@test.fr');
+    signupPage.getPassword().sendKeys('azerty');
+    signupPage.getPasswordVerif().sendKeys('azerty');
+    signupPage.getSignupButton().click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
+    expect(headerPage.getMyProfileButton().isPresent()).toBe(true);
 
-  it('create user', () => {
-    page.navigateToCreateUser();
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getFormLastname()));
-    page.getFormLastname().sendKeys('nom');
-    page.getFormFirstname().sendKeys('prenom');
-    page.getFormEmail().sendKeys('test@a.fr');
-    page.getFormPassword().sendKeys('azerty');
-    page.getFormPasswordVerif().sendKeys('azerty');
-    page.getFormSubmitButton().click();
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateFirstnameAndLastname()));
-    expect(page.getCandidateFirstnameAndLastname().getText()).toEqual('prenom nom');
-  });
+    headerPage.getMyProfileButton().click();
+    expect(browser.getCurrentUrl()).toContain('http://localhost:49152/profile/');
 
-  it('create recruiter', () => {
-    page.navigateToCreateRecruiter();
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getFormCompany()));
-    page.getFormCompany().sendKeys('Pingouin');
-    page.getFormLastname().sendKeys('nom');
-    page.getFormFirstname().sendKeys('prenom');
-    page.getFormEmail().sendKeys('test@a.fr');
-    page.getFormPassword().sendKeys('azerty');
-    page.getFormPasswordVerif().sendKeys('azerty');
-    page.getFormSubmitButton().click();
-  });
+    expect(candidatePage.getFirstnameAndLastname().getText()).toEqual('prenom nom');
 
-  it('edit user', () => {
-    // edit user with id = 1
-    page.navigateToUser(1);
-    page.getEditButton().click();
     // update
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getCandidateModaDesc()));
-    page.getCandidateModaDesc().sendKeys('ok');
-    page.getValidUpdate().click();
-    // check if updated
-    expect(page.getCandidateDescription().getText()).toEqual('Je cherche un stage !ok');
-  });
+    candidatePage.getOptionsMenuButton().click();
+    candidatePage.getEditProfileButton().click();
+    candidateUpdateModalPage.getFirstname().sendKeys('2');
+    candidateUpdateModalPage.getUpdateButton().click();
+    expect(candidatePage.getFirstnameAndLastname().getText()).toEqual('prenom2 nom');
 
-  it('suspend user', () => {
-    // suspend user with id = 1
-    page.navigateToUser(1);
-    page.getMenuButton().click();
-    page.getSuspendButton().click();
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidSuspendButton()));
-    page.getValidSuspendButton().click();
-    // check if suspend
-    expect(page.getSuspendText().getText()).toEqual('Ce profil est actuellement suspendu.');
-  });
+    // suspend
+    candidatePage.getOptionsMenuButton().click();
+    candidatePage.getSuspendProfileButton().click();
+    candidatePage.getValidSuspendButton().click();
+    expect(candidatePage.getSuspendText().isPresent()).toBe(true);
 
-  it('delete user', () => {
-    // delete user with id = 1
-    page.navigateToUser(1);
-    page.getMenuButton().click();
-    page.getDeleteButton().click();
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
-    browser.wait(protractor.ExpectedConditions.visibilityOf(page.getValidDeleteButton()));
-    page.getValidDeleteButton().click();
-    // check if deleted
-    page.navigateToUser(1);
-    expect(page.getNotFoundText().getText()).toEqual('Ce profil est introuvable.');
+    // unsuspend
+    candidatePage.getOptionsMenuButton().click();
+    candidatePage.getUnsuspendProfileButton().click();
+    candidatePage.getValidUnsuspendButton().click();
+    expect(candidatePage.getSuspendText().isPresent()).toBe(false);
+
+    // delete
+    candidatePage.getOptionsMenuButton().click();
+    candidatePage.getDeleteProfileButton().click();
+    candidatePage.getValidDeleteButton().click();
+    expect(browser.getCurrentUrl()).toContain('http://localhost:49152/home');
+    expect(headerPage.getMyProfileButton().isPresent()).toBe(false);
   });
 
 });

@@ -1,23 +1,21 @@
 import { browser, by, element } from 'protractor';
 
 export class HomePage {
+
   navigateTo() {
     return browser.get('/home');
   }
 
-  getLogoNavbar() {
-    return element(by.css('.navbar-brand'));
-  }
-
   getCreateCandidateButton() {
-    return element(by.id('candidat'));
+    return element(by.id('createCandidatButton'));
   }
 
   getCreateRecruiterButton() {
-    return element(by.id('recruteur'));
+    return element(by.id('createRecruiterButton'));
   }
 
-  getGoToPostButton() {
-    return element(by.id('topost'));
+  getGoToPostButtons() {
+    return element.all(by.id('showPostButton'));
   }
+
 }

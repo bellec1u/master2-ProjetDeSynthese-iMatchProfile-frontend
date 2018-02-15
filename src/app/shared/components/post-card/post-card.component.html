@@ -9,9 +9,9 @@
       <p>{{ post.description }}</p>
     </div>
     <p>
-      <a class="btn btn-outline-primary float-right" [routerLink]="['/post', post.id]" id="topost" name='{{ post.id }}'>
+      <button id="showPostButton" class="btn btn-outline-primary float-right" [routerLink]="['/post', post.id]" name='{{ post.id }}'>
         Voir le poste &raquo;
-      </a>
+      </button>
     </p>
   </div>
 </div>

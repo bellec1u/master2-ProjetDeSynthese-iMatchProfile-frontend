@@ -3,7 +3,7 @@
   <div class="container">
 
     <!-- Brand -->
-    <a class="navbar-brand" [routerLink]="['/home']">
+    <a id="navbarBrand" class="navbar-brand" [routerLink]="['/home']">
       {{title}}
     </a>
 
@@ -20,16 +20,16 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" *ngIf="isRecruiter()" (click)="goToPostsView()">Mes postes<span class="sr-only">(current)</span></a>
-          <a class="nav-link" *ngIf="isCandidate()" (click)="goToProfileView()">Mon profil<span class="sr-only">(current)</span></a>
+          <a id="myPostsButton" class="nav-link" *ngIf="isRecruiter()" (click)="goToPostsView()">Mes postes<span class="sr-only">(current)</span></a>
+          <a id="myProfileButton" class="nav-link" *ngIf="isCandidate()" (click)="goToProfileView()">Mon profil<span class="sr-only">(current)</span></a>
         </li>
       </ul>
 
       <!-- Items -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" *ngIf="!isConnected()" (click)="login()">Connexion<span class="sr-only">(current)</span></a>
-          <a class="nav-link" *ngIf="isConnected()" (click)="logout()">Déconnexion<span class="sr-only">(current)</span></a>
+          <a id="connectionButton" class="nav-link" *ngIf="!isConnected()" (click)="login()">Connexion<span class="sr-only">(current)</span></a>
+          <a id="unconnectionButton" class="nav-link" *ngIf="isConnected()" (click)="logout()">Déconnexion<span class="sr-only">(current)</span></a>
         </li>
       </ul>
 
