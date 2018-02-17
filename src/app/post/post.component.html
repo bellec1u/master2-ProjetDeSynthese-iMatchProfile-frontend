@@ -3,6 +3,29 @@
 </div>
 
 <div *ngIf="post.title">
+
+  <!-- contact recruiter modal -->
+  <div class="modal fade contactRecruiterModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">
+      <div class="modal-content p-2">
+        <div class="container">
+          <p>
+            Message à envoyer :
+          </p>
+
+          <textarea id="messageTextArea" class="form-control" rows="4" #messageTextArea></textarea>
+
+          <div>
+            <button id="validSendMessageButton" type="submit" class="btn btn-outline-primary float-right m-2"
+                    (click)="contact({'msg': messageTextArea.value, 'isNew': true})" data-dismiss="modal">Envoyer</button>
+            <button type="button" class="btn btn-outline-secondary float-right m-2"
+                    data-dismiss="modal">Annuler</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="position-relative my-3 p-3 bg-white rounded box-shadow">
     <!-- menu -->
     <div class="position-absolute btn-group mr-3" style="right: 0px" *ngIf="isConnected()">
@@ -14,8 +37,8 @@
           <button (click)="Postuler()" type="button" class="dropdown-item">
             Postuler
           </button>
-          <button (click)="Contacter()" type="button" class="dropdown-item">
-            Contacter
+          <button type="button" class="dropdown-item" data-toggle="modal" data-target=".contactRecruiterModal">
+            Contacter le recruteur
           </button>
         </div>
 

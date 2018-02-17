@@ -17,7 +17,8 @@ export const environment = {
       allSkill: '/imp/api/skills',
       login: '/imp/api/login',
       conversationForUser: '/imp/api/conversations/forUser/:id',
-      conversationBetweenUser: '/imp/api/conversations/:id1/:id2'
+      conversationBetweenUser: '/imp/api/conversations/:id1/:id2',
+      conversationForPostOwner: '/imp/api/conversations/:idUser/ownerOf/:idPost'
     }
   }
 };

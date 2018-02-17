@@ -22,6 +22,7 @@ export class ConversationsComponent implements OnInit {
       .fetchConversation(this._authentication.getIdUser())
       .subscribe((conversations: any[]) => {
         this._conversations = conversations;
+        console.log(this._conversations);
       });
   }
 

@@ -4,6 +4,7 @@ import { PostService } from '../shared/services/post-service/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Candidate } from '../shared/interfaces/candidate';
 import {AuthenticationService} from '../shared/authentication/authentication.service';
+import {ConversationService} from '../shared/services/conversation-service/conversation.service';
 
 @Component({
   selector: 'app-post',
@@ -20,7 +21,8 @@ export class PostComponent implements OnInit {
   constructor(private _postService: PostService,
               private _route: ActivatedRoute,
               private _router: Router,
-              private _authentication: AuthenticationService) {
+              private _authentication: AuthenticationService,
+              private _conversationService: ConversationService) {
     this._post = {};
     this._matchingCandidates = [];
   }
@@ -74,7 +76,14 @@ export class PostComponent implements OnInit {
   }
 
   Postuler() {}
-  Contacter() {}
+
+  contact(message) {
+    console.log(message);
+    this._conversationService
+      .sendMessageForPostOwner(message, this._authentication.getIdUser(), this._post.id)
+      .subscribe(_ => _);
+  }
+
   Signaler() {}
 
   isRecruiter(): boolean {

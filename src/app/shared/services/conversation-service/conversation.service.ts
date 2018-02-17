@@ -52,6 +52,22 @@ export class ConversationService {
   }
 
   /**
+   * function to send a message to the owner of the post
+   *
+   * @param message
+   * @param idUser
+   * @param idPost
+   * @returns {Observable<any>}
+   */
+  sendMessageForPostOwner(message: any, idUser: any, idPost: any): Observable<any> {
+    return this._http.post(
+      this._backendURL.conversationForPostOwner.replace(':idUser', idUser).replace(':idPost', idPost),
+      message,
+      this._options()
+    );
+  }
+
+  /**
    * Function to return request options
    *
    * @returns {any}
