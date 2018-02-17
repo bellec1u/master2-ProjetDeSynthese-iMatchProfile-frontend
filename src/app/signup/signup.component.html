@@ -12,8 +12,8 @@
             <input type="radio" id="role-recruiter" name="role" formControlName="role" value="recruiter"/>
             <label for="role-recruiter">Recruteur</label>
           </div>
-          <div class="d-flex justify-content-center align-content-center" *ngIf="submitted && form.get('user').get('role').hasError('required')">
-            <div class="alert alert-danger">Veuillez préciser le type de compte</div>
+          <div class="d-flex justify-content-center align-content-center" *ngIf="form.get('user').get('role').touched && form.get('user').get('role').hasError('required')">
+            <div class="error text-danger">Veuillez préciser le type de compte</div>
           </div>
         </div>
 
@@ -21,7 +21,7 @@
           <label for="company" class="col-sm-3 col-form-label text-right">Nom de votre société</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" id="company" name="company" formControlName="company" required>
-            <div class="alert alert-danger" *ngIf="submitted && form.get('company').hasError('required')">
+            <div class="error text-danger" *ngIf="form.get('company').touched && form.get('company').hasError('required')">
               Le nom de la société est <strong>obligatoire</strong>
             </div>
           </div>
@@ -33,7 +33,7 @@
             <label for="lastname" class="col-sm-3 col-form-label text-right">Nom</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="lastname" name="lastname" formControlName="lastname" required>
-              <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('lastname').hasError('required')">
+              <div class="error text-danger" *ngIf="form.get('user').get('lastname').touched && form.get('user').get('lastname').hasError('required')">
                 Le nom est <strong>obligatoire</strong>
               </div>
             </div>
@@ -43,7 +43,7 @@
             <label for="firstname" class="col-sm-3 col-form-label text-right">Prénom</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="firstname" name="firstname" formControlName="firstname" required>
-              <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('firstname').hasError('required')">
+              <div class="error text-danger" *ngIf="form.get('user').get('firstname').touched && form.get('user').get('firstname').hasError('required')">
                 Le prénom est <strong>obligatoire</strong>
               </div>
             </div>
@@ -53,14 +53,14 @@
             <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="email" name="email" formControlName="email" required>
-              <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('email').hasError('required')">
+              <div class="error text-danger" *ngIf="form.get('user').get('email').touched && form.get('user').get('email').hasError('required')">
                 L'adresse email est <strong>obligatoire</strong>
               </div>
-              <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('email').hasError('email') && !form.get('user').get('email').hasError('required')">
+              <div class="error text-danger" *ngIf="form.get('user').get('email').touched && form.get('user').get('email').hasError('email') && !form.get('user').get('email').hasError('required')">
                 L'adresse email est <strong>invalide</strong>
               </div>
               <!-- handling by a boolean value -->
-              <div class="alert alert-danger" *ngIf="emailAlreadyUsed">
+              <div class="error text-danger" *ngIf="emailAlreadyUsed">
                 Cette adresse email est <strong>déjà utilisée</strong>
               </div>
             </div>
@@ -70,10 +70,10 @@
             <label for="password" class="col-sm-3 col-form-label text-right">Mot de passe</label>
             <div class="col-sm-9">
               <input type="password" class="form-control" id="password" name="password" formControlName="password" required>
-              <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('password').hasError('required')">
+              <div class="error text-danger" *ngIf="form.get('user').get('password').touched && form.get('user').get('password').hasError('required')">
                 Le mot de passe est <strong>obligatoire</strong>
               </div>
-              <div class="alert alert-danger" *ngIf="submitted && form.get('user').get('password').hasError('minlength')">
+              <div class="error text-danger" *ngIf="form.get('user').get('password').touched && form.get('user').get('password').hasError('minlength')">
                 Le mot de passe doit faire au minimum <strong>6 caractères</strong>
               </div>
             </div>
@@ -83,7 +83,7 @@
             <label for="password-verif" class="col-sm-3 col-form-label text-right">Vérification du mot de passe</label>
             <div class="col-sm-9">
               <input type="password" class="form-control" id="password-verif" name="password-verif" formControlName="password-verif" required>
-              <div class="alert alert-danger" *ngIf="submitted && !form.get('user').get('password').hasError('required')
+              <div class="error text-danger" *ngIf="form.get('user').get('password').touched && !form.get('user').get('password').hasError('required')
           && !form.get('user').get('password').hasError('minlength') && form.get('user').hasError('passwordVerif')">
                 Le mot de passe et la vérification du mot de passe ne sont pas <strong>identiques</strong>
               </div>
@@ -92,7 +92,7 @@
         </div>
 
         <div class="text-center">
-          <button id="signupButton" type="submit" class="btn btn-outline-success" (click)="submit(form.value)">S'inscrire</button>
+          <button id="signupButton" type="submit"  [disabled]="form.invalid" class="btn btn-outline-success" (click)="submit(form.value)">S'inscrire</button>
         </div>
       </form>
     </div>
