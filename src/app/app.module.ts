@@ -24,6 +24,8 @@ import { SignupComponent } from './signup/signup.component';
 import { RecruiterService } from './shared/services/recruiter-service/recruiter.service';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationModule } from './shared/authentication/authentication.module';
+import { ConversationsComponent } from './conversations/conversations.component';
+import { ConversationService } from './shared/services/conversation-service/conversation.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { AuthenticationModule } from './shared/authentication/authentication.mod
     PostCardComponent,
     FormCandidateProfileComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    ConversationsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { AuthenticationModule } from './shared/authentication/authentication.mod
     PostService,
     CandidateService,
     RecruiterService,
-    SkillService
+    SkillService,
+    ConversationService
   ],
   bootstrap: [AppComponent]
 })

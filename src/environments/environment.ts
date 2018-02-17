@@ -20,7 +20,9 @@ export const environment = {
       matchingCandidatePost: '/imp/api/posts/:id/bySkills',
       msMatchingCandidate : '/imp/api/posts/:id/candidatebyMandatorySkills',
       allSkill: '/imp/api/skills',
-      login: '/imp/api/login'
+      login: '/imp/api/login',
+      conversationForUser: '/imp/api/conversations/forUser/:id',
+      conversationBetweenUser: '/imp/api/conversations/:id1/:id2'
     }
   }
 };

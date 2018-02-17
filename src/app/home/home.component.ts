@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this._postService
       .fetch()
       .subscribe((posts: any[]) => this._posts = posts);

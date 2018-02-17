@@ -5,6 +5,7 @@ import * as jwt_decode from 'jwt-decode';
 interface JWTToken {
   sub: string;
   id: string;
+  idUser: string;
   role: string;
 }
 
@@ -21,6 +22,10 @@ export class TokenStorage {
 
   public getId(): string {
     return localStorage.getItem('id');
+  }
+
+  public getIdUser(): string {
+    return localStorage.getItem('idUser');
   }
 
   public isConnected(): boolean {
@@ -54,6 +59,7 @@ export class TokenStorage {
     const tokenPayload: JWTToken = jwt_decode(token);
     localStorage.setItem('email', tokenPayload.sub);
     localStorage.setItem('id', tokenPayload.id);
+    localStorage.setItem('idUser', tokenPayload.idUser);
     localStorage.setItem('role', tokenPayload.role);
 
     return this;
@@ -66,6 +72,7 @@ export class TokenStorage {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('email');
     localStorage.removeItem('id');
+    localStorage.removeItem('idUser');
     localStorage.removeItem('role');
   }
 }

@@ -1,0 +1,104 @@
+<div class="my-3 p-3 bg-white rounded box-shadow">
+
+  <h2>Mes conversations :</h2>
+
+  <div *ngIf="conversations?.length != 0">
+
+    <div class="row">
+      <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a *ngFor="let conversation of conversations" class="list-group-item list-group-item-action"
+             id="list-conversations-list" data-toggle="list" href="#list-conversation-{{conversation.id}}" role="tab" aria-controls="home">
+
+            <div *ngIf="conversation.user1.email != getEmail()" (click)="setCurrentConversationUser(conversation.user1.id)">
+              {{ conversation.user1.firstname }} {{ conversation.user1.lastname }}
+            </div>
+            <div *ngIf="conversation.user2.email != getEmail()" (click)="setCurrentConversationUser(conversation.user2.id)">
+              {{ conversation.user2.firstname }} {{ conversation.user2.lastname }}
+            </div>
+
+          </a>
+        </div>
+      </div>
+
+      <div class="col-8">
+        <div *ngIf="getCurrentConversationUser() != undefined">
+          <div class="tab-content border rounded p-2" id="nav-tabContent">
+            <div *ngFor="let conversation of conversations"
+                 data-spy="scroll" class="tab-pane fade show" id="list-conversation-{{conversation.id}}" role="tabpanel" aria-labelledby="list-conversation-list"
+                 style="height: 600px; overflow: auto">
+
+
+
+              <ul class="chat">
+                <div *ngFor="let message of conversation.msg">
+                  <!-- if is not his message -->
+                  <li *ngIf="message.author.email != getEmail()" class="left clearfix">
+                  <span class="chat-img pull-left">
+                   <img src="../../assets/images/user-no-photo.png" alt="User Avatar"  class="img-circle" height="50" width="50">
+                  </span>
+                    <div class="chat-body clearfix">
+                      <div class="header">
+                        <strong class="primary-font">
+                          {{ message.author.firstname }} {{ message.author.lastname }}
+                        </strong> <small class="pull-right text-muted">
+                        <!-- <span class="glyphicon glyphicon-time"></span>14 mins ago -->
+                      </small>
+                      </div>
+                      <p>
+                        {{ message.msg }}
+                      </p>
+                    </div>
+                  </li>
+
+                  <!-- else -->
+                  <li *ngIf="message.author.email == getEmail()" class="right clearfix">
+                  <span class="chat-img pull-right">
+                    <img src="../../assets/images/user-no-photo.png" alt="User Avatar"  class="img-circle" height="50" width="50">
+                  </span>
+                    <div class="chat-body clearfix">
+                      <div class="header">
+                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span><!--15 mins ago--></small>
+                        <strong class="pull-right primary-font">
+                          {{ message.author.firstname }} {{ message.author.lastname }}
+                        </strong>
+                      </div>
+                      <p>
+                        {{ message.msg }}
+                      </p>
+                    </div>
+                  </li>
+                </div>
+              </ul>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div *ngIf="getCurrentConversationUser() != undefined">
+      <div class="row">
+        <div class="col-md-8 offset-4 mt-3">
+          <textarea id="messageTextArea" class="form-control" rows="2.5" #messageTextArea></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 mt-1">
+          <button class="btn btn-outline-primary float-right"
+                  (click)="sendMessage({'msg': messageTextArea.value, 'isNew': true})">Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="conversations?.length == 0">
+    Vous n'avez pas de conversations.
+  </div>
+
+</div>

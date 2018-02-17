@@ -144,6 +144,10 @@ export class AuthenticationService implements AuthService {
     return this.tokenStorage.getId();
   }
 
+  public getIdUser(): string {
+    return this.tokenStorage.getIdUser();
+  }
+
   public isConnected(): boolean {
     return this.tokenStorage.isConnected();
   }

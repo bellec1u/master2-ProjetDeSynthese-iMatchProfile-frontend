@@ -9,6 +9,7 @@ import {ListPostComponent} from './list-post/list-post.component';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {SignupComponent} from './signup/signup.component';
 import {LoginComponent} from './login/login.component';
+import {ConversationsComponent} from './conversations/conversations.component';
 
 const ROUTES: Routes = [
   {
@@ -18,13 +19,13 @@ const ROUTES: Routes = [
     path: 'home', component: HomeComponent
   },
   {
-    path: 'recruiterPost/:id', component: ListPostComponent,
+    path: 'recruiterPost/:id', component: ListPostComponent
   }, // affiche les posts d'un recruteur
   {
-    path: 'post/:id', component: PostComponent,
+    path: 'post/:id', component: PostComponent
   },
   {
-    path: 'profile/:id', component: CandidateProfileComponent,
+    path: 'profile/:id', component: CandidateProfileComponent
   },
   { // inscription
     path: 'signup', component: SignupComponent, canActivate: [ PublicGuard ]
@@ -32,9 +33,12 @@ const ROUTES: Routes = [
   {
     path: 'login', component: LoginComponent, canActivate: [ PublicGuard ]
   },
+  {
+    path: 'conversations/:id', component: ConversationsComponent
+  },
   // 404 page
   {
-    path: '**', component: NotfoundComponent,
+    path: '**', component: NotfoundComponent
   }
 ];
 

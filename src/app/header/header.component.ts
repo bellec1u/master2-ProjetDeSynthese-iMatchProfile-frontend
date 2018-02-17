@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/profile', this._authentication.getId()]);
   }
 
+  goToConversationsView() {
+    this._router.navigate(['/conversations', this._authentication.getId()]);
+  }
+
   isConnected(): boolean {
     return this._authentication.isConnected();
   }
