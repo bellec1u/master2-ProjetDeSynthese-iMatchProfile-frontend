@@ -78,7 +78,6 @@ export class PostComponent implements OnInit {
   Postuler() {}
 
   contact(message) {
-    console.log(message);
     this._conversationService
       .sendMessageForPostOwner(message, this._authentication.getIdUser(), this._post.id)
       .subscribe(_ => _);
