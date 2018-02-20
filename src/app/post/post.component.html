@@ -152,6 +152,10 @@
         <a class="nav-item nav-link" id="nav-matching-tab" data-toggle="tab" href="#nav-matching" role="tab" aria-controls="nav-matching" aria-selected="false">
           Matchings
         </a>
+        <a class="nav-item nav-link" id="nav-associated-tab" data-toggle="tab" href="#nav-associated" role="tab" aria-controls="nav-associated" aria-selected="false">
+          Associé
+        </a>
+
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -177,11 +181,33 @@
                 <button id="seeProfileButton" [routerLink]="['/profile', data.candidate.id]" class="btn btn-outline-primary">
                   Voir le profil
                 </button>
+                <button id="addCandidate" [routerLink]="['/profile', data.candidate.id]" class="btn btn-outline-primary">
+                  Associer le candidat
+                </button>
               </p>
             </div>
           </div>
+        </div>
 
         </div>
+
+        <div class="tab-pane fade" id="nav-associated" role="tabpanel" aria-labelledby="nav-associated-tab">
+          <div *ngFor="let data of matchingPercentCandidates">
+
+            <div class="card border-secondary mb-3 w-75 mx-auto">
+              <div class="card-header">
+                Taux de matching : {{ data.percent }} %
+              </div>
+              <div class="card-body text-secondary">
+                <h5 class="card-title">
+                  {{ data.candidate.user.firstname }} {{ data.candidate.user.lastname }} - {{ data.candidate.user.email }}
+                </h5>
+
+                <h5>Etat:</h5>
+              </div>
+            </div>
+
+
       </div>
     </div>
   </div>
