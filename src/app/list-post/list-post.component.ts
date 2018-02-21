@@ -64,8 +64,7 @@ export class ListPostComponent implements OnInit {
   delete(id: string) {
     this._postService
       .delete(id)
-      .subscribe((people: any[]) => this._listPost = people);
-    window.location.reload();
+      .subscribe((_ => this.ngOnInit()));
   }
 
 }
