@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationModule } from './shared/authentication/authentication.module';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationService } from './shared/services/conversation-service/conversation.service';
+import { OfferComponent } from './offer/offer.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ConversationService } from './shared/services/conversation-service/conv
     FormCandidateProfileComponent,
     SignupComponent,
     LoginComponent,
-    ConversationsComponent
+    ConversationsComponent,
+    OfferComponent
   ],
   imports: [
     BrowserModule,

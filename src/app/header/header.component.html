@@ -22,6 +22,7 @@
         <li class="nav-item">
           <a id="myPostsButton" class="nav-link" *ngIf="isRecruiter()" (click)="goToPostsView()">Mes postes<span class="sr-only">(current)</span></a>
           <a id="myProfileButton" class="nav-link" *ngIf="isCandidate()" (click)="goToProfileView()">Mon profil<span class="sr-only">(current)</span></a>
+          <a id="myOffersButton" class="nav-link" *ngIf="isCandidate()" (click)="goToOfferView()">Mes offres<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a id="myConversationsButton" *ngIf="isRecruiter() || isCandidate()"

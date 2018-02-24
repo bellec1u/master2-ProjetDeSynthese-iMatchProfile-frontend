@@ -43,6 +43,10 @@ export class CandidateService {
     return this._http.get(this._backendURL.oneCandidate.replace(':id', id), this._options());
   }
 
+  getMyOffer(id: string): Observable<any> {
+    return this._http.get(this._backendURL.getMyOffers.replace(':id', id), this._options());
+  }
+
   /**
    * Function to create a new candidate
    *
@@ -76,7 +80,16 @@ export class CandidateService {
       .defaultIfEmpty([]);
   }
 
-  /**
+
+  acceptOffer(associateId: string): Observable<any> {
+    return this._http.put(this._backendURL.acceptOffers.replace(':id', associateId), this._options());
+  }
+
+  refuseOffer(associateId: string): Observable<any> {
+    return this._http.delete(this._backendURL.refuseOffers.replace(':id', associateId), this._options());
+  }
+
+    /**
    * Function to return request options
    *
    * @returns {any}
@@ -85,5 +98,4 @@ export class CandidateService {
     const headers = new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList));
     return { headers };
   }
-
-}
+  }

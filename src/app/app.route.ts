@@ -10,6 +10,7 @@ import {NotfoundComponent} from './notfound/notfound.component';
 import {SignupComponent} from './signup/signup.component';
 import {LoginComponent} from './login/login.component';
 import {ConversationsComponent} from './conversations/conversations.component';
+import {OfferComponent} from './offer/offer.component';
 
 const ROUTES: Routes = [
   {
@@ -26,6 +27,9 @@ const ROUTES: Routes = [
   },
   {
     path: 'profile/:id', component: CandidateProfileComponent
+  },
+  {
+    path: 'offer/:id', component: OfferComponent
   },
   { // inscription
     path: 'signup', component: SignupComponent, canActivate: [ PublicGuard ]

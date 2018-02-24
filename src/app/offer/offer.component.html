@@ -1,0 +1,38 @@
+<div *ngFor="let data of offers">
+  <div class="card border-secondary mb-3 w-75 mx-auto">
+    <div class="card-body text-secondary">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h4>{{ data.post.title }}</h4>
+          <h6><u>{{ data.post.workplace }}</u></h6>
+        </div>
+
+        <div class="card-body">
+          <div class="mb-2 module personnalFade">
+            <p>{{ data.post.description }}</p>
+          </div>
+          <p>
+            Etat : {{data.state}}
+          </p>
+          <div *ngIf="data.state === 'ATTENTE'">
+            <p>
+              <button id="acceptButton" class="btn btn-outline-primary float-right" (click)="accept(data.id)">
+                Accepter
+              </button>
+              <button id="refuseButton" class="btn btn-outline-primary float-right" (click)="refuse(data.id)">
+                Refuser
+              </button>
+            </p>
+          </div>
+          <p>
+            <button id="showPostButton" class="btn btn-outline-primary float-right" [routerLink]="['/post', data.post.id]" name='{{ data.post.id }}'>
+              Voir le poste &raquo;
+            </button>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+</div>

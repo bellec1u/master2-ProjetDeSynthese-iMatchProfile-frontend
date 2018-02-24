@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/conversations', this._authentication.getId()]);
   }
 
+  goToOfferView() {
+    this._router.navigate(['/offer', this._authentication.getId()]);
+  }
+
   isConnected(): boolean {
     return this._authentication.isConnected();
   }
