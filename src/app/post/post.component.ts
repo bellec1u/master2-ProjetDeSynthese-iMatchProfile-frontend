@@ -17,6 +17,8 @@ export class PostComponent implements OnInit {
   // Property to store the value of the candidates matching for this post
   private _matchingCandidates: Candidate[];
   private _matchingPercentCandidates: any[];
+  private _associatedCandidate: any[];
+
 
   constructor(private _postService: PostService,
               private _route: ActivatedRoute,
@@ -25,6 +27,7 @@ export class PostComponent implements OnInit {
               private _conversationService: ConversationService) {
     this._post = {};
     this._matchingCandidates = [];
+    this._associatedCandidate = [];
   }
 
   ngOnInit() {
@@ -53,6 +56,24 @@ export class PostComponent implements OnInit {
           this._matchingPercentCandidates = candidates;
         }
       );
+
+    // associatedCandidate
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postService.getAssociatedCandidateByPostId(params['id']))
+      .subscribe((a: any[]) => {
+        this._associatedCandidate = a;
+        }
+      );
+  }
+
+  isAssociatedCandidat(idc): boolean {
+    for (let i = 0; i < this._associatedCandidate.length; i++) {
+      if (this._associatedCandidate[i].candidat.id === idc) {
+        return true;
+      }
+    }
+    return false;
   }
 
   get post() {
@@ -65,6 +86,15 @@ export class PostComponent implements OnInit {
 
   get matchingPercentCandidates(): any[] {
     return this._matchingPercentCandidates;
+  }
+
+  get associatedCandidate(): any[] {
+    return this._associatedCandidate;
+  }
+
+  associateOneCandidate(postId, candidateId) {
+    this._postService.associateOneCandidateToPost(postId, candidateId).subscribe();
+    this.ngOnInit();
   }
 
   delete() {

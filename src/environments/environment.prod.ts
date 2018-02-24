@@ -14,6 +14,8 @@ export const environment = {
       onePost: '/imp/api/posts/:id',
       matchingCandidatePost: '/imp/api/posts/:id/bySkills',
       msMatchingCandidate : '/imp/api/posts/:id/candidatebyMandatorySkills',
+      associatedCandidate : '/imp/api/posts/:id/associatedCandidate',
+      associateOneCandidate : '/imp/api/posts/:id/associatedOneCandidate',
       allSkill: '/imp/api/skills',
       login: '/imp/api/login',
       conversationForUser: '/imp/api/conversations/forUser/:id',

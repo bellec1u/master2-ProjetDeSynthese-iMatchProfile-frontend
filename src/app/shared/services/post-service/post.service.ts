@@ -101,7 +101,26 @@ export class PostService {
     .defaultIfEmpty([]);
   }
 
+  /**
+   *
+   * @param {string} id
+   * @returns {Observable<any[] | ArrayBuffer>}
+   */
+  getAssociatedCandidateByPostId(id: string):  Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.associatedCandidate.replace(':id', id), this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
 
+  /**
+   *
+   * @param {string} postId
+   * @param {string} candidateId
+   * @returns {Observable<any>}
+   */
+  associateOneCandidateToPost(postId: string, candidateId: string): Observable<any> {
+    return this._http.post(this._backendURL.associateOneCandidate.replace(':id', postId), candidateId, this._options());
+  }
 
   fetchMatchingPercent(id: string): Observable<any[] | ArrayBuffer> {
     return this._http.get(this._backendURL.matchingCandidatePost.replace(':id', id), this._options())

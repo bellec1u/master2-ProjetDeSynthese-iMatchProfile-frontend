@@ -26,4 +26,6 @@ export class CandidateCardComponent implements OnInit {
     this._candidate = value;
   }
 
+
+
 }

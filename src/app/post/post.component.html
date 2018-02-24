@@ -44,9 +44,6 @@
 
         <div> <!-- TODO: add condition is owner -->
           <div class="dropdown-divider"></div>
-          <button id="updatePostButton" (click)="update()" type="button" class="dropdown-item">
-            Modifier
-          </button>
           <button id="deletePostButton" (click)="delete()" type="button" class="dropdown-item">
             Supprimer
           </button>
@@ -161,14 +158,39 @@
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-obligatoire" role="tabpanel" aria-labelledby="nav-obligatoire-tab">
 
-        <div class="row">
-          <app-candidate-card class="col-lg-4 mb-3" [candidate]="candidate" *ngFor="let candidate of matchingCandidates"></app-candidate-card>
+        <div *ngFor="let data of matchingCandidates">
+
+          <div class="card border-secondary mb-3 w-75 mx-auto">
+            <div class="card-body text-secondary">
+              <h5 class="card-title">
+                {{ data.user.firstname }} {{ data.user.lastname }} - {{ data.user.email }}
+              </h5>
+              <p class="card-text text-right">
+                <button id="seeProfileButton1" [routerLink]="['/profile', data.id]" class="btn btn-outline-primary">
+                  Voir le profil
+                </button>
+              </p>
+              <div *ngIf="isAssociatedCandidat(data.id)">
+                <p class="card-text text-right">
+                    Candidat associé
+                </p>
+              </div>
+              <div *ngIf="!isAssociatedCandidat(data.id)">
+                <p class="card-text text-right">
+                <button id="associateCandidate1" (click)="associateOneCandidate(post.id,data.id)" class="btn btn-outline-primary">
+                  Associer le candidat
+                </button>
+              </p>
+            </div>
+            </div>
+          </div>
         </div>
 
-      </div>
+    </div>
+
+
       <div class="tab-pane fade" id="nav-matching" role="tabpanel" aria-labelledby="nav-matching-tab">
         <div *ngFor="let data of matchingPercentCandidates">
-
           <div class="card border-secondary mb-3 w-75 mx-auto">
             <div class="card-header">
               Taux de matching : {{ data.percent }} %
@@ -181,34 +203,44 @@
                 <button id="seeProfileButton" [routerLink]="['/profile', data.candidate.id]" class="btn btn-outline-primary">
                   Voir le profil
                 </button>
-                <button id="addCandidate" [routerLink]="['/profile', data.candidate.id]" class="btn btn-outline-primary">
-                  Associer le candidat
-                </button>
               </p>
-            </div>
+
+              <div *ngIf="isAssociatedCandidat(data.candidate.id)">
+                <p class="card-text text-right">
+                Candidat associé
+                </p>
+              </div>
+              <div *ngIf="!isAssociatedCandidat(data.candidate.id)">
+                <p class="card-text text-right">
+              <button id="associateCandidate" (click)="associateOneCandidate(post.id,data.candidate.id)" class="btn btn-outline-primary">
+                  Associer le candidat
+              </button>
+                </p>
+              </div>
           </div>
+        </div>
         </div>
 
         </div>
 
         <div class="tab-pane fade" id="nav-associated" role="tabpanel" aria-labelledby="nav-associated-tab">
-          <div *ngFor="let data of matchingPercentCandidates">
+          <div *ngFor="let data of associatedCandidate">
 
             <div class="card border-secondary mb-3 w-75 mx-auto">
-              <div class="card-header">
-                Taux de matching : {{ data.percent }} %
-              </div>
               <div class="card-body text-secondary">
                 <h5 class="card-title">
-                  {{ data.candidate.user.firstname }} {{ data.candidate.user.lastname }} - {{ data.candidate.user.email }}
+                  {{ data.candidat.user.firstname }} {{ data.candidat.user.lastname }} - {{ data.candidat.user.email }}
                 </h5>
-
-                <h5>Etat:</h5>
+                <h5>Etat: {{data.state}} </h5>
+                <p class="card-text text-right">
+                  <button id="seeProfileButton2" [routerLink]="['/profile', data.candidat.id]" class="btn btn-outline-primary">
+                    Voir le profil
+                  </button>
+                </p>
               </div>
             </div>
-
-
       </div>
     </div>
   </div>
+</div>
 </div>
