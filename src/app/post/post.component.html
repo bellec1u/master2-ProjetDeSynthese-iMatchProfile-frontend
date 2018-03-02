@@ -33,8 +33,8 @@
         Options
       </button>
       <div class="dropdown-menu">
-        <div> <!-- TODO: add condition is not owner -->
-          <button (click)="Postuler()" type="button" class="dropdown-item">
+        <div >
+          <button (click)="Postuler()" type="button" *ngIf="isCandidate()" class="dropdown-item">
             Postuler
           </button>
           <button type="button" class="dropdown-item" data-toggle="modal" data-target=".contactRecruiterModal">
@@ -170,12 +170,12 @@
                   Voir le profil
                 </button>
               </p>
-              <div *ngIf="isAssociatedCandidat(data.id)">
+              <div *ngIf="isAssociatedCandidate(data.id)">
                 <p class="card-text text-right">
                     Candidat associé
                 </p>
               </div>
-              <div *ngIf="!isAssociatedCandidat(data.id)">
+              <div *ngIf="!isAssociatedCandidate(data.id)">
                 <p class="card-text text-right">
                 <button id="associateCandidate1" (click)="associateOneCandidate(post.id,data.id)" class="btn btn-outline-primary">
                   Associer le candidat
@@ -205,12 +205,12 @@
                 </button>
               </p>
 
-              <div *ngIf="isAssociatedCandidat(data.candidate.id)">
+              <div *ngIf="isAssociatedCandidate(data.candidate.id)">
                 <p class="card-text text-right">
                 Candidat associé
                 </p>
               </div>
-              <div *ngIf="!isAssociatedCandidat(data.candidate.id)">
+              <div *ngIf="!isAssociatedCandidate(data.candidate.id)">
                 <p class="card-text text-right">
               <button id="associateCandidate" (click)="associateOneCandidate(post.id,data.candidate.id)" class="btn btn-outline-primary">
                   Associer le candidat

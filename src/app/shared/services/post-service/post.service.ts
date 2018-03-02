@@ -115,11 +115,12 @@ export class PostService {
   /**
    *
    * @param {string} postId
-   * @param {string} candidateId
+   * @param userId
    * @returns {Observable<any>}
    */
-  associateOneCandidateToPost(postId: string, candidateId: string): Observable<any> {
-    return this._http.post(this._backendURL.associateOneCandidate.replace(':id', postId), candidateId, this._options());
+  associateOneCandidateToPost(postId: string, userId: string): Observable<any> {
+    console.log("postuler service !");
+    return this._http.post(this._backendURL.associateOneCandidate.replace(':id', postId), userId, this._options());
   }
 
   fetchMatchingPercent(id: string): Observable<any[] | ArrayBuffer> {
