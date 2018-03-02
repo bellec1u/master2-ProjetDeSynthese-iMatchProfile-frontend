@@ -119,16 +119,16 @@
         Options
       </button>
       <div class="dropdown-menu">
-        <button class="dropdown-item" (click)="generatecv()" type="button">
+        <button *ngIf="isMyAccount()" class="dropdown-item" (click)="generatecv()" type="button">
           Générer le CV
         </button>
-        <button type="button" class="dropdown-item" data-toggle="modal" data-target=".contactModal">
+        <button *ngIf="!isMyAccount()" type="button" class="dropdown-item" data-toggle="modal" data-target=".contactModal">
           Contacter
         </button>
 
-        <div *ngIf="isOwner()">
+        <div *ngIf="isMyAccount()">
           <div class="dropdown-divider"></div>
-          <button id="editProfileButton" class="dropdown-item" data-toggle="modal" data-target=".profileFormModal">
+          <button  id="editProfileButton" class="dropdown-item" data-toggle="modal" data-target=".profileFormModal">
             Modifier le profil
           </button>
           <button id="suspendProfileButton" *ngIf="candidate.user.state !== 'SUSPENDED'" class="dropdown-item" data-toggle="modal" data-target=".suspendProfileModal">
@@ -142,7 +142,7 @@
           </button>
         </div>
 
-        <div *ngIf="isConnected() && !isOwner()">
+        <div *ngIf="isConnected() && !isMyAccount()">
           <div class="dropdown-divider"></div>
           <button class="dropdown-item badge-danger" (click)="signal()" type="button" >
             Signaler

@@ -77,6 +77,13 @@ export class CandidateProfileComponent implements OnInit {
       .subscribe((cand: Candidate) => this._candidate = cand);
   }
 
+  isMyAccount(): boolean {
+    if ( this._authentication.getId() == this._candidate.id) {
+      return true;
+    }
+    return false;
+  }
+
   /**
    * Function to delete the candidate profile.
    */
@@ -107,10 +114,6 @@ export class CandidateProfileComponent implements OnInit {
 
   isCandidate(): boolean {
     return this._authentication.isCandidate();
-  }
-
-  isOwner(): boolean {
-    return this._authentication.getId() == this._candidate.id;
   }
 
   isConnected(): boolean {

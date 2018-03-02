@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../shared/services/post-service/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthenticationService} from '../shared/authentication/authentication.service';
 
 @Component({
   selector: 'app-list-post',
@@ -14,8 +15,14 @@ export class ListPostComponent implements OnInit {
   private _isNewPost: boolean;
   private _postToUpdate: any;
 
-
-  constructor(private _postService: PostService, private _route: ActivatedRoute, private _router: Router) {
+  constructor(private _postService: PostService, private _route: ActivatedRoute, private _router: Router, private _authentication: AuthenticationService) {
+    if ( this._authentication.isCandidate()) {
+      this._router.navigate(['home']);
+    } else {
+      if ( this._authentication.getId() !== this._route.params['id']) {
+        this._router.navigate(['/recruiterPost', this._authentication.getId()]);
+      }
+    }
     this._listPost = [];
     this._isNewPost = true;
   }
