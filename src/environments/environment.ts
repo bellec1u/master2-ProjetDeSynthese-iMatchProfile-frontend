@@ -28,7 +28,9 @@ export const environment = {
       login: '/imp/api/login',
       conversationForUser: '/imp/api/conversations/forUser/:id',
       conversationBetweenUser: '/imp/api/conversations/:id1/:id2',
-      conversationForPostOwner: '/imp/api/conversations/:idUser/ownerOf/:idPost'
+      conversationForPostOwner: '/imp/api/conversations/:idUser/ownerOf/:idPost',
+      allNotificationForUser: '/imp/api/notifications/user/:id',
+      oneNotification: '/imp/api/notifications/:id'
     }
   }
 };

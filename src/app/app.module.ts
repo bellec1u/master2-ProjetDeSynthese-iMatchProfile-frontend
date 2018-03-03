@@ -27,6 +27,9 @@ import { AuthenticationModule } from './shared/authentication/authentication.mod
 import { ConversationsComponent } from './conversations/conversations.component';
 import { ConversationService } from './shared/services/conversation-service/conversation.service';
 import { OfferComponent } from './offer/offer.component';
+import { NotificationComponent } from './notification/notification.component';
+import { NotificationService } from './shared/services/notification-service/notification.service';
+import {NgArrayPipesModule} from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { OfferComponent } from './offer/offer.component';
     SignupComponent,
     LoginComponent,
     ConversationsComponent,
-    OfferComponent
+    OfferComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -56,14 +60,16 @@ import { OfferComponent } from './offer/offer.component';
     HttpClientModule,
     APP_ROUTES,
     DateValueAccessorModule,
-    AuthenticationModule
+    AuthenticationModule,
+    NgArrayPipesModule
   ],
   providers: [
     PostService,
     CandidateService,
     RecruiterService,
     SkillService,
-    ConversationService
+    ConversationService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

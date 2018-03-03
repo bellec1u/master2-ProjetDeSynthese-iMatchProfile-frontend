@@ -42,6 +42,10 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/offer', this._authentication.getId()]);
   }
 
+  goToNotificationView(){
+    this._router.navigate(['/notifications', this._authentication.getIdUser()])
+  }
+
   isConnected(): boolean {
     return this._authentication.isConnected();
   }

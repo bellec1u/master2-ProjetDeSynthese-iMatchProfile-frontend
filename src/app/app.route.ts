@@ -11,6 +11,8 @@ import {SignupComponent} from './signup/signup.component';
 import {LoginComponent} from './login/login.component';
 import {ConversationsComponent} from './conversations/conversations.component';
 import {OfferComponent} from './offer/offer.component';
+import { Component } from '@angular/core';
+import { NotificationComponent } from './notification/notification.component';
 
 const ROUTES: Routes = [
   {
@@ -39,6 +41,10 @@ const ROUTES: Routes = [
   },
   {
     path: 'conversations/:id', component: ConversationsComponent
+  },
+  // Afficher les notifications d'un candidat & recruteur 
+  {
+    path: 'notifications/:id', component: NotificationComponent 
   },
   // 404 page
   {

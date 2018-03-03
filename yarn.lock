@@ -3464,6 +3464,10 @@ ngx-auth@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ngx-auth/-/ngx-auth-2.2.0.tgz#f1afebc2cff60686cac36da7dd790d2064e4e111"
 
+ngx-pipes@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/ngx-pipes/-/ngx-pipes-2.1.2.tgz#c487f8a11d95f8164800caacdd7af352e9c51424"
+
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
