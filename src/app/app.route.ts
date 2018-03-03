@@ -22,16 +22,16 @@ const ROUTES: Routes = [
     path: 'home', component: HomeComponent
   },
   {
-    path: 'recruiterPost/:id', component: ListPostComponent
+    path: 'recruiterPost/:id', component: ListPostComponent,  canActivate: [ ProtectedGuard ]
   }, // affiche les posts d'un recruteur
   {
     path: 'post/:id', component: PostComponent
   },
   {
-    path: 'profile/:id', component: CandidateProfileComponent
+    path: 'profile/:id', component: CandidateProfileComponent,  canActivate: [ ProtectedGuard ]
   },
   {
-    path: 'offer/:id', component: OfferComponent
+    path: 'offer/:id', component: OfferComponent,  canActivate: [ ProtectedGuard ]
   },
   { // inscription
     path: 'signup', component: SignupComponent, canActivate: [ PublicGuard ]
@@ -40,7 +40,7 @@ const ROUTES: Routes = [
     path: 'login', component: LoginComponent, canActivate: [ PublicGuard ]
   },
   {
-    path: 'conversations/:id', component: ConversationsComponent
+    path: 'conversations/:id', component: ConversationsComponent,  canActivate: [ ProtectedGuard ]
   },
   // Afficher les notifications d'un candidat & recruteur 
   {

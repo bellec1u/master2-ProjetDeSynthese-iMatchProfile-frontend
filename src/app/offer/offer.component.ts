@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CandidateService} from '../shared/services/candidate-service/candidate.service';
+import {AuthenticationService} from '../shared/authentication/authentication.service';
 
 @Component({
   selector: 'app-offer',
@@ -13,7 +14,14 @@ export class OfferComponent implements OnInit {
 
   constructor(private _candidateService: CandidateService,
               private _route: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router, private _authentication: AuthenticationService) {
+    if ( this._authentication.isRecruiter()) {
+      this._router.navigate(['home']);
+    } else {
+      if ( this._authentication.getId() !== this._route.params['id']) {
+        this._router.navigate(['/offer', this._authentication.getId()]);
+      }
+    }
     this._offers = [];
   }
 

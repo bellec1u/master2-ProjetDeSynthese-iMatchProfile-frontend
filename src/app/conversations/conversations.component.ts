@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConversationService} from '../shared/services/conversation-service/conversation.service';
 import {AuthenticationService} from '../shared/authentication/authentication.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-conversations',
@@ -13,7 +14,10 @@ export class ConversationsComponent implements OnInit {
   private _currentConversationUser: any;
 
   constructor(private _conversationService: ConversationService,
-              private _authentication: AuthenticationService) {
+              private _authentication: AuthenticationService,  private _router: Router,  private _route: ActivatedRoute) {
+    if ( this._authentication.getId() !== this._route.params['id']) {
+      this._router.navigate(['/conversations', this._authentication.getId()]);
+    }
 
   }
 

@@ -67,7 +67,7 @@ export class PostComponent implements OnInit {
       );
   }
 
-  isAssociatedCandidat(idc): boolean {
+  isAssociatedCandidate(idc): boolean {
     for (let i = 0; i < this._associatedCandidate.length; i++) {
       if (this._associatedCandidate[i].candidat.id === idc) {
         return true;
@@ -105,7 +105,16 @@ export class PostComponent implements OnInit {
     });
   }
 
-  Postuler() {}
+  Postuler() {
+    this._postService.associateOneCandidateToPost(this._post.id, this._authentication.getId()).subscribe(
+      result => {
+        alert('Votre candidature a été enregistré avec succès !');
+      },
+      error => {
+        alert('Vous avez déja postulé à ce poste !');
+      }
+    );
+  }
 
   contact(message) {
     this._conversationService
