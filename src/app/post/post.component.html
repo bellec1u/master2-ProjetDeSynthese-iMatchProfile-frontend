@@ -33,7 +33,7 @@
         Options
       </button>
       <div class="dropdown-menu">
-        <div >
+        <div *ngIf="!isMyPost()">
           <button (click)="Postuler()" type="button" *ngIf="isCandidate()" class="dropdown-item">
             Postuler
           </button>
@@ -42,14 +42,14 @@
           </button>
         </div>
 
-        <div> <!-- TODO: add condition is owner -->
+        <div *ngIf="isMyPost()">
           <div class="dropdown-divider"></div>
           <button id="deletePostButton" (click)="delete()" type="button" class="dropdown-item">
             Supprimer
           </button>
         </div>
 
-        <div> <!-- TODO: add condition is not owner -->
+        <div *ngIf="!isMyPost()">
           <div class="dropdown-divider"></div>
           <button (click)="Signaler()" type="button" class="dropdown-item badge-danger">
             Signaler
@@ -139,7 +139,7 @@
     </table>
   </div>
 
-  <div class="my-3 p-3 bg-white rounded box-shadow" *ngIf="isRecruiter()"> <!-- TODO: add condition is owner -->
+  <div class="my-3 p-3 bg-white rounded box-shadow" *ngIf="isMyPost()">
     <h2>Candidats potentiels</h2>
     <nav>
       <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">

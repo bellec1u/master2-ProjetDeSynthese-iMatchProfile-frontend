@@ -58,6 +58,16 @@ export class PostService {
   }
 
   /**
+   *
+   * @param {string} id
+   * @param {string} idPost
+   * @returns {Observable<any>}
+   */
+  isMyPost(idPost: string): Observable<any> {
+    return this._http.get(this._backendURL.isMyPost.replace(':idPost', idPost), this._options());
+  }
+
+  /**
    * Function to create a new post
    *
    * @returns {Observable<any>}

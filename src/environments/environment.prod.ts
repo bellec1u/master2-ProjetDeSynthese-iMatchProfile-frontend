@@ -12,6 +12,7 @@ export const environment = {
       allPostForRecruiter: '/imp/api/recruiters/:id/posts',
       allPost: '/imp/api/posts',
       onePost: '/imp/api/posts/:id',
+      isMyPost: '/imp/api/posts/:idPost/isMyPost',
       matchingCandidatePost: '/imp/api/posts/:id/bySkills',
       msMatchingCandidate : '/imp/api/posts/:id/candidatebyMandatorySkills',
       associatedCandidate : '/imp/api/posts/:id/associatedCandidate',

@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   private _matchingCandidates: Candidate[];
   private _matchingPercentCandidates: any[];
   private _associatedCandidate: any[];
+  private _recruiter: any;
 
 
   constructor(private _postService: PostService,
@@ -31,6 +32,13 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postService.isMyPost(params['id']))
+      .subscribe((r: any) => {
+          this._recruiter = r;
+        }
+      );
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._postService.fetchOne(params['id']))
@@ -126,6 +134,13 @@ export class PostComponent implements OnInit {
 
   isRecruiter(): boolean {
     return this._authentication.isRecruiter();
+  }
+
+  isMyPost(): boolean {
+        if (this._recruiter.id == this._authentication.getId()) {
+          return true;
+        }
+    return false;
   }
 
   isCandidate(): boolean {
