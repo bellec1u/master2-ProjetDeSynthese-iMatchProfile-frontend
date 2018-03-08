@@ -18,7 +18,7 @@ export class PostComponent implements OnInit {
   private _matchingCandidates: Candidate[];
   private _matchingPercentCandidates: any[];
   private _associatedCandidate: any[];
-  private _recruiter: any;
+  private _recruiterId: String;
 
 
   constructor(private _postService: PostService,
@@ -36,7 +36,7 @@ export class PostComponent implements OnInit {
       .filter(params => !!params['id'])
       .flatMap(params => this._postService.isMyPost(params['id']))
       .subscribe((r: any) => {
-          this._recruiter = r;
+          this._recruiterId = r.id;
         }
       );
     this._route.params
@@ -137,7 +137,7 @@ export class PostComponent implements OnInit {
   }
 
   isMyPost(): boolean {
-        if (this._recruiter.id == this._authentication.getId()) {
+        if (this._recruiterId == this._authentication.getId()) {
           return true;
         }
     return false;

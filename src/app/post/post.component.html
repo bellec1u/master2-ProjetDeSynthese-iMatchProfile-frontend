@@ -161,32 +161,26 @@
         <div *ngFor="let data of matchingCandidates">
 
           <div class="card border-secondary mb-3 w-75 mx-auto">
+            <div class="card-header">
+              {{ data.user.firstname }} {{ data.user.lastname }} - {{ data.user.email }}
+            </div>
             <div class="card-body text-secondary">
-              <h5 class="card-title">
-                {{ data.user.firstname }} {{ data.user.lastname }} - {{ data.user.email }}
-              </h5>
-              <p class="card-text text-right">
+              <div class="card-text text-right">
                 <button id="seeProfileButton1" [routerLink]="['/profile', data.id]" class="btn btn-outline-primary">
                   Voir le profil
                 </button>
-              </p>
-              <div *ngIf="isAssociatedCandidate(data.id)">
-                <p class="card-text text-right">
-                    Candidat associé
-                </p>
-              </div>
-              <div *ngIf="!isAssociatedCandidate(data.id)">
-                <p class="card-text text-right">
-                <button id="associateCandidate1" (click)="associateOneCandidate(post.id,data.id)" class="btn btn-outline-primary">
+                <button  *ngIf="isAssociatedCandidate(data.id)" class="btn btn-outline-primary disabled">
+                  Candidat associé
+                </button>
+                <button  *ngIf="!isAssociatedCandidate(data.id)" id="associateCandidate1" (click)="associateOneCandidate(post.id,data.id)" class="btn btn-outline-primary">
                   Associer le candidat
                 </button>
-              </p>
-            </div>
+              </div>
             </div>
           </div>
         </div>
 
-    </div>
+      </div>
 
 
       <div class="tab-pane fade" id="nav-matching" role="tabpanel" aria-labelledby="nav-matching-tab">
@@ -199,46 +193,42 @@
               <h5 class="card-title">
                 {{ data.candidate.user.firstname }} {{ data.candidate.user.lastname }} - {{ data.candidate.user.email }}
               </h5>
-              <p class="card-text text-right">
+              <div class="card-text text-right">
                 <button id="seeProfileButton" [routerLink]="['/profile', data.candidate.id]" class="btn btn-outline-primary">
                   Voir le profil
                 </button>
-              </p>
 
-              <div *ngIf="isAssociatedCandidate(data.candidate.id)">
-                <p class="card-text text-right">
-                Candidat associé
-                </p>
-              </div>
-              <div *ngIf="!isAssociatedCandidate(data.candidate.id)">
-                <p class="card-text text-right">
-              <button id="associateCandidate" (click)="associateOneCandidate(post.id,data.candidate.id)" class="btn btn-outline-primary">
+                <button *ngIf="isAssociatedCandidate(data.candidate.id)" class="btn btn-outline-primary disabled">
+                  Candidat associé
+                </button>
+
+                <button *ngIf="!isAssociatedCandidate(data.candidate.id)" id="associateCandidate" (click)="associateOneCandidate(post.id,data.candidate.id)" class="btn btn-outline-primary">
                   Associer le candidat
-              </button>
-                </p>
-              </div>
+                </button>
+
+            </div>
           </div>
         </div>
+      </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="nav-associated" role="tabpanel" aria-labelledby="nav-associated-tab">
+      <div *ngFor="let data of associatedCandidate">
+
+        <div class="card border-secondary mb-3 w-75 mx-auto">
+          <h5 class="card-header">
+            {{ data.candidat.user.firstname }} {{ data.candidat.user.lastname }} - {{ data.candidat.user.email }}
+          </h5>
+          <div class="card-body text-secondary">
+            <h5>Etat: {{data.state}} </h5>
+            <p class="card-text text-right">
+              <button id="seeProfileButton2" [routerLink]="['/profile', data.candidat.id]" class="btn btn-outline-primary">
+                Voir le profil
+              </button>
+            </p>
+          </div>
         </div>
-
-        </div>
-
-        <div class="tab-pane fade" id="nav-associated" role="tabpanel" aria-labelledby="nav-associated-tab">
-          <div *ngFor="let data of associatedCandidate">
-
-            <div class="card border-secondary mb-3 w-75 mx-auto">
-              <div class="card-body text-secondary">
-                <h5 class="card-title">
-                  {{ data.candidat.user.firstname }} {{ data.candidat.user.lastname }} - {{ data.candidat.user.email }}
-                </h5>
-                <h5>Etat: {{data.state}} </h5>
-                <p class="card-text text-right">
-                  <button id="seeProfileButton2" [routerLink]="['/profile', data.candidat.id]" class="btn btn-outline-primary">
-                    Voir le profil
-                  </button>
-                </p>
-              </div>
-            </div>
       </div>
     </div>
   </div>
