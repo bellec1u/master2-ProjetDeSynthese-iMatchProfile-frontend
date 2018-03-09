@@ -118,8 +118,6 @@ export class FormCandidateProfileComponent implements OnInit, OnChanges {
       this._isUpdateMode = true;
       this._model.birthDate = this._model.birthDate ? new Date(this._model.birthDate) : null;
       this._form.patchValue(this._model);
-      console.log('@@@@@@@@@');
-      console.log(this._model);
     } else {
       this._isUpdateMode = false;
     }

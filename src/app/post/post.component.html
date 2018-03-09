@@ -157,7 +157,7 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-obligatoire" role="tabpanel" aria-labelledby="nav-obligatoire-tab">
-
+        <div *ngIf="test()">
         <div *ngFor="let data of matchingCandidates">
 
           <div class="card border-secondary mb-3 w-75 mx-auto">
@@ -179,7 +179,10 @@
             </div>
           </div>
         </div>
-
+        </div>
+          <div *ngIf="!test()">
+            Aucun candidat
+            </div>
       </div>
 
 
