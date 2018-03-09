@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
@@ -31,6 +31,17 @@ export class PostService {
    */
   fetch(): Observable<any[] | ArrayBuffer> {
     return this._http.get(this._backendURL.allPost, this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
+  /**
+   * Function to return list of posts of limited size
+   *
+   * @returns {Observable<any[]>}
+   */
+  fetchLimit(limit: string): Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.allPost.concat('?limit=').concat(limit), this._options())
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
@@ -129,7 +140,7 @@ export class PostService {
    * @returns {Observable<any>}
    */
   associateOneCandidateToPost(postId: string, userId: string): Observable<any> {
-    console.log("postuler service !");
+    console.log('postuler service !');
     return this._http.post(this._backendURL.associateOneCandidate.replace(':id', postId), userId, this._options());
   }
 
@@ -146,7 +157,7 @@ export class PostService {
    */
   private _options(headerList: Object = {}): any {
     const headers = new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList));
-    return { headers };
+    return { headers: headers };
   }
 
 }

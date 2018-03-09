@@ -21,9 +21,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this._postService
-      .fetch()
+      .fetchLimit('9')
       .subscribe((posts: any[]) => this._posts = posts);
   }
 
