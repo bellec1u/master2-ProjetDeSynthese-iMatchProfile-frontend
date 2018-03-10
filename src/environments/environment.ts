@@ -18,8 +18,8 @@ export const environment = {
       onePost: '/imp/api/posts/:id',
       isMyPost: '/imp/api/posts/:idPost/isMyPost',
       allPostForRecruiter: '/imp/api/recruiters/:id/posts',
-      matchingCandidatePost: '/imp/api/posts/:id/bySkills',
-      msMatchingCandidate : '/imp/api/posts/:id/candidatebyMandatorySkills',
+      matchingCandidatePost: '/imp/api/posts/:id/matchings',
+      msMatchingCandidate : '/imp/api/posts/:id/candidateByMandatorySkills',
       associatedCandidate : '/imp/api/posts/:id/associatedCandidate',
       associateOneCandidate : '/imp/api/posts/:id/associatedOneCandidate',
       getMyOffers : '/imp/api/candidates/:id/offers',
@@ -31,7 +31,8 @@ export const environment = {
       conversationBetweenUser: '/imp/api/conversations/:id1/:id2',
       conversationForPostOwner: '/imp/api/conversations/:idUser/ownerOf/:idPost',
       allNotificationForUser: '/imp/api/notifications/user/:id',
-      oneNotification: '/imp/api/notifications/:id'
+      oneNotification: '/imp/api/notifications/:id',
+      countNoReadNotification: '/imp/api/notifications/user/:id/count'
     }
   }
 };
