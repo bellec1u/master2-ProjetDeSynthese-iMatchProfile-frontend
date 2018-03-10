@@ -43,6 +43,7 @@ describe('imp recruiter - ', function() {
     expect(headerPage.getMyPostButton().isPresent()).toBe(true);
 
     // logout
+    headerPage.getMenuButton().click();
     headerPage.getUnconnectionButton().click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
     expect(headerPage.getMyPostButton().isPresent()).toBe(false);
@@ -107,6 +108,7 @@ describe('imp recruiter - ', function() {
     expect(listPostPage.getAllTitlePost().count()).toEqual(0);
 
     // logout
+    headerPage.getMenuButton().click();
     headerPage.getUnconnectionButton().click();
     expect(headerPage.getMyPostButton().isPresent()).toBe(false);
   });

@@ -21,7 +21,6 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a id="myPostsButton" class="nav-link" *ngIf="isRecruiter()" (click)="goToPostsView()">Mes postes<span class="sr-only">(current)</span></a>
-          <a id="myProfileButton" class="nav-link" *ngIf="isCandidate()" (click)="goToProfileView()">Mon profil<span class="sr-only">(current)</span></a>
           <a id="myOffersButton" class="nav-link" *ngIf="isCandidate()" (click)="goToOfferView()">Mes offres<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
@@ -36,9 +35,20 @@
 
       <!-- Items -->
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a id="connectionButton" class="nav-link" *ngIf="!isConnected()" (click)="login()">Connexion<span class="sr-only">(current)</span></a>
-          <a id="unconnectionButton" class="nav-link" *ngIf="isConnected()" (click)="logout()">Déconnexion<span class="sr-only">(current)</span></a>
+        <li *ngIf="isConnected()" class="nav-item dropdown">
+          <a id="menuButton" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!--Options-->
+            <img src="/assets/images/gear.svg" width="30" height="30">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a id="myProfileButton" class="dropdown-item" *ngIf="isCandidate()" (click)="goToProfileView()">Mon profil<span class="sr-only"></span></a>
+            <div class="dropdown-divider" *ngIf="isCandidate()"></div>
+            <a id="unconnectionButton" class="dropdown-item" *ngIf="isConnected()" (click)="logout()">Déconnexion<span class="sr-only"></span></a>
+          </div>
+        </li>
+
+        <li *ngIf="!isConnected()" class="nav-item">
+          <a id="connectionButton" class="nav-link" *ngIf="!isConnected()" (click)="login()">Connexion<span class="sr-only"></span></a>
         </li>
       </ul>
 

@@ -168,6 +168,7 @@ export class FormPostComponent implements OnInit, OnChanges {
   }
 
   add(post: any) {
+    console.log(post);
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._postService.create(post, params['id']))

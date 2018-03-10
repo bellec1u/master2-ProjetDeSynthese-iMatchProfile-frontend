@@ -40,6 +40,7 @@ describe('imp candidate - ', function() {
     expect(headerPage.getMyProfileButton().isPresent()).toBe(true);
 
     // logout
+    headerPage.getMenuButton().click();
     headerPage.getUnconnectionButton().click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
     expect(headerPage.getMyProfileButton().isPresent()).toBe(false);
@@ -57,7 +58,8 @@ describe('imp candidate - ', function() {
     signupPage.getSignupButton().click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:49152/home');
     expect(headerPage.getMyProfileButton().isPresent()).toBe(true);
-
+    
+    headerPage.getMenuButton().click();
     headerPage.getMyProfileButton().click();
     expect(browser.getCurrentUrl()).toContain('http://localhost:49152/profile/');
 

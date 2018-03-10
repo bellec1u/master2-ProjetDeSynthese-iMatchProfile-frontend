@@ -6,6 +6,10 @@ export class HeaderPage {
     return element(by.id('navbarBrand'));
   }
 
+  getMenuButton() {
+    return element(by.id('menuButton'));
+  }
+
   getMyPostButton() {
     return element(by.id('myPostsButton'));
   }
