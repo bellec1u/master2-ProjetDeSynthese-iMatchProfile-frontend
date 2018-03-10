@@ -78,7 +78,7 @@ export class CandidateProfileComponent implements OnInit {
   }
 
   isMyAccount(): boolean {
-    if ( this._authentication.getId() == this._candidate.id) {
+    if ( this._authentication.getId() == this._candidate.id && this.isCandidate() === true) {
       return true;
     }
     return false;

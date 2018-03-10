@@ -14,11 +14,15 @@ export class NotificationComponent implements OnInit {
   private _notificationToUpdate: any;
   private _newNotification: any;
 
-  constructor(private _notificationService: NotificationService, private _route: ActivatedRoute, private _router: Router, private _authentication: AuthenticationService) { 
+  constructor(private _notificationService: NotificationService, private _route: ActivatedRoute, private _router: Router, private _authentication: AuthenticationService) {
     this._listNotification = [];
   }
 
   ngOnInit() {
+    if ( this._authentication.getId() !== this._route.params['id']) {
+      this._router.navigate(['/notifications', this._authentication.getId()]);
+    }
+
     this._route.params
       .filter(params => !!params['id'])
       .flatMap(params => this._notificationService.fetchUserNotification(params['id']))
@@ -26,7 +30,7 @@ export class NotificationComponent implements OnInit {
         this._listNotification = listNotification;
       });
   }
-  
+
   get listNotification(){
     return this._listNotification;
   }

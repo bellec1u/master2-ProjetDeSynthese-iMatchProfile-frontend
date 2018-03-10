@@ -143,7 +143,7 @@ export class PostComponent implements OnInit {
     return false;
   }
   isMyPost(): boolean {
-        if (this._recruiterId == this._authentication.getId()) {
+        if (this._recruiterId == this._authentication.getId() &&  this.isRecruiter() === true) {
           return true;
         }
     return false;

@@ -42,9 +42,9 @@ const ROUTES: Routes = [
   {
     path: 'conversations/:id', component: ConversationsComponent,  canActivate: [ ProtectedGuard ]
   },
-  // Afficher les notifications d'un candidat & recruteur 
+  // Afficher les notifications d'un candidat & recruteur
   {
-    path: 'notifications/:id', component: NotificationComponent 
+    path: 'notifications/:id', component: NotificationComponent,  canActivate: [ ProtectedGuard ]
   },
   // 404 page
   {
