@@ -136,6 +136,12 @@ export class PostComponent implements OnInit {
     return this._authentication.isRecruiter();
   }
 
+  test(): boolean {
+    if (this._matchingCandidates.length > 0) {
+      return true;
+    }
+    return false;
+  }
   isMyPost(): boolean {
         if (this._recruiterId == this._authentication.getId()) {
           return true;
