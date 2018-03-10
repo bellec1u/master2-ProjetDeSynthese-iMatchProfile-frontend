@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router , ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../shared/authentication/authentication.service';
+import { NotificationService } from '../shared/services/notification-service/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,22 @@ import {AuthenticationService} from '../shared/authentication/authentication.ser
 export class HeaderComponent implements OnInit {
 
   title = 'iMatchProfile';
+    private _notif;
 
   constructor(private _router: Router,
-              private _authentication: AuthenticationService) { }
+              private _route: ActivatedRoute,
+              private _authentication: AuthenticationService,
+              private _notification: NotificationService) { 
+                this._notif = {};
+              }
 
   ngOnInit() {
+    this._route.params
+      .flatMap(params => this._notification.fetchCountNoReadNotification(this._authentication.getIdUser()))
+      .subscribe((notif: any) => {
+          this._notif = notif;
+        }
+      );
   }
 
   login() {
@@ -24,6 +36,10 @@ export class HeaderComponent implements OnInit {
   logout() {
     this._authentication.logout();
     this._router.navigate(['home']);
+  }
+
+  get notif(){
+    return this._notif;
   }
 
   goToPostsView() {

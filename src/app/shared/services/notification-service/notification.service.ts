@@ -26,6 +26,10 @@ export class NotificationService {
     return this._http.get(this._backendURL.allNotificationForUser.replace(':id', id), this._options());
   }
 
+  fetchCountNoReadNotification(id: string): Observable<any> {
+    return this._http.get(this._backendURL.countNoReadNotification.replace(':id', id), this._options());
+  }
+
   /**
    * Function to update one notification
    *

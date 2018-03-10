@@ -31,7 +31,8 @@ export const environment = {
       conversationBetweenUser: '/imp/api/conversations/:id1/:id2',
       conversationForPostOwner: '/imp/api/conversations/:idUser/ownerOf/:idPost',
       allNotificationForUser: '/imp/api/notifications/user/:id',
-      oneNotification: '/imp/api/notifications/:id'
+      oneNotification: '/imp/api/notifications/:id',
+      countNoReadNotification: '/imp/api/notifications/user/:id/count'
     }
   }
 };
