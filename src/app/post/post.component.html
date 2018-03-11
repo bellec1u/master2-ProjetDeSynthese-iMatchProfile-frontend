@@ -4,6 +4,25 @@
 
 <div *ngIf="post.title">
 
+  <!-- apply modal -->
+  <div class="modal fade applyModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">
+      <div class="modal-content p-2">
+        <div class="container">
+          <p *ngIf="applied()">
+            Votre candidature pour le poste de : <b>{{post.title}}</b> a été enregistrée avec succès !
+          </p>
+          <p *ngIf="!applied()">
+            Vous avez déja postulé pour ce poste !
+          </p>
+          <div>
+            <button class="btn btn-outline-primary float-right m-2" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- contact recruiter modal -->
   <div class="modal fade contactRecruiterModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg h-100 d-flex flex-column justify-content-center my-0">

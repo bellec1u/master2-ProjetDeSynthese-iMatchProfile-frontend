@@ -132,7 +132,15 @@ export class PostService {
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
-
+  /**
+   *
+   * @param {string} postId
+   * @param userId
+   * @returns {Observable<any>}
+   */
+  apply(postId: string, userId: string): Observable<any> {
+    return this._http.post(this._backendURL.apply.replace(':id', postId), userId, this._options());
+  }
   /**
    *
    * @param {string} postId
@@ -140,7 +148,6 @@ export class PostService {
    * @returns {Observable<any>}
    */
   associateOneCandidateToPost(postId: string, userId: string): Observable<any> {
-    console.log('postuler service !');
     return this._http.post(this._backendURL.associateOneCandidate.replace(':id', postId), userId, this._options());
   }
 

@@ -19,6 +19,8 @@ export class PostComponent implements OnInit {
   private _matchingPercentCandidates: any[];
   private _associatedCandidate: any[];
   private _recruiterId: String;
+  private _applied: boolean;
+
 
 
   constructor(private _postService: PostService,
@@ -46,7 +48,6 @@ export class PostComponent implements OnInit {
           this._post = post;
         }
       );
-
     // matching user with mandatory skills
     this._route.params
       .filter(params => !!params['id'])
@@ -88,6 +89,10 @@ export class PostComponent implements OnInit {
     return this._post;
   }
 
+  applied(): boolean {
+    return this._applied;
+  }
+
   get matchingCandidates(): any[] {
     return this._matchingCandidates;
   }
@@ -113,17 +118,6 @@ export class PostComponent implements OnInit {
     });
   }
 
-  Postuler() {
-    this._postService.associateOneCandidateToPost(this._post.id, this._authentication.getId()).subscribe(
-      result => {
-        alert('Votre candidature a été enregistré avec succès !');
-      },
-      error => {
-        alert('Vous avez déja postulé à ce poste !');
-      }
-    );
-  }
-
   contact(message) {
     this._conversationService
       .sendMessageForPostOwner(message, this._authentication.getIdUser(), this._post.id)
@@ -131,6 +125,20 @@ export class PostComponent implements OnInit {
   }
 
   Signaler() {}
+
+
+
+  Postuler() {
+    console.log(this._post.getId());
+    this._postService.apply(this._post.id, this._authentication.getId())
+      .subscribe(result => {
+          this._applied = true;
+        },
+        error => {
+          this._applied = false;
+        }
+      );
+  }
 
   isRecruiter(): boolean {
     return this._authentication.isRecruiter();
