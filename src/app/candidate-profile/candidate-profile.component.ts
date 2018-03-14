@@ -88,10 +88,10 @@ export class CandidateProfileComponent implements OnInit {
    * Function to delete the candidate profile.
    */
   delete() {
-    this._authentication.logout();
     this._candidateService
       .delete(this._candidate.id)
       .subscribe(() => this._router.navigate(['/home']));
+    this._authentication.logout();
   }
 
   /**
