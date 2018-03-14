@@ -19,8 +19,8 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit() {
-    if ( this._authentication.getId() !== this._route.params['id']) {
-      this._router.navigate(['/notifications', this._authentication.getId()]);
+    if ( this._authentication.getIdUser() !== this._route.params['id']) {
+      this._router.navigate(['/notifications', this._authentication.getIdUser()]);
     }
 
     this._route.params

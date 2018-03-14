@@ -29,7 +29,7 @@
         </li>
         <li class="nav-item">
           <a id="myNotificationsButton" *ngIf="isConnected()"
-          class="nav-link" (click)="goToNotificationView()">Mes notifications <span class="badge badge-danger">{{ notif.count }}</span><span class="sr-only">(current)</span></a>
+          class="nav-link" (click)="goToNotificationView()">Mes notifications <span *ngIf="notif.count !== 0" class="badge badge-danger">{{ notif.count }}</span><span class="sr-only">(current)</span></a>
         </li>
       </ul>
 

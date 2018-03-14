@@ -47,6 +47,10 @@ export class CandidateService {
     return this._http.get(this._backendURL.getMyOffers.replace(':id', id), this._options());
   }
 
+  getMatchings(id: string): Observable<any> {
+    return this._http.get(this._backendURL.candidateMatchings.replace(':id', id), this._options());
+  }
+
   /**
    * Function to create a new candidate
    *

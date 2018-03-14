@@ -25,6 +25,7 @@ export const environment = {
       associateOneCandidate : '/imp/api/posts/:id/associatedOneCandidate',
       getMyOffers : '/imp/api/candidates/:id/offers',
       actionToOffers : '/imp/api/candidates/:id/offers',
+      candidateMatchings : '/imp/api/candidates/:id/matchings',
       allSkill: '/imp/api/skills',
       login: '/imp/api/login',
       conversationForUser: '/imp/api/conversations/forUser/:id',

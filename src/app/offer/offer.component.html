@@ -1,38 +1,99 @@
-<div *ngFor="let data of offers">
-  <div class="card border-secondary mb-3 w-75 mx-auto">
-    <div class="card-body text-secondary">
-      <div class="card mb-4">
-        <div class="card-header">
-          <h4>{{ data.post.title }}</h4>
-          <h6><u>{{ data.post.workplace }}</u></h6>
-        </div>
+<div class="my-3 p-3 bg-white rounded box-shadow">
+  <h2>Offres / Matchings</h2>
+  <nav>
+    <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-offres-tab" data-toggle="tab" href="#nav-offres" role="tab"
+         aria-controls="nav-offres" aria-selected="true">
+        Mes offres
+      </a>
+      <a class="nav-item nav-link" id="nav-matching-tab" data-toggle="tab" href="#nav-matching" role="tab"
+         aria-controls="nav-matching" aria-selected="false">
+        Matchings
+      </a>
+    </div>
+  </nav>
 
-        <div class="card-body">
-          <div class="mb-2 module personnalFade">
-            <p>{{ data.post.description }}</p>
+<div class="tab-content" id="nav-tabContent">
+
+  <div class="tab-pane fade show active" id="nav-offres" role="tabpanel" aria-labelledby="nav-offres-tab">
+
+    <div *ngIf="!data || data.length === 0">Vous n'avez aucune offre</div>
+    <div *ngFor="let data of offers">
+      <div class="card border-secondary mb-3 w-75 mx-auto">
+        <div class="card-body text-secondary">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4>{{ data.post.title }}</h4>
+              <h6><u>{{ data.post.workplace }}</u></h6>
+            </div>
+
+            <div class="card-body">
+              <div class="mb-2 module personnalFade">
+                <p>{{ data.post.description }}</p>
+              </div>
+              <p>
+                Etat : {{data.state}}
+              </p>
+              <div *ngIf="data.state === 'ATTENTE'">
+                <p>
+                  <button class="refuseButton" class="btn btn-outline-primary float-right" (click)="refuse(data.id)">
+                    Refuser
+                  </button>
+                  <button class="acceptButton" class="btn btn-outline-primary float-right" (click)="accept(data.id)">
+                    Accepter
+                  </button>
+                </p>
+              </div>
+              <p>
+                <button class="showPostButton" class="btn btn-outline-primary float-right"
+                        [routerLink]="['/post', data.post.id]" name='{{ data.post.id }}'>
+                  Voir le poste &raquo;
+                </button>
+              </p>
+            </div>
           </div>
-          <p>
-            Etat : {{data.state}}
-          </p>
-          <div *ngIf="data.state === 'ATTENTE'">
-            <p>
-              <button id="acceptButton" class="btn btn-outline-primary float-right" (click)="accept(data.id)">
-                Accepter
-              </button>
-              <button id="refuseButton" class="btn btn-outline-primary float-right" (click)="refuse(data.id)">
-                Refuser
-              </button>
-            </p>
-          </div>
-          <p>
-            <button id="showPostButton" class="btn btn-outline-primary float-right" [routerLink]="['/post', data.post.id]" name='{{ data.post.id }}'>
-              Voir le poste &raquo;
-            </button>
-          </p>
+
         </div>
       </div>
 
     </div>
+
+  </div>
+
+  <div class="tab-pane fade" id="nav-matching" role="tabpanel" aria-labelledby="nav-matching-tab">
+
+    <div *ngIf="!matching || matching.length === 0">Vous n'avez aucun matching</div>
+    <div *ngFor="let matching of matchings">
+      <div class="card border-secondary mb-3 w-75 mx-auto">
+        <div class="card-body text-secondary">
+          <div class="card mb-4">
+            <div class="card-header">
+              <div class="float-right">
+                Taux de matching : {{ matching.percent }} %
+              </div>
+              <h4>{{ matching.post.title }}</h4>
+              <h6><u>{{ matching.post.workplace }}</u></h6>
+            </div>
+
+            <div class="card-body">
+              <div class="mb-2 module personnalFade">
+                <p>{{ matching.post.description }}</p>
+              </div>
+              <p>
+                <button class="showPostButton" class="btn btn-outline-primary float-right"
+                        [routerLink]="['/post', matching.post.id]" name='{{ matching.post.id }}'>
+                  Voir le poste &raquo;
+                </button>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 
+  </div>
+
+  </div>
 </div>

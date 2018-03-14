@@ -11,11 +11,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ConversationsComponent implements OnInit {
 
   private _conversations: any;
+
   private _currentConversationUser: any;
 
   constructor(private _conversationService: ConversationService,
               private _authentication: AuthenticationService,  private _router: Router,  private _route: ActivatedRoute) {
-
+    if (this._authentication.getIdUser() !== this._route.params['id']) {
+      this._router.navigate(['/conversations', this._authentication.getIdUser()]);
+    }
 
   }
 
@@ -55,7 +58,7 @@ export class ConversationsComponent implements OnInit {
     return this._authentication.getIdUser();
   }
 
-  sendMessage(message) {
+  sendMessage(messageTextArea, message) {
     this._conversationService
       .sendMessage(message, this._authentication.getIdUser(), this._currentConversationUser)
       .subscribe(conversation => {
@@ -65,7 +68,8 @@ export class ConversationsComponent implements OnInit {
             index = i;
           }
         }
-       this._conversations[index].msg = conversation.msg;
+        this._conversations[index].msg = conversation.msg;
+        messageTextArea.value = '';
       });
   }
 
