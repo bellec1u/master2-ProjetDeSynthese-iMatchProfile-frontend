@@ -15,9 +15,7 @@ export class ConversationsComponent implements OnInit {
 
   constructor(private _conversationService: ConversationService,
               private _authentication: AuthenticationService,  private _router: Router,  private _route: ActivatedRoute) {
-    if ( this._authentication.getId() !== this._route.params['id']) {
-      this._router.navigate(['/conversations', this._authentication.getId()]);
-    }
+
 
   }
 

@@ -122,6 +122,12 @@ export class PostService {
     .defaultIfEmpty([]);
   }
 
+  getApplyUserByPost(id: string):  Observable<any[] | ArrayBuffer> {
+    return this._http.get(this._backendURL.getApplyUserByPost.replace(':idPost', id), this._options())
+      .filter(_ => !!_)
+      .defaultIfEmpty([]);
+  }
+
   /**
    *
    * @param {string} id
@@ -132,15 +138,11 @@ export class PostService {
       .filter(_ => !!_)
       .defaultIfEmpty([]);
   }
-  /**
-   *
-   * @param {string} postId
-   * @param userId
-   * @returns {Observable<any>}
-   */
-  apply(postId: string, userId: string): Observable<any> {
-    return this._http.post(this._backendURL.apply.replace(':id', postId), userId, this._options());
+
+  applyToPost(postId: string, userId: string): Observable<any> {
+    return this._http.post(this._backendURL.applyPost.replace(':id', postId), userId, this._options());
   }
+
   /**
    *
    * @param {string} postId

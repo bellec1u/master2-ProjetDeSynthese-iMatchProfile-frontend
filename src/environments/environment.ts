@@ -20,12 +20,11 @@ export const environment = {
       allPostForRecruiter: '/imp/api/recruiters/:id/posts',
       matchingCandidatePost: '/imp/api/posts/:id/matchings',
       msMatchingCandidate : '/imp/api/posts/:id/candidateByMandatorySkills',
-      apply : '/imp/api/posts/:id/apply',
+      applyPost : '/imp/api/posts/:id/apply',
       associatedCandidate : '/imp/api/posts/:id/associatedCandidate',
       associateOneCandidate : '/imp/api/posts/:id/associatedOneCandidate',
       getMyOffers : '/imp/api/candidates/:id/offers',
-      acceptOffers : '/imp/api/candidates/:id/offers',
-      refuseOffers : '/imp/api/candidates/:id/offers',
+      actionToOffers : '/imp/api/candidates/:id/offers',
       allSkill: '/imp/api/skills',
       login: '/imp/api/login',
       conversationForUser: '/imp/api/conversations/forUser/:id',
@@ -33,6 +32,7 @@ export const environment = {
       conversationForPostOwner: '/imp/api/conversations/:idUser/ownerOf/:idPost',
       allNotificationForUser: '/imp/api/notifications/user/:id',
       oneNotification: '/imp/api/notifications/:id',
+      getApplyUserByPost: '/imp/api/posts/:idPost/apply',
       countNoReadNotification: '/imp/api/notifications/user/:id/count'
     }
   }

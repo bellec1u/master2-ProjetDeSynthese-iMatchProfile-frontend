@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   private _matchingCandidates: Candidate[];
   private _matchingPercentCandidates: any[];
   private _associatedCandidate: any[];
+  private _apply: any[];
   private _recruiterId: String;
   private _applied: boolean;
 
@@ -31,6 +32,7 @@ export class PostComponent implements OnInit {
     this._post = {};
     this._matchingCandidates = [];
     this._associatedCandidate = [];
+    this._apply = [];
   }
 
   ngOnInit() {
@@ -74,6 +76,14 @@ export class PostComponent implements OnInit {
         this._associatedCandidate = a;
         }
       );
+
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._postService.getApplyUserByPost(params['id']))
+      .subscribe((c: any[]) => {
+          this._apply = c;
+        }
+      );
   }
 
   isAssociatedCandidate(idc): boolean {
@@ -105,6 +115,10 @@ export class PostComponent implements OnInit {
     return this._associatedCandidate;
   }
 
+  get apply(): any[] {
+    return this._apply;
+  }
+
   associateOneCandidate(postId, candidateId) {
     this._postService.associateOneCandidateToPost(postId, candidateId).subscribe();
     this.ngOnInit();
@@ -129,8 +143,7 @@ export class PostComponent implements OnInit {
 
 
   Postuler() {
-    console.log(this._post.getId());
-    this._postService.apply(this._post.id, this._authentication.getId())
+    this._postService.applyToPost(this._post.id, this._authentication.getId())
       .subscribe(result => {
           this._applied = true;
         },

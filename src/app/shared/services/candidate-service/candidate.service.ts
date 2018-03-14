@@ -82,11 +82,11 @@ export class CandidateService {
 
 
   acceptOffer(associateId: string): Observable<any> {
-    return this._http.put(this._backendURL.acceptOffers.replace(':id', associateId), this._options());
+    return this._http.put(this._backendURL.actionToOffers.replace(':id', associateId), this._options());
   }
 
   refuseOffer(associateId: string): Observable<any> {
-    return this._http.delete(this._backendURL.refuseOffers.replace(':id', associateId), this._options());
+    return this._http.delete(this._backendURL.actionToOffers.replace(':id', associateId), this._options());
   }
 
     /**

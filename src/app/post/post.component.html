@@ -53,7 +53,7 @@
       </button>
       <div class="dropdown-menu">
         <div *ngIf="!isMyPost()">
-          <button (click)="Postuler()" type="button" *ngIf="isCandidate()" class="dropdown-item">
+          <button (click)="Postuler()" type="button" *ngIf="isCandidate()" class="dropdown-item" data-toggle="modal" data-target=".applyModal">
             Postuler
           </button>
           <button type="button" class="dropdown-item" data-toggle="modal" data-target=".contactRecruiterModal">
@@ -169,7 +169,10 @@
           Matchings
         </a>
         <a class="nav-item nav-link" id="nav-associated-tab" data-toggle="tab" href="#nav-associated" role="tab" aria-controls="nav-associated" aria-selected="false">
-          Associé
+          Candidats associés
+        </a>
+        <a class="nav-item nav-link" id="nav-applications-tab" data-toggle="tab" href="#nav-applications" role="tab" aria-controls="nav-applications" aria-selected="false">
+          Postulants
         </a>
 
       </div>
@@ -253,6 +256,26 @@
         </div>
       </div>
     </div>
-  </div>
+
+      <div class="tab-pane fade" id="nav-applications" role="tabpanel" aria-labelledby="nav-applications-tab">
+        <div *ngFor="let data of apply">
+          <div class="card border-secondary mb-3 w-75 mx-auto">
+            <h5 class="card-header">
+              {{ data.candidat.user.firstname }} {{ data.candidat.user.lastname }} - {{ data.candidat.user.email }}
+            </h5>
+            <div class="card-body text-secondary">
+              <p class="card-text text-right">
+                <button id="seeProfileButton3" [routerLink]="['/profile', data.candidat.id]" class="btn btn-outline-primary">
+                  Voir le profil
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
 </div>
 </div>
