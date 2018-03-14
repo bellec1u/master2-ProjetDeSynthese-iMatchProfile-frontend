@@ -9,8 +9,10 @@ import {AuthenticationService} from '../shared/authentication/authentication.ser
   styleUrls: ['./offer.component.css']
 })
 export class OfferComponent implements OnInit {
+
   private _offers: any[];
 
+  private _matchings: any[];
 
   constructor(private _candidateService: CandidateService,
               private _route: ActivatedRoute,
@@ -23,6 +25,7 @@ export class OfferComponent implements OnInit {
       }
     }
     this._offers = [];
+    this._matchings = [];
   }
 
   ngOnInit() {
@@ -32,10 +35,20 @@ export class OfferComponent implements OnInit {
       .subscribe((offer: any) => {
           this._offers = offer;
         });
-  }
+
+    this._route.params
+      .filter(params => !!params['id'])
+      .flatMap(params => this._candidateService.getMatchings(params['id']))
+      .subscribe((match: any) => {
+        this._matchings = match;
+      });  }
 
   get offers() {
     return this._offers;
+  }
+
+  get matchings(): any[] {
+    return this._matchings;
   }
 
   accept(associateId) {
